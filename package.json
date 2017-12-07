@@ -9,7 +9,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.2"
+    "bluebird": "^3.5.1",
+    "express": "^4.16.2",
+    "mongodb": "^3.0.0-rc0",
+    "mongoose": "^4.13.6",
+    "socket.io": "^2.0.4"
   },
   "devDependencies": {
     "concurrently": "^3.5.1"

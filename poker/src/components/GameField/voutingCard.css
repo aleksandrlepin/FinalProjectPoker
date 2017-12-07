@@ -1,0 +1,12 @@
+.voutingCard {
+    width: 44px;
+    height: 55px;
+    border-radius: 5px;
+    margin: 20px;
+    background: #cbcbcb;
+    font-size: 30px;
+    font-family: "Roboto";
+    color: rgb(255, 255, 255);
+    line-height: 1.2;
+    text-align: center;
+}
