@@ -55,13 +55,16 @@ class GameField extends React.Component {
                     </div>
                 </div>
                 <div className='row'>
-                    <div className='container-for-vouting-cards col-sm-12 col-md-9'>
+                    <div className='container-for-vouting-cards col-sm-12 col-md-12'>
                         {fibNumbers.map((value, index) => {
                             return <VoutingCard number={value} key={index} />
                         })}
                     </div>
-
-                    <button>End Game</button>
+                    <div className="col-md-8">
+                    </div>
+                    <div className="col-md-2">
+                        <button>End Game</button>
+                    </div>
                 </div>
             </div>
         )
