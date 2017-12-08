@@ -2,61 +2,122 @@ import React from 'react';
 // import UserCards from '../usersCards/index';
 
 export default class Dashboard extends React.Component {
+    constructor() {
+        super();
+        this.state= {
+            questions: {},
+            rows : [],
+            owner: 'Dima',
+            answers:{},
+            users:[],
+            numbQuestions : 1
+        };
+        this.handleSubmit=this.handleSubmit.bind(this);
+    }
 
-    handleSave = () => {
-        let newGame = JSON.stringify({name: this.refs.gameName.value,
-        owner: 'Sasha',
-        questions: { "1": "Some quesstion#1",
-        "2": "Some quesstion#2",
-        "3": "Some quesstion#3",
-        "4": "Some quesstion#4",
-        "5": "Some quesstion#5"},
-        answers: {"1": "55",
-        "2": "33",
-        "3": "65",
-        "4": "77",
-        "5": "21"},
-        currentQuestion: '2',
-        users: [ {
-            "name": "Dmitryi Yrich",
-            "email": "vasia@vasia.de",
-            "answers": {
-                "q1": "77",
-                "q2": "54",
-                "q3": "11",
-                "q4": "5",
-                "q5": "8"
-            }
-        },
-        {
-            "name": "Vasiliy Kasiliy",
-            "email": "kasiliy@vasiliy.de",
-            "answers": {
-                "q1": "2",
-                "q2": "5",
-                "q3": "8",
-                "q4": "13",
-                "q5": "21"
-            }}]});
-        console.log(newGame);    
+
+    handleSubmit = (event) => {
+        // event.preventDefault();
+        let objectNewGame = {
+            nameGame: this.refs.nameGame.value,
+            owner:this.state.owner,
+            description:this.refs.description.value,
+            questions:this.state.questions,
+            answers:this.state.answers,
+            users:this.state.users
+        };
+        let newGame = JSON.stringify(objectNewGame);
+        console.log("------------------------ StartFETCH");
 
         fetch('/saveGame', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: newGame
         })
-        .then(res => res.json())
-        .then(res => console.log(res))
-        .catch(err => console.log(err))
-    } 
+            .then(res => res.json())
+            .then(res => console.log(res))
+            .catch(err => console.log(err))
+        console.log("------------------------  fetch RUUUUN");
+    };
+    addedQuestion=(event)=>{
+        event.preventDefault();
+        let arr=this.state.questions;
+        // console.log(' ========================= '+arr);
+        let a = this.state.numbQuestions;
+        // this.state.questions.key = a ;
+        // this.state.answers.key = a ;
+        this.state.questions[a] = this.refs.question.value;
+        this.state.answers[a] = "";
+        this.state.rows.push(this.refs.question.value);
+        this.state.numbQuestions++;
+        this.refs.question.value="";
+        this.setState({questions : arr})
+    };
 
     render() {
         return (
-            <div>
-              {/* <UserCards /> */}
-              <h1>hello</h1>
-              <input ref='gameName' placeholder='game name'></input>
-              <button onClick={this.handleSave}>Save</button>
+            <div className='row'>
+                <div className='container'>
+                    <div className="col-lg-6">
+                        <form>
+                            <h1>
+                                Create New Game
+                            </h1>
+                            <label for="nameGame">
+                                <h3>Game Name</h3>
+                                <input
+                                    ref="nameGame"
+                                    id="nameGame"
+                                    type="text"
+                                    placeholder="name game"
+
+                                />
+                            </label>
+                            <h3>Description</h3>
+                            <div>
+                                    <textarea
+                                        ref="description"
+                                        type="text"
+                                        placeholder='input description'
+                                        >
+                                    </textarea>
+                            </div>
+                            <label for="question">
+                                <h3>Add questions</h3>
+                                <input
+                                    ref="question"
+                                    id="question"
+                                    type="text"
+                                    placeholder="input question"
+                                />
+                                <button className="btn-default"
+                                        onClick={this.addedQuestion}>
+                                    Add question
+                                </button>
+                            </label>
+                            <div
+                                className="listQuestions">
+                            </div>
+                            <div>
+                                {
+                                    this.state.rows.length>0 ?
+                                        this.state.rows.map((item, index)=>{
+                                            return(
+                                                <p key={index}>{index+1}. {item}</p>)
+                                        })
+                                        :
+                                        <div className="questionOnNewGame">No questions</div>
+                                }
+                                <button
+                                    onClick={this.handleSubmit}
+                                    className="btn-default"
+                                    type="submit">
+                                    Create Game
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
         )
     }
