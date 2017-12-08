@@ -2,36 +2,58 @@ import React from 'react';
 import fibNumbers from '../../constants/fibonachi';
 import VoutingCard from './VoutingCard';
 import UserCards from '../usersCards/index';
-
+import { connect } from 'react-redux';
+import { DBtoStore } from '../../actions';
+import { bindActionCreators } from 'redux';
+import store from './store/index';
 import './gameField.css';
+import * as types from '../../constants/actionTypes';
 
-export default class GameField extends React.Component {
+const URL = "http://localhost:3000";
 
+class GameField extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = store.getState();
+
+        fetch(`${URL}/games/${this.props.match.params.id}`, { method: 'GET' })
+            .then(res => res.json())
+            .then(res => {
+                store.dispatch(DBtoStore(res));
+            })
+            .catch(err => console.log(err));
+
+        store.subscribe(() => {
+            this.setState(store.getState());
+        });
+    }
+
+    handleIncrement = () => {
+        console.log('hi');
+        store.dispatch({ type: 'INCREMENT' });
+    }
     componentWillMount() {
         let id = JSON.stringify({ gameId: this.props.match.params.id });
 
-        fetch('/fetchGame', { method: 'POST', headers: { "Content-Type": "application/json" }, body: id })
-            .then(res => res.json())
-            .then(res => {
-                // this.props.DBtoStore(res);
-                console.log("db from willmount", res)
-            })
-            .catch(res => console.log());
     }
 
     render() {
-        console.log(fibNumbers);
+        console.log('this.state.dbToStore[0] from render', this.state.dbToStore[0])
         return (
             <div>
-                 <div className='row'>
-                 <div className='container-for-questions col-sm-12 col-md-3'> 
+                <div className='row'>
+                    <div className='container-for-questions col-sm-12 col-md-3'>
 
-                 </div>
-                 <div className='container-for-main-right-part col-sm-12 col-md-9'> 
-                    <UserCards />
-                    <button>Flip cards</button>
-                 </div>
-                 </div>
+                    </div>
+                    <div className='container-for-main-right-part col-sm-12 col-md-9'>
+
+                        <h1>{this.state.increment}</h1>
+                        <button onClick={this.handleIncrement}>to increase</button>
+                        <UserCards />
+                        {this.state.dbToStore[0] == undefined ? null : this.state.dbToStore[0].users[1].name}
+                        <button>Flip cards</button>
+                    </div>
+                </div>
                 <div className='row'>
                     <div className='container-for-vouting-cards col-sm-12 col-md-9'>
                         {fibNumbers.map((value, index) => {
@@ -45,3 +67,5 @@ export default class GameField extends React.Component {
         )
     }
 }
+
+export default GameField;
