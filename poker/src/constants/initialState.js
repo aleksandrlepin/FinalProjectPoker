@@ -4,5 +4,6 @@ export default ({
     data : [{name: 'bbb'}],
     currentQuestion : 1,
     
-    database : []
+    database : [],
+   
 });

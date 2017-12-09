@@ -13,8 +13,9 @@ const Game = require('./models/game');
 const config = require("./config.json");
 //
 var saveGame = require('./routes/saveGame');
-var fetchGame = require('./routes/fetchGame');
+// var fetchGame = require('./routes/fetchGame');
 var game_id = require('./routes/game_id');
+var addPlayer = require('./routes/addPlayer');
 
 app.use(function (req, res, next) {
 
@@ -42,7 +43,8 @@ var jsonParser = bodyParser.json();
 
 
 app.use('/saveGame', saveGame);
-app.use('/fetchGame', fetchGame);
+// app.use('/fetchGame', fetchGame);
+app.use('/addPlayer', addPlayer);
 // app.get('/games/');
 // app.use('/games/:id', game_id);
 app.get('/games/:id/users');
@@ -58,13 +60,37 @@ app.get('/games/:id', (req, res, next) => {
     Game.findById(gameId, (err, game) => {
         console.log('result', err, game)
         res.send(game);
-      })
+    })
 })
+
+
+//socket part
 
 var server = http.createServer(app)
 server.listen(config["dev"].port, () => console.log(`Example app listening on port ${config['dev'].port}!`))
 io.listen(server);
 io.on('connection', (socket) => {
     console.log('socket connected');
+
+    socket.on('add user', function (username) {
+
+        // we store the username in the socket session for this socket
+        console.log('username from server', username)
+        socket.username = username;
+
+
+        socket.emit('login', username);
+
+        socket.broadcast.emit('updateDb', username);
+        socket.emit('updateDb', username);
+
+    });
+
+    socket.on('transferNumber', (number) => {
+        console.log('clicked number', number, 'username', socket.username);
+        socket.broadcast.emit('renderNumber', { number: number, name: socket.username })
+        socket.emit('renderNumber', { number: number, name: socket.username })
+    });
+
 })
 // console.log('listening on port ', port);
