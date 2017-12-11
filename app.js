@@ -43,6 +43,8 @@ var jsonParser = bodyParser.json();
 
 
 app.use('/saveGame', saveGame);
+app.use('/uploadgame', require('./routes/uploadgame'));
+app.use('/delgame', require('./routes/delgame'));
 // app.use('/fetchGame', fetchGame);
 app.use('/addPlayer', addPlayer);
 // app.get('/games/');

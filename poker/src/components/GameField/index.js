@@ -63,11 +63,12 @@ class GameField extends React.Component {
         });
     }
 
+
     render() {
         // console.log('this.state.dbToStore[0] from render', this.state.dbToStore[0])
         return (
             <div>
-                <ModalNewPlayer gameId={this.props.match.params.id} />
+                <ModalNewPlayer gameId={this.props.match.params.id}/>
                 <div className='row'>
                     <div className='container-for-questions col-sm-12 col-md-3'>
 

@@ -1,9 +1,9 @@
 import React from 'react';
 import Modal from 'react-modal';
-import { DBtoStore, addPlayer } from '../../actions';
-import { socket } from '../../constants/consts';
-import openSocket from 'socket.io-client';
-import store from './store/index';
+// import { DBtoStore, addPlayer } from '../../actions';
+// import { socket } from '../../constants/consts';
+// import openSocket from 'socket.io-client';
+// import store from './store/index';
 
 
 const customStyles = {
@@ -36,48 +36,19 @@ export default class ModalNewPlayer extends React.Component {
 
     handlePlay = () => {
         this.setState({ modalIsOpen: false });
-        if (this.props.gameId) {
-            let id = JSON.stringify({ gameId: this.props.gameId });
-            console.log(this.refs.name.value);
-            let data = JSON.stringify({
-                gameId: this.props.gameId,
-                user: {
-                    name: this.refs.name.value,
-                    email: this.refs.email.value
-                }
-            });
-            console.log('data', data);
-            let newBD = {};
-            fetch(`/addPlayer`, { method: 'POST', headers: { "Content-Type": "application/json" }, body: data })
-                .then(res => res.json())
-                .then(res => {
-                    console.log("db from addPlayer", res)
-                    store.dispatch(addPlayer(res));
-                })
-                .catch(err => console.log(err));
+        console.log(this.refs.name.value)
+            // send name to dashboard
+        this.props.ownerOfGame(this.refs.name.value);
 
-            // Tell the server your username
-            let name = this.refs.name.value;
-            console.log(name)
-            socket.emit('add user', name);
-        }
     }
 
 
 
     handleCancel = () => {
         this.setState({ modalIsOpen: false });
-        let id = JSON.stringify({ gameId: this.props.gameId });
-        // fetch(`${URL}/games/${this.props.match.params.id}`, { method: 'GET' })
-        //     .then(res => res.json())
-        //     .then(res => {
-        //         store.dispatch(DBtoStore(res));
-        //     })
-        //     .catch(err => console.log(err));
-
     }
-    render() {
 
+    render() {
         return (
             <Modal
                 isOpen={this.state.modalIsOpen}
@@ -91,12 +62,12 @@ export default class ModalNewPlayer extends React.Component {
 
                 <form>
                     <label>Enter your name:
-     <br></br>
+                        <br></br>
                         <input ref="name" />
                     </label>
                     <br></br>
                     <label>Enter your email:
-     <br></br>
+                        <br></br>
                         <input ref="email" />
                     </label>
                     <br></br>

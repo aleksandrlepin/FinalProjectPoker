@@ -5,6 +5,7 @@ import './App.css';
 import MainLayout from './components/MainLayout';
 import Dashboard from './components/Dashboard/index';
 import GameField from './components/GameField/index';
+import NewGame from './components/NewGame/index';
 import Card from './components/usersCards/UserCard';
 
 const socket = openSocket('http://localhost:3001');
@@ -18,6 +19,7 @@ class App extends Component {
       <MainLayout> 
         <Switch>
           <Route exact path='/' component={Dashboard} />
+          <Route exact path='/newgame' component={NewGame} />
           <Route path='/play/game/:id' component={GameField} />
           <Route path='/card' component={Card} />
         </Switch>

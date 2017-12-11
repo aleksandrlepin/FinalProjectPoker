@@ -1,124 +1,76 @@
 import React from 'react';
-// import UserCards from '../usersCards/index';
+import Menu from './Menu/index';
+import ModalLogin from './Modal/ModalLogin';
+import './index.css';
+import { link } from '../../constants/consts.js'
 
 export default class Dashboard extends React.Component {
-    constructor() {
-        super();
-        this.state= {
-            questions: {},
-            rows : [],
-            owner: 'Dima',
-            answers:{},
-            users:[],
-            numbQuestions : 1
-        };
-        this.handleSubmit=this.handleSubmit.bind(this);
+
+    state = {
+        games : [],
+        owner : '',
+        rerender : false
     }
 
+    returnOwnerName = (name) => {
+        this.setState({'owner':name})
+        console.log('start fetch')
+        let nameOfOwner = JSON.stringify({'name' : name});
 
-    handleSubmit = (event) => {
-        // event.preventDefault();
-        let objectNewGame = {
-            nameGame: this.refs.nameGame.value,
-            owner:this.state.owner,
-            description:this.refs.description.value,
-            questions:this.state.questions,
-            answers:this.state.answers,
-            users:this.state.users
-        };
-        let newGame = JSON.stringify(objectNewGame);
-        console.log("------------------------ StartFETCH");
-
-        fetch('/saveGame', {
+        fetch('/uploadgame', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
-            body: newGame
+            body: nameOfOwner
         })
             .then(res => res.json())
-            .then(res => console.log(res))
+            .then(res => this.setState({games : res, rerender : false }))
             .catch(err => console.log(err))
-        console.log("------------------------  fetch RUUUUN");
-    };
-    addedQuestion=(event)=>{
-        event.preventDefault();
-        let arr=this.state.questions;
-        // console.log(' ========================= '+arr);
-        let a = this.state.numbQuestions;
-        // this.state.questions.key = a ;
-        // this.state.answers.key = a ;
-        this.state.questions[a] = this.refs.question.value;
-        this.state.answers[a] = "";
-        this.state.rows.push(this.refs.question.value);
-        this.state.numbQuestions++;
-        this.refs.question.value="";
-        this.setState({questions : arr})
     };
 
-    render() {
+    handleClick = (e, data) => {
+        let id = JSON.stringify({'id' : data});
+        fetch('/delgame', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: id
+        })
+        this.returnOwnerName(this.state.owner)
+        this.setState({rerender : true})
+    }
+
+    render () {
+        console.log(this.state.rerender)
         return (
-            <div className='row'>
-                <div className='container'>
-                    <div className="col-lg-6">
-                        <form>
-                            <h1>
-                                Create New Game
-                            </h1>
-                            <label for="nameGame">
-                                <h3>Game Name</h3>
-                                <input
-                                    ref="nameGame"
-                                    id="nameGame"
-                                    type="text"
-                                    placeholder="name game"
+            <div className="row">
+                <ModalLogin ownerOfGame={this.returnOwnerName} />
+                <div className="container" key={this.state.rerender}>
+                    <div className="col-lg-2 col-sm-12">
+                        <Menu />
+                    </div>
+                    <div className="col-lg-8 col-sm-12">
+                    {this.state.games.map((item, index) => {
+                        let gameLinkg = ''+link+'/play/game/'+item._id+''
+                        return (
+                            <div className="gameCard" key={index}>
+                                <div className="col-10">
+                                    <p><span>Game name: </span>{item.nameGame}</p>
+                                    <div className="forURL">
+                                        <span>Link to game: </span>  <a href={gameLinkg}>{link}/play/game/{item._id}</a>
+                                    </div>
+                                    <p><span>Description: </span>{item.description}</p>
+                                </div>
+                                <div className="col-2">
+                                    <div className="delButton" onClick={((e) => this.handleClick(e, item._id))}>
+                                    </div>
+                                </div>
+                            </div>
+                        )
 
-                                />
-                            </label>
-                            <h3>Description</h3>
-                            <div>
-                                    <textarea
-                                        ref="description"
-                                        type="text"
-                                        placeholder='input description'
-                                        >
-                                    </textarea>
-                            </div>
-                            <label for="question">
-                                <h3>Add questions</h3>
-                                <input
-                                    ref="question"
-                                    id="question"
-                                    type="text"
-                                    placeholder="input question"
-                                />
-                                <button className="btn-default"
-                                        onClick={this.addedQuestion}>
-                                    Add question
-                                </button>
-                            </label>
-                            <div
-                                className="listQuestions">
-                            </div>
-                            <div>
-                                {
-                                    this.state.rows.length>0 ?
-                                        this.state.rows.map((item, index)=>{
-                                            return(
-                                                <p key={index}>{index+1}. {item}</p>)
-                                        })
-                                        :
-                                        <div className="questionOnNewGame">No questions</div>
-                                }
-                                <button
-                                    onClick={this.handleSubmit}
-                                    className="btn-default"
-                                    type="submit">
-                                    Create Game
-                                </button>
-                            </div>
-                        </form>
+                    })}
                     </div>
                 </div>
             </div>
-        )
+        ) 
+        
     }
 }
