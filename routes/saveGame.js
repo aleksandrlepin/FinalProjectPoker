@@ -20,22 +20,12 @@ db.on('error', err => {
 const Game = require('../models/game');
 
 router.post('/', (req, res, next) => {
-
-    console.log(req.body)
-   
     const newGame = new Game(req.body);
-    console.log('game', newGame)
     newGame.save((err, game) => {
         if (err) {
             console.log('err', err)
         }
-        console.log('saved game', game)
     })
-    let test = req.body.test;
-    res.json({
-        recieve: test
-    });
-
 })
 
 module.exports = router;

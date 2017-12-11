@@ -58,7 +58,7 @@ app.get('/games/:id', (req, res, next) => {
     let gameId = req.path.split('/')[2];
     console.log('id', gameId)
     Game.findById(gameId, (err, game) => {
-        console.log('result', err, game)
+        // console.log('result', err, game)
         res.send(game);
     })
 })
@@ -91,6 +91,12 @@ io.on('connection', (socket) => {
         socket.broadcast.emit('renderNumber', { number: number, name: socket.username })
         socket.emit('renderNumber', { number: number, name: socket.username })
     });
+
+    socket.on('transferQuestion', (index) => {
+        console.log('from trasfer question on server', index)
+        socket.broadcast.emit('renderQuestion', { index: index })
+        socket.emit('renderQuestion', { index: index })
+    })
 
 })
 // console.log('listening on port ', port);

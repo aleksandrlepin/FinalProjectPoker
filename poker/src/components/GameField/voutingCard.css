@@ -15,3 +15,7 @@
     line-height: 1.2;
     text-align: center;
 }
+.vouted-card {
+    margin: 10px;
+    background: #00ffff;
+}

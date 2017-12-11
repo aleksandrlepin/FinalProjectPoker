@@ -33,10 +33,7 @@ export default class UserCard extends React.Component {
                 console.log('userName', userName, 'data.number', data.number)
             }
         }
-        socket.on('renderNumber', function(data) {
-            console.log('number from api', data);
-            checkUser(data);
-          }) 
+        socket.on('renderNumber', (data) => checkUser(data)) ;
     }
  
     render() {
@@ -47,6 +44,5 @@ export default class UserCard extends React.Component {
                 <p className="user-card-name">{this.props.user.name}</p>
             </div>
         )
-
     }
 }

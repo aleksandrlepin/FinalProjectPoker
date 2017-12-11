@@ -37,7 +37,7 @@ export default class ModalNewPlayer extends React.Component {
     handlePlay = () => {
         this.setState({ modalIsOpen: false });
         let id = JSON.stringify({ gameId: this.props.gameId });
-        console.log(this.refs.name.value);
+        // console.log(this.refs.name.value);
         let data = JSON.stringify({
             gameId: this.props.gameId,
             user: {
@@ -45,19 +45,19 @@ export default class ModalNewPlayer extends React.Component {
                 email: this.refs.email.value
             }
         });
-        console.log('data', data);
+        // console.log('data', data);
         let newBD = {};
         fetch(`/addPlayer`, { method: 'POST', headers: { "Content-Type": "application/json" }, body: data })
             .then(res => res.json())
             .then(res => {
-                console.log("db from addPlayer", res)
+                // console.log("db from addPlayer", res)
                 store.dispatch(addPlayer(res));
             })
             .catch(err => console.log(err));
 
         // Tell the server your username
         let name = this.refs.name.value;
-        console.log(name)
+        // console.log(name)
         socket.emit('add user', name);
 
     }

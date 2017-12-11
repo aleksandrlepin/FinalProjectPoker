@@ -16,8 +16,6 @@ router.post('/', (req, res, next) => {
     let user = req.body.user;
     let gameId = req.body.gameId;
     Game.findById(gameId, (err, game) => {
-        // console.log('result', err, game)
-        console.log('enter in post')
         let userIsExist = false;
         for (let i = 0; i < game.users.length; i++) {
             if (game.users[i].name === user.name && game.users[i].email === user.email) {
@@ -25,13 +23,11 @@ router.post('/', (req, res, next) => {
             }
         }
         if (userIsExist) {
-            console.log('enter in if')
             res.send(game);
         } else {
             console.log('enter in else  ')
             Game.findByIdAndUpdate(gameId, { $push: { users: user } }, { new: true }, function (err, game) {
                 if (err) return handleError(err);
-                // console.log('result', err, game)
                 res.send(game);
             });
         }

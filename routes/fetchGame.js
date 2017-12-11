@@ -17,7 +17,6 @@ const Game = require('../models/game');
 router.post('/', (req, res, next) => {
     
     Game.findById(req.body.gameId, (err, game) => {
-        // console.log('result', err, game)
         res.send(game);
       })
 })
