@@ -27,15 +27,22 @@ export default class Dashboard extends React.Component {
             .catch(err => console.log(err))
     };
 
-    handleClick = (e, data) => {
+    handleClickDel = (e, data) => {
         let id = JSON.stringify({'id' : data});
         fetch('/delgame', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: id
         })
-        this.returnOwnerName(this.state.owner)
-        this.setState({rerender : true})
+            .catch(err => console.log(err))
+
+        this.state.games.map((item, index) => {
+            console.log(item, data)
+            if (item._id === data) {
+                let newState = this.state.games.filter((item) => (item._id != data))
+                    this.setState({games : newState})
+            }
+        })
     }
 
     render () {
@@ -60,7 +67,7 @@ export default class Dashboard extends React.Component {
                                     <p><span>Description: </span>{item.description}</p>
                                 </div>
                                 <div className="col-2">
-                                    <div className="delButton" onClick={((e) => this.handleClick(e, item._id))}>
+                                    <div className="delButton" onClick={((e) => this.handleClickDel(e, item._id))}>
                                     </div>
                                 </div>
                             </div>
