@@ -74,10 +74,10 @@ class GameField extends React.Component {
                     null :
                     <div className='row'>
                         <div className='container-for-questions col-sm-12 col-md-3'>
-                            {Object.keys(this.state.dbToStore[0].question).map(key => <Question
+                            {Object.keys(this.state.dbToStore[0].questions).map(key => <Question
                                 key={key}
                                 index={key}
-                                question={this.state.dbToStore[0].question[key]}
+                                question={this.state.dbToStore[0].questions[key]}
                                 className={this.checkActiveQuestion(key)}
                                 currentQuestion={this.changeActiveQuestion}
                                 answer={this.state.dbToStore[0].answers[key]}
@@ -88,7 +88,7 @@ class GameField extends React.Component {
                         <div className='container-for-main-right-part col-sm-12 col-md-9'>                       
                                 <div className="single-question">
                                     <span className='question-title'>Question: </span>
-                                    {this.state.dbToStore[0].question[this.state.activeQuestionIndex]}
+                                    {this.state.dbToStore[0].questions[this.state.activeQuestionIndex]}
                                     <div></div>
                                     <span className='question-title'>Number of players: </span>
                                     {this.state.dbToStore[0].users.length}
