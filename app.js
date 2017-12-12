@@ -56,9 +56,7 @@ app.get('/games/:id/question/:question_id');
 
 app.get('/games/:id', (req, res, next) => {
     let gameId = req.path.split('/')[2];
-    console.log('id', gameId)
     Game.findById(gameId, (err, game) => {
-        // console.log('result', err, game)
         res.send(game);
     })
 })
@@ -70,15 +68,12 @@ var server = http.createServer(app)
 server.listen(config["dev"].port, () => console.log(`Example app listening on port ${config['dev'].port}!`))
 io.listen(server);
 io.on('connection', (socket) => {
-    console.log('socket connected');
-
+    // console.log('socket connected');
     socket.on('add user', function (username) {
 
         // we store the username in the socket session for this socket
         console.log('username from server', username)
         socket.username = username;
-
-
         socket.emit('login', username);
 
         socket.broadcast.emit('updateDb', username);
@@ -87,13 +82,11 @@ io.on('connection', (socket) => {
     });
 
     socket.on('transferNumber', (number) => {
-        console.log('clicked number', number, 'username', socket.username);
         socket.broadcast.emit('renderNumber', { number: number, name: socket.username })
         socket.emit('renderNumber', { number: number, name: socket.username })
     });
 
     socket.on('transferQuestion', (index) => {
-        console.log('from trasfer question on server', index)
         socket.broadcast.emit('renderQuestion', { index: index })
         socket.emit('renderQuestion', { index: index })
     })

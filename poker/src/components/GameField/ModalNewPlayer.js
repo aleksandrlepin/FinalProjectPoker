@@ -37,7 +37,6 @@ export default class ModalNewPlayer extends React.Component {
     handlePlay = () => {
         this.setState({ modalIsOpen: false });
         let id = JSON.stringify({ gameId: this.props.gameId });
-        // console.log(this.refs.name.value);
         let data = JSON.stringify({
             gameId: this.props.gameId,
             user: {
@@ -45,19 +44,17 @@ export default class ModalNewPlayer extends React.Component {
                 email: this.refs.email.value
             }
         });
-        // console.log('data', data);
+
         let newBD = {};
         fetch(`/addPlayer`, { method: 'POST', headers: { "Content-Type": "application/json" }, body: data })
             .then(res => res.json())
             .then(res => {
-                // console.log("db from addPlayer", res)
                 store.dispatch(addPlayer(res));
             })
             .catch(err => console.log(err));
 
         // Tell the server your username
         let name = this.refs.name.value;
-        // console.log(name)
         socket.emit('add user', name);
 
     }
@@ -67,13 +64,6 @@ export default class ModalNewPlayer extends React.Component {
     handleCancel = () => {
         this.setState({ modalIsOpen: false });
         let id = JSON.stringify({ gameId: this.props.gameId });
-        // fetch(`${URL}/games/${this.props.match.params.id}`, { method: 'GET' })
-        //     .then(res => res.json())
-        //     .then(res => {
-        //         store.dispatch(DBtoStore(res));
-        //     })
-        //     .catch(err => console.log(err));
-
     }
     render() {
 
@@ -90,12 +80,12 @@ export default class ModalNewPlayer extends React.Component {
 
                 <form>
                     <label>Enter your name:
-     <br></br>
+                     <br></br>
                         <input ref="name" />
                     </label>
                     <br></br>
                     <label>Enter your email:
-     <br></br>
+                     <br></br>
                         <input ref="email" />
                     </label>
                     <br></br>
