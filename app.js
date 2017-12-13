@@ -3,8 +3,12 @@ const app = express();
 const http = require('http');
 const io = require('socket.io')();
 var bodyParser = require('body-parser');
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
+
+var jwt = require('jsonwebtoken');
+var socketioJwt = require('socketio-jwt');
+var jwtSecret = 'mysecret';
 
 let url = 'mongodb://admin:123@ds129706.mlab.com:29706/poker';
 mongoose.connect(url, { useMongoClient: true });
@@ -17,24 +21,24 @@ var saveGame = require('./routes/saveGame');
 var game_id = require('./routes/game_id');
 var addPlayer = require('./routes/addPlayer');
 
-app.use(function (req, res, next) {
+// app.use(function (req, res, next) {
 
-    // Website you wish to allow to connect
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+//     // Website you wish to allow to connect
+//     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
 
-    // Request methods you wish to allow
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+//     // Request methods you wish to allow
+//     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
 
-    // Request headers you wish to allow
-    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+//     // Request headers you wish to allow
+//     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
 
-    // Set to true if you need the website to include cookies in the requests sent
-    // to the API (e.g. in case you use sessions)
-    res.setHeader('Access-Control-Allow-Credentials', true);
+//     // Set to true if you need the website to include cookies in the requests sent
+//     // to the API (e.g. in case you use sessions)
+//     res.setHeader('Access-Control-Allow-Credentials', true);
 
-    // Pass to next layer of middleware
-    next();
-});
+//     // Pass to next layer of middleware
+//     next();
+// });
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -64,11 +68,41 @@ app.get('/games/:id', (req, res, next) => {
 })
 
 
+//token part
+
+app.post('/login', (req, res, next) => {
+    var token = jwt.sign(req.body, jwtSecret, { expiresIn: 60 * 5 });
+    res.json({ token: token });
+});
+
+app.post('/auth', (req, res, next) => {
+        console.log('token from LC', req.body.token.toString())
+       
+        jwt.verify(req.body.token.toString(), jwtSecret, function(err, decoded) {
+            console.log(decoded);
+             res.json(decoded);
+          });
+    });
+
+
 //socket part
 
 var server = http.createServer(app)
 server.listen(config["dev"].port, () => console.log(`Example app listening on port ${config['dev'].port}!`))
 io.listen(server);
+
+// io.set('authorization', socketioJwt.authorize({
+//     secret: jwtSecret,
+//     handshake: true
+//   }));
+
+
+//   io.sockets
+//   .on('connection', function (socket) {
+//      console.log(socket.handshake.decoded_token.email, 'connected');
+//      //socket.on('event');
+//   });
+
 io.on('connection', (socket) => {
     // console.log('socket connected');
     socket.on('add user', function (username) {
