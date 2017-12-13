@@ -9,9 +9,20 @@ export default class Registration extends React.Component {
         repeatPassword : ''
     }
 
-    handleSubmit = () => {
+    handleSubmit = (e) => {
+        e.preventDefault();
         if (this.state.password == this.state.repeatPassword) {
-
+            let data = this.state
+            delete data.repeatPassword
+            fetch('/registeruser', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(data)
+            })
+                // .then(res => res.json())
+                .then(res => console.log(res))
+                .catch(err => console.log(err));
+            console.log("------------------------  fetch RUUUUN");
         }
     }
     handleChange = (e) => {
@@ -34,7 +45,6 @@ export default class Registration extends React.Component {
                     <input type="password" name="password" onChange={this.handleChange} />
                     <label className="register-form-label">Repeat password:</label>
                     <input type="password" name="repeatPassword" onChange={this.handleChange} />
-                   
                     <input className="register-form-submit" type="submit" value="Submit" onClick={this.handleSubmit}/>
                 </form>
             </div>

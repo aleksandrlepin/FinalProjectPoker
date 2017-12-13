@@ -79,7 +79,7 @@ let verifyToken = (req, res, next) => {
 app.use('/saveGame', saveGame);
 app.use('/uploadgame', require('./routes/uploadgame'));
 app.use('/delgame', require('./routes/delgame'));
-app.use('/registerUser', require('./routes/registerUser'));
+app.use('/registerUser', require('./routes/registerUser.js'));
 // app.use('/fetchGame', fetchGame);
 app.use('/addPlayer', addPlayer);
 // app.get('/games/');
