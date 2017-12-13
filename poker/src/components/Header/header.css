@@ -19,7 +19,7 @@ ul, li {
     background-repeat: no-repeat;
 }
 .header-nav {
-    margin-top: 32px;
+  
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -36,6 +36,7 @@ ul, li {
     line-height: 1.347;
     text-align: left;
     cursor: pointer;
+    margin-top: 32px;
 }
 .right-menu {
     display: flex;
