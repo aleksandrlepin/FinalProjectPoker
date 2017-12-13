@@ -7,3 +7,4 @@ export const ADD_PLAYER = "ADD_PLAYER";
 export const UPDATE_STORE = "UPDATE_STORE";
 export const CHANGE_AVERAGE = "CHANGE_AVERAGE";
 
+export const USER_AUTHORIZATION = "USER_AUTHORIZATION";

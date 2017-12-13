@@ -9,3 +9,4 @@ export const gameBar = (payload) => ({type: types.CHECK_CURRENT_QUESTION, payloa
 export const addPlayer = (payload) => ({type: types.ADD_PLAYER, payload});
 export const updateStore = (payload) => ({type: types.UPDATE_STORE, payload});
 export const changeAverage = (payload) => ({type: types.CHANGE_AVERAGE, payload});
+export const userAuthorization = (payload) => ({type: types.USER_AUTHORIZATION, payload});

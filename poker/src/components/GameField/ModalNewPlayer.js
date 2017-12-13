@@ -55,6 +55,9 @@ export default class ModalNewPlayer extends React.Component {
 
         // Tell the server your username
         let name = this.refs.name.value;
+
+        
+
         socket.emit('add user', name);
 
     }

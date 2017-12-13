@@ -6,7 +6,7 @@ import fibNumbers from '../../constants/fibonachi';
 import VoutingCard from './VoutingCard';
 import UserCard from '../usersCards/UserCard';
 import Question from './Question';
-import { DBtoStore, updateStore, changeAverage } from '../../actions';
+import { DBtoStore, updateStore, userAuthorization, changeAverage } from '../../actions';
 import store from './store/index';
 import './gameField.css';
 import ModalNewPlayer from './ModalNewPlayer';
@@ -21,7 +21,12 @@ class GameField extends React.Component {
         let gameId = this.props.match.params.id;
         
 
-        fetch(`${URL}/games/${gameId}`, { method: 'GET' })
+        let token = JSON.stringify({'token': localStorage.getItem('token')});
+        fetch(`${URL}/games/${gameId}`, { 
+            method: 'POST' ,  
+            headers: { 'Content-Type': 'application/json' },
+            body: token
+        })
             .then(res => res.json())
             .then(res => {
                 store.dispatch(DBtoStore(res));
@@ -30,13 +35,13 @@ class GameField extends React.Component {
 
         store.subscribe(() => {
             this.setState({ dbToStore: store.getState().dbToStore });
-            console.log('i am from subcribe>>>>>>>>>>>>>>>>>>> this.state.dbToStore[0].users.length', this.state.dbToStore[0].answers)
+            // console.log('i am from subcribe>>>>>>>>>>>>>>>>>>> this.state.dbToStore[0].users.length', this.state.dbToStore[0].users.length)
         });
 
-        function log(message) {
-            var el = document.getElementById('socket-msg');
-            el.innerHTML = message;
-        }
+        // function log(message) {
+        //     var el = document.getElementById('socket-msg');
+        //     el.innerHTML = message;
+        // }
 
         socket.on('updateDb', function (data) {
             fetch(`${URL}/games/${gameId}`, { method: 'GET' })
@@ -49,11 +54,12 @@ class GameField extends React.Component {
 
         socket.on('login', function (data) {
             var message = "Player:  " + data;
-            log(message);
+            // log(message);
         });
 
         socket.on('renderQuestion', (index) => this.setState({ activeQuestionIndex: index.index}))
     }
+
 
     componentWillUnmount() {
         this.unsubscribe = store.subscribe(() => this.setState(store.getState()));
