@@ -1,0 +1,56 @@
+header {
+    max-width: 1200px;
+    height: 92px;
+    margin: 0 auto;
+   
+}
+.header-nav {
+    display: flex;
+    justify-content: space-between;
+}
+.left-menu {
+    display: flex;
+    
+}
+.left-menu li {
+    font-size: 24px;
+    font-family: "Ubuntu";
+    color: rgb(255, 108, 0);
+    line-height: 1.347;
+    text-align: left;
+    margin-left: 30px;
+    cursor: pointer;
+}
+.right-menu {
+    display: flex;
+    flex-direction: column;
+    
+}
+.right-menu li {
+    font-size: 19px;
+    font-family: "Roboto";
+    color: rgb(0, 255, 255);
+    line-height: 1.2;
+    text-align: center;
+    cursor: pointer;
+}
+.user-profile {
+    display: flex;
+    flex-direction: column;
+    margin-right: 20px;
+    justify-content: center;
+    align-items: center;
+}
+.user-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: white;
+}
+.user-name {
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+}
+  
+  

@@ -6,7 +6,7 @@ import fibNumbers from '../../constants/fibonachi';
 import VoutingCard from './VoutingCard';
 import UserCard from '../usersCards/UserCard';
 import Question from './Question';
-import { DBtoStore, updateStore } from '../../actions';
+import { DBtoStore, updateStore, userAuthorization } from '../../actions';
 import store from './store/index';
 import './gameField.css';
 import ModalNewPlayer from './ModalNewPlayer';
@@ -29,7 +29,7 @@ class GameField extends React.Component {
 
         store.subscribe(() => {
             this.setState({ dbToStore: store.getState().dbToStore });
-            console.log('i am from subcribe>>>>>>>>>>>>>>>>>>> this.state.dbToStore[0].users.length', this.state.dbToStore[0].users.length)
+            // console.log('i am from subcribe>>>>>>>>>>>>>>>>>>> this.state.dbToStore[0].users.length', this.state.dbToStore[0].users.length)
         });
 
         function log(message) {
@@ -54,6 +54,22 @@ class GameField extends React.Component {
         socket.on('renderQuestion', (index) => this.setState({ activeQuestionIndex: index.index}))
     }
 
+    componentWillMount() {
+        if (localStorage.getItem('token')) {
+            fetch(`/auth`, { method: 'POST', headers: { "Content-Type": "application/json" }, body: localStorage.getItem('token') })
+                .then(res => res.json())
+                .then(res => {
+                    console.log(res);
+                    store.dispatch(userAuthorization(res));
+                })
+                .catch(err => {
+                    console.log(err);
+                    this.props.history.push('/login');
+                });
+        } else {
+            this.props.history.push('/login');
+        }
+    }
     componentWillUnmount() {
         this.unsubscribe = store.subscribe(() => this.setState(store.getState()));
     }
@@ -74,10 +90,10 @@ class GameField extends React.Component {
                     null :
                     <div className='row'>
                         <div className='container-for-questions col-sm-12 col-md-3'>
-                            {Object.keys(this.state.dbToStore[0].question).map(key => <Question
+                            {Object.keys(this.state.dbToStore[0].questions).map(key => <Question
                                 key={key}
                                 index={key}
-                                question={this.state.dbToStore[0].question[key]}
+                                question={this.state.dbToStore[0].questions[key]}
                                 className={this.checkActiveQuestion(key)}
                                 currentQuestion={this.changeActiveQuestion}
                                 answer={this.state.dbToStore[0].answers[key]}
@@ -88,7 +104,7 @@ class GameField extends React.Component {
                         <div className='container-for-main-right-part col-sm-12 col-md-9'>                       
                                 <div className="single-question">
                                     <span className='question-title'>Question: </span>
-                                    {this.state.dbToStore[0].question[this.state.activeQuestionIndex]}
+                                    {this.state.dbToStore[0].questions[this.state.activeQuestionIndex]}
                                     <div></div>
                                     <span className='question-title'>Number of players: </span>
                                     {this.state.dbToStore[0].users.length}
