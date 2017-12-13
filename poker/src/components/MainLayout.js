@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from './Header/Header';
+import Footer from './Footer/index';
 // import Favicon from 'react-favicon';
 // import { PATH, ENV_HREF } from '../config';
 
@@ -16,6 +17,7 @@ export default class MainLayout extends React.Component {
             <div>
                <Header />
                 {this.props.children}
+                <Footer />
             </div>
         )
     }

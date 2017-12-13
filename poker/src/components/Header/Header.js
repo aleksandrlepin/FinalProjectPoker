@@ -3,10 +3,14 @@ import { withRouter } from 'react-router-dom';
 import store from '../GameField/store/index';
 import './header.css';
 import headerBg from'./header-bg.png';
+import headerLogo from'./logo.png';
 
 
 let style = {
-    backgroundImage: `url(${headerBg})`  
+    backgroundImage: `url(${headerBg})` 
+}
+let logo = {
+    backgroundImage: `url(${headerLogo})` 
 }
 
 class Header extends React.Component {
@@ -20,11 +24,12 @@ class Header extends React.Component {
         console.log(localStorage.getItem('name'))
         return (
             <header style={style}>
-             
+                <a href="/"><div style={logo} className="gameLogo"></div></a>
                 <nav className="header-nav">
+                
                     <ul className="left-menu">
-                        <li onClick={this.handleClick.bind(null, '/contact')}>Contact</li>
-                        <li onClick={this.handleClick.bind(null, '/about')}>About</li>
+                        <li onClick={this.handleClick.bind(null, '/contact')}><p>Contact</p></li>
+                        <li onClick={this.handleClick.bind(null, '/about')}><p>About</p></li>
                     </ul>
                     {localStorage.getItem('username') !== null ? 
                     <div className="user-profile">
