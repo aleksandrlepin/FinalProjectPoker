@@ -31,7 +31,7 @@ export default function dbToStore(state = initialState.database, action) {
 			console.log(state[0].answers)
 			let o = payload.index
 			console.log({[o]:payload.average_value})
-			return [{ ...state[0], answers: {[o]:payload.average_value}}];
+			return [{ ...state[0], answers: {...state[0].answers,[o]:payload.average_value}}];
 			break;
 
 		default:
