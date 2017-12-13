@@ -2,11 +2,28 @@ header {
     max-width: 1200px;
     height: 92px;
     margin: 0 auto;
+    display: flex;
    
 }
+p {
+    margin: 0 30px 0 30px;
+}
+ul, li {
+    border:none !important;
+}
+.gameLogo {
+    height: 65px;
+    width: 85px;
+    margin-top: 15px;
+    margin-left: 145px;
+    background-repeat: no-repeat;
+}
 .header-nav {
+    margin-top: 32px;
+    width: 100%;
     display: flex;
     justify-content: space-between;
+    height: 92px;
 }
 .left-menu {
     display: flex;
@@ -18,16 +35,16 @@ header {
     color: rgb(255, 108, 0);
     line-height: 1.347;
     text-align: left;
-    margin-left: 30px;
     cursor: pointer;
 }
 .right-menu {
     display: flex;
     flex-direction: column;
+    margin-right: 100px;
     
 }
 .right-menu li {
-    font-size: 19px;
+    font-size: 13px;
     font-family: "Roboto";
     color: rgb(0, 255, 255);
     line-height: 1.2;

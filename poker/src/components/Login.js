@@ -23,12 +23,12 @@ class Login extends React.Component {
     render() {
         return (
             <div className="container-for-register-form">
+                <h4>Login</h4>
                 <form>
-                  
                     <label className="register-form-label">Email:</label>
-                    <input ref="email" type="text" name="name" />
+                    <input ref="email" type="email" name="name" placeholder="@email" />
                     <label className="register-form-label">Password:</label>
-                    <input ref="password" type="text" name="name" />
+                    <input ref="password" type="password" name="name" placeholder="******" />
                    
                     <div className="register-form-submit" onClick={this.handleLogIn}>Log in</div>
                 </form>
