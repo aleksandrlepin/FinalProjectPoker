@@ -8,11 +8,14 @@ class Menu extends React.Component {
 
 	handleClickCreate = () => {
 		this.props.history.push("/newgame")
-	}
+	};
 
 	handleAccount = () => {
 		this.props.history.push("/")
-	}
+	};
+    handleSavedGames = () => {
+        this.props.history.push("/")
+    };
 
     render () {
         return (
