@@ -18,34 +18,36 @@ class Dashboard extends React.Component {
     }
 
     componentWillMount() {
-        if (localStorage.getItem('token')) {
-            fetch(`/auth`, { method: 'POST', headers: { "Content-Type": "application/json" }, body: localStorage.getItem('token') })
+
+        if (localStorage.getItem('username')) {
+            console.log('from willmount dashboard', localStorage.getItem('username'))
+            let owner = JSON.stringify({'name': localStorage.getItem('username')});
+            fetch('/uploadgame', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: owner
+            })
                 .then(res => res.json())
-                .then(res => {
-                    store.dispatch(userAuthorization(res));
-                })
-                .catch(err => {
-                    console.log(err);
-                    this.props.history.push('/login');
-                });
+                .then(res => this.setState({ games: res, rerender: false }))
+                .catch(err => console.log(err))
         } else {
             this.props.history.push('/login');
         }
     }
-    returnOwnerName = (name) => {
-        this.setState({ 'owner': name })
-        console.log('start fetch')
-        let nameOfOwner = JSON.stringify({ 'name': name });
+    // returnOwnerName = (name) => {
+    //     this.setState({ 'owner': name })
+    //     console.log('start fetch')
+    //     let nameOfOwner = JSON.stringify({ 'name': name });
 
-        fetch('/uploadgame', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: nameOfOwner
-        })
-            .then(res => res.json())
-            .then(res => this.setState({ games: res, rerender: false }))
-            .catch(err => console.log(err))
-    };
+    //     fetch('/uploadgame', {
+    //         method: 'POST',
+    //         headers: { 'Content-Type': 'application/json' },
+    //         body: nameOfOwner
+    //     })
+    //         .then(res => res.json())
+    //         .then(res => this.setState({ games: res, rerender: false }))
+    //         .catch(err => console.log(err))
+    // };
 
     handleClickDel = (e, data) => {
         let id = JSON.stringify({ 'id': data });
@@ -69,7 +71,7 @@ class Dashboard extends React.Component {
         console.log(this.state.rerender)
         return (
             <div className="row">
-                <ModalLogin ownerOfGame={this.returnOwnerName} />
+                {/* <ModalLogin ownerOfGame={this.returnOwnerName} /> */}
                 <div className="container" key={this.state.rerender}>
                     <div className="col-lg-2 col-sm-12">
                         <Menu />

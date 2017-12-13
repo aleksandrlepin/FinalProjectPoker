@@ -10,16 +10,6 @@ let style = {
 }
 
 class Header extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = store.getState().authUser;
-        console.log('from header this.state', this.state);
-
-        store.subscribe(() => {
-            this.setState({ authUser: store.getState().authUser });
-            console.log('i am from subcribe>>>>>>>>>>>>>>>>>>> this.state.authuser', this.state.authUser)
-        });
-    }
 
     handleClick = (href) => {
         this.props.history.push(href);
@@ -27,6 +17,7 @@ class Header extends React.Component {
 
 
     render() {
+        console.log(localStorage.getItem('name'))
         return (
             <header style={style}>
              
@@ -35,10 +26,10 @@ class Header extends React.Component {
                         <li onClick={this.handleClick.bind(null, '/contact')}>Contact</li>
                         <li onClick={this.handleClick.bind(null, '/about')}>About</li>
                     </ul>
-                    {this.state !== null ? 
+                    {localStorage.getItem('username') !== null ? 
                     <div className="user-profile">
                         <div className="user-avatar"></div>
-                        <div className="user-name">{this.state.authUser.email}</div>
+                        <div className="user-name">{localStorage.getItem('username')}</div>
                     </div> :
                     <ul className="right-menu">
                         <li onClick={this.handleClick.bind(null, '/registration')}>Register</li>

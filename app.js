@@ -14,11 +14,12 @@ let url = 'mongodb://admin:123@ds129706.mlab.com:29706/poker';
 mongoose.connect(url, { useMongoClient: true });
 const db = mongoose.connection;
 const Game = require('./models/game');
+const User = require('./models/user');
 const config = require("./config.json");
 //
 var saveGame = require('./routes/saveGame');
 // var fetchGame = require('./routes/fetchGame');
-var game_id = require('./routes/game_id');
+// var game_id = require('./routes/game_id');
 var addPlayer = require('./routes/addPlayer');
 
 // app.use(function (req, res, next) {
@@ -44,6 +45,35 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 var jsonParser = bodyParser.json();
 
+let verifyToken = (req, res, next) => {
+    console.log('token from mdw req.body', req.body.token.toString());
+    var token = req.body.token;
+    jwt.verify(req.body.token.toString(), jwtSecret, function(err, decoded) {
+        console.log(decoded);
+         res.json(decoded);
+         next(req, res);
+      });
+    // // var token = req.body.token.toString() || req.query.token || req.headers['x-access-token'];
+    //   if (true) {
+           
+    //     jwt.verify(token, jwtSecret, function(err, decoded) {
+    //         // if (err) {
+    //         //     return res.json({ success: false, message: 'Failed to authenticate token.' });
+    //         //     // next(err, req, res)
+    //         // } else {
+    //         //     console.log(decoded);
+    //         //     req.token = decoded;
+
+    //         //      res.json(decoded);
+    //         //      next(req, res);
+    //         // }
+    //         console.log('decoded', decoded);
+    //       });
+          
+    //   }
+    // next(req, res);
+    
+}
 
 
 app.use('/saveGame', saveGame);
@@ -60,7 +90,8 @@ app.get('/games/:id/question/:question_id');
 
 
 
-app.get('/games/:id', (req, res, next) => {
+app.post('/games/:id', verifyToken, (req, res, next) => {
+    console.log('from post game id', req.path.split('/')[2]);
     let gameId = req.path.split('/')[2];
     Game.findById(gameId, (err, game) => {
         res.send(game);
@@ -71,8 +102,19 @@ app.get('/games/:id', (req, res, next) => {
 //token part
 
 app.post('/login', (req, res, next) => {
-    var token = jwt.sign(req.body, jwtSecret, { expiresIn: 60 * 5 });
-    res.json({ token: token });
+    let userFromDb = {};
+    console.log('req.body.email', req.body.email)
+    User.find({email: req.body.email}, (err, user) => {
+        if (err) console.log(err);
+        userFromDb = user[0].name;
+        console.log('user from db', userFromDb)
+        var token = jwt.sign(req.body, jwtSecret, { expiresIn: 60 * 5 });
+        res.json({ token: token, name: userFromDb });
+    })
+   
+
+    //check db and take usersdata from db
+   
 });
 
 app.post('/auth', (req, res, next) => {
