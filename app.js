@@ -51,7 +51,7 @@ let verifyToken = (req, res, next) => {
     jwt.verify(req.body.token.toString(), jwtSecret, function(err, decoded) {
         console.log(decoded);
          res.json(decoded);
-         next(req, res);
+         next();
       });
     // // var token = req.body.token.toString() || req.query.token || req.headers['x-access-token'];
     //   if (true) {
@@ -90,7 +90,7 @@ app.get('/games/:id/question/:question_id');
 
 
 
-app.post('/games/:id', verifyToken, (req, res, next) => {
+app.post('/games/:id', (req, res, next) => {
     console.log('from post game id', req.path.split('/')[2]);
     let gameId = req.path.split('/')[2];
     Game.findById(gameId, (err, game) => {
