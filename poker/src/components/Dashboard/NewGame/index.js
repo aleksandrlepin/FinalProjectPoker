@@ -178,7 +178,7 @@ export default class NewGame extends React.Component {
                                                 <p key={index}>{index+1}. {item}</p>)
                                         })
                                         :
-                                        <div className="questionOnNewGame"><span><pre> No questions</pre></span></div>
+                                        <div className="questionOnNewGame"><span><pre style={{fontSize:22+"px"}}> No questions</pre></span></div>
                                 }
                             </div>
                             <button id ="createGameCancelButton"

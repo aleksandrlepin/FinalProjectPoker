@@ -20,10 +20,12 @@ class Menu extends React.Component {
     render () {
         return (
 			<div className="navbar">
-				<ul className="nav">
-					<li className="nav-item" onClick = {this.handleClickCreate}>Create new game</li>
-					<li className="nav-item" onClick = {this.handleSavedGames}>Saved games</li>
-					<li className="nav-item" onClick = {this.handleAccount}>Accont</li>
+				<ul  id="menuList">
+					<li  onClick = {this.handleClickCreate}>Create new game</li>
+					<hr />
+					<li  onClick = {this.handleSavedGames}>Saved games</li>
+					<hr/>
+					<li  onClick = {this.handleAccount}>Accont</li>
 				</ul>
 			</div>
             

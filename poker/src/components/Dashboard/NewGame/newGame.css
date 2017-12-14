@@ -72,12 +72,17 @@
     outline: none;
 }
 #addQuestionsButton:active{
-    background-size: 103% 114%;
-    background-position: 0px 0px;
-    width: 34px;
-    height: 34px;
-    margin: 5px auto 9px;
+    /*-------------variant1-------------*/
+    /*background-size: 103% 114%;*/
+    /*background-position: 0px 0px;*/
+    /*width: 34px;*/
+    /*height: 34px;*/
+    /*margin: 5px auto 9px;*/
 
+    /*-------------variant2-------------*/
+    -webkit-transform: scale(0.9);
+    -ms-transform: scale(0.9);
+    transform: scale(0.9);
 }
 #labelQuestions{
     display: block;
@@ -94,9 +99,15 @@
     outline: none;
 }
 #createGameButton:active{
-    -webkit-transform: scale(1.2);
-    -ms-transform: scale(1.2);
-    transform: scale(1.2);
+    /*-------------variant1-------------*/
+    /*-webkit-transform: scale(1.2);*/
+    /*-ms-transform: scale(1.2);*/
+    /*transform: scale(1.2);*/
+
+    /*-------------variant2-------------*/
+    -webkit-transform: scale(0.9);
+    -ms-transform: scale(0.9);
+    transform: scale(0.9);
 }
 #createGameCancelButton{
     margin: 30px 0 0 70px;
@@ -107,15 +118,21 @@
     outline: none;
 }
 #createGameCancelButton:active{
-    -webkit-transform: scale(1.2);
-    -ms-transform: scale(1.2);
-    transform: scale(1.2);
+    /*-------------variant1-------------*/
+    /*-webkit-transform: scale(1.2);*/
+    /*-ms-transform: scale(1.2);*/
+    /*transform: scale(1.2);*/
+
+    /*-------------variant2-------------*/
+    -webkit-transform: scale(0.9);
+    -ms-transform: scale(0.9);
+    transform: scale(0.9);
 }
 
 #questionsField{
     margin: 0 auto;
     width: 311px;
-    min-height: 50px;
+    min-height: 55px;
     background-color: white;
     font-size: 18px;
     border-radius: 7px;
