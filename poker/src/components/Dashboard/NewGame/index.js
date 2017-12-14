@@ -1,5 +1,6 @@
 import React from 'react';
 import Menu from '../Menu/index.js';
+import "./newGame.css";
 
 export default class NewGame extends React.Component {
     constructor() {
@@ -23,7 +24,7 @@ export default class NewGame extends React.Component {
             event.preventDefault();
             this.refs.nameGame.style.boxShadow = "0px 0px 2px 2px #ff0000";
             proverkaNameGame = false;
-            alert("Название игры не должно состоять из более  чем 100 символов");
+            // alert("Название игры не должно состоять из более  чем 100 символов");
         }
         if (this.refs.nameGame.value.length === 0) {
             event.preventDefault();
@@ -37,20 +38,19 @@ export default class NewGame extends React.Component {
         }
         // -----------End proverka NameGame--------------
 
-
         // -----------proverka description--------------
         let proverkaDescription = true;
         if (this.refs.description.value.length === 0) {
             event.preventDefault();
             this.refs.description.style.boxShadow = "0px 0px 2px 2px #ff0000";
             proverkaDescription = false;
-            alert("Описание игры не должно быть пустым");
+            // alert("Описание игры не должно быть пустым");
         }
         else if (this.refs.description.value.length > 100) {
             event.preventDefault();
             this.refs.description.style.boxShadow = "0px 0px 2px 2px #ff0000";
             proverkaDescription = false;
-            alert("Описание игры не должно состоять из более  чем 100 символов");
+            // alert("Описание игры не должно состоять из более  чем 100 символов");
         }
         else if (proverkaDescription === true) {
             this.refs.question.style.boxShadow = "none";
@@ -58,21 +58,19 @@ export default class NewGame extends React.Component {
         }
         // -----------End proverka questions--------------
 
-
         // -----------proverkaQuestions--------------
         let proverkaQuestions = true;
         if (this.state.rows.length === 0) {
             event.preventDefault();
             this.refs.question.style.boxShadow = "0px 0px 2px 2px #ff0000";
             console.log("Description TRUE");
-            alert("Вы не добавили не одного вопроса");
+            // alert("Вы не добавили не одного вопроса");
             proverkaQuestions = false;
         }
         else {
             this.refs.question.style.boxShadow = "none";
         }
         // -----------end proverkaQuestions--------------
-
 
         if (proverkaNameGame === true || proverkaDescription === true || proverkaQuestions === true) {
             let objectNewGame = {
@@ -83,8 +81,6 @@ export default class NewGame extends React.Component {
                 answers: this.state.answers,
                 users: this.state.users
             };
-
-
             console.log(objectNewGame);
             let newGame = JSON.stringify(objectNewGame);
             console.log(newGame);
@@ -100,12 +96,10 @@ export default class NewGame extends React.Component {
                 .catch(err => console.log(err));
             console.log("------------------------  fetch RUUUUN");
 
-
             // --------
             // this.props.history.push("/")
                 // ---------
         }
-
     else{
          alert("Заполните все поля");
         }
@@ -133,7 +127,6 @@ export default class NewGame extends React.Component {
            this.setState({numbQuestions: a + 1});
         }
     };
-
     render() {
         return (
             <div className='row'>
@@ -142,46 +135,47 @@ export default class NewGame extends React.Component {
                         <Menu />
                     </div>
                     <div className="col-lg-5">
-                        <form>
-                            <h1>
+                        <form className="formNewGame">
+                            <h1 id="formNewGameHeading">
                                 Create New Game
                             </h1>
                             <label htmlFor="nameGame">
-                                <h3>Game Name</h3>
+                                <h3 id = "nameGameHeading">Game Name</h3>
                                 <input
                                     ref="nameGame"
-                                    id="nameGame"
+                                    id="nameGameValue"
                                     type="text"
-                                    placeholder="name game"
-
+                                    placeholder=" Input name game"
                                 />
                             </label>
-                            <h3>Description</h3>
+                            <h3 id ="descriptionHeading">Description</h3>
                             <div>
-                                    <textarea
+                                    <textarea id ="descriptionValue"
                                         ref="description"
                                         type="text"
-                                        placeholder='input description'
+                                        placeholder='  input description'
                                         >
                                     </textarea>
                             </div>
-                            <label htmlFor="question">
-                                <h3>Add questions</h3>
-                                <input
+                            <label htmlFor="question" id = "labelQuestions">
+                                <h3 id = "questionsHeading">Add questions</h3>
+                                <textarea
                                     ref="question"
-                                    id="question"
+                                    id="questionsValue"
                                     type="text"
-                                    placeholder="input question"
+                                    placeholder="  input question"
                                 />
-                                <button className="btn-default"
+                                <button
+                                        // className="btn-default"
+                                        id ="addQuestionsButton"
+                                        type = "submit"
                                         onClick={this.addedQuestion}>
-                                    Add question
                                 </button>
                             </label>
                             <div
                                 className="listQuestions">
                             </div>
-                            <div>
+                            <div id = "questionsField" placeholder="List questions">
                                 {
                                     this.state.rows.length>0 ?
                                         this.state.rows.map((item, index)=>{
@@ -189,15 +183,22 @@ export default class NewGame extends React.Component {
                                                 <p key={index}>{index+1}. {item}</p>)
                                         })
                                         :
-                                        <div className="questionOnNewGame">No questions</div>
+                                        <div className="questionOnNewGame"><span><pre> No questions</pre></span></div>
                                 }
-                                <button
-                                    onClick={this.handleSubmit}
-                                    className="btn-default"
-                                    type="submit">
-                                    Create Game
-                                </button>
                             </div>
+                            <button id ="createGameCancelButton"
+                                    // onClick={function(){this.props.history.push("/")}}
+                                //     className="btn-default"
+                                    type="submit">
+                                Cancel
+                            </button>
+                            <button id ="createGameButton"
+                                    onClick={this.handleSubmit}
+                                     type="submit"
+                                >
+                                Create Game
+                            </button>
+
                         </form>
                     </div>
                 </div>
