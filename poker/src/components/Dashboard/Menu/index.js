@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import './index.css';
-
+// import './index.css';
+import "./menu.css";
 
 class Menu extends React.Component {
 
