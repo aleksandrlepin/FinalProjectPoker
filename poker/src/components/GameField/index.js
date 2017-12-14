@@ -19,9 +19,10 @@ class GameField extends React.Component {
         super(props);
         this.state = { ...store.getState(), activeIndex: null, activeQuestionIndex: '1', users_answer: {} };
         let gameId = this.props.match.params.id;
-        
 
-        let token = JSON.stringify({'token': localStorage.getItem('token')});
+        this.callSocket();
+        let token = JSON.stringify({token: JSON.parse(localStorage.getItem('token'))});
+        console.log(token);
         fetch(`${URL}/games/${gameId}`, { 
             method: 'POST' ,  
             headers: { 'Content-Type': 'application/json' },
@@ -29,13 +30,16 @@ class GameField extends React.Component {
         })
             .then(res => res.json())
             .then(res => {
+                console.log('from gamefield')
+
                 store.dispatch(DBtoStore(res));
+
             })
             .catch(err => console.log(err));
 
         store.subscribe(() => {
             this.setState({ dbToStore: store.getState().dbToStore });
-            // console.log('i am from subcribe>>>>>>>>>>>>>>>>>>> this.state.dbToStore[0].users.length', this.state.dbToStore[0].users.length)
+            console.log('i am from subcribe>>>>>>>>>>>>>>>>>>> this.state.dbToStore[0].users.length', this.state.dbToStore[0].users.length)
         });
 
         // function log(message) {
@@ -44,9 +48,10 @@ class GameField extends React.Component {
         // }
 
         socket.on('updateDb', function (data) {
-            fetch(`${URL}/games/${gameId}`, { method: 'GET' })
+            fetch(`/games/${gameId}`, { method: 'POST' })
                 .then(res => res.json())
                 .then(res => {
+                    console.log(res);
                     store.dispatch(updateStore(res));
                 })
                 .catch(err => console.log(err));
@@ -54,12 +59,17 @@ class GameField extends React.Component {
 
         socket.on('login', function (data) {
             var message = "Player:  " + data;
+            console.log(message);
             // log(message);
         });
 
         socket.on('renderQuestion', (index) => this.setState({ activeQuestionIndex: index.index}))
     }
 
+    callSocket = () =>  {
+        console.log('callSocket')
+        socket.emit('add owner', JSON.parse(localStorage.getItem('username')));
+    };
 
     componentWillUnmount() {
         this.unsubscribe = store.subscribe(() => this.setState(store.getState()));
@@ -97,8 +107,14 @@ class GameField extends React.Component {
 
     render() {
         return (
+            // <RenderIf condition={true}>
+            
+            // </RenderIf>
             <div className="game-field">
-                <ModalNewPlayer gameId={this.props.match.params.id} />
+                {localStorage.getItem('isOwner') ?
+                 null : 
+                 <ModalNewPlayer gameId={this.props.match.params.id} />}
+               
                 {this.state.dbToStore[0] === undefined ?
                     null :
                     <div className='row'>

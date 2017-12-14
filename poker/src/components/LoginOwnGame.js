@@ -1,10 +1,13 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import store from './GameField/store/index';
-import '../index.css';
+import { socket } from '../constants/consts';
 
 class Login extends React.Component {
-
+    constructor(props) {
+        super(props);
+       
+    }
     handleLogIn = () => {
         console.log('click login')
         let profile = JSON.stringify({
@@ -17,22 +20,30 @@ class Login extends React.Component {
             console.log(res);
             localStorage.setItem('token', JSON.stringify(res.token));
             localStorage.setItem('username', JSON.stringify(res.name));
-            localStorage.setItem('email', JSON.stringify(res.email));
-            localStorage.setItem('isOwner', true);
-            this.props.history.push('/dashboard');
+            localStorage.setItem('useremail', JSON.stringify(res.email));
+
         })
         .catch(err => console.log(err));
+        console.log(localStorage.getItem('currentGameId'))
+        this.props.history.push(`play/game/${localStorage.getItem('currentGameId')}`);
+        this.callSocket();
     }
+    callSocket = () =>  {
+        console.log('callSocket')
+        socket.emit('add owner', JSON.parse(localStorage.getItem('username')));
+    };
 
     render() {
+        // console.log(JSON.parse(localStorage.getItem('currentGameId')))
         return (
-            <div className="container-for-login-form">
+            <div className="container-for-register-form">
                 <h4>Login</h4>
                 <form>
                     <label className="register-form-label">Email:</label>
                     <input ref="email" type="email" name="name" placeholder="@email" />
                     <label className="register-form-label">Password:</label>
                     <input ref="password" type="password" name="name" placeholder="******" />
+                    <p className="log-warning">You must log in to join a game that you own.</p>
                    
                     <div className="register-form-submit" onClick={this.handleLogIn}>Log in</div>
                 </form>

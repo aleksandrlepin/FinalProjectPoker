@@ -10,6 +10,7 @@ import Card from './components/usersCards/UserCard';
 import MainPage from './components/MainPage';
 import Registration from './components/Registration';
 import Login from './components/Login';
+import LoginOwnGame from './components/LoginOwnGame';
 
 const socket = openSocket('http://localhost:3001');
 
@@ -24,6 +25,7 @@ class App extends Component {
           <Route exact path='/' component={MainPage} />
           <Route path='/registration' component={Registration} />
           <Route path='/login' component={Login} />
+          <Route path='/loginOwnGame' component={LoginOwnGame} />
           <Route path='/dashboard' component={Dashboard} />
           <Route path='/newgame' component={NewGame} />
           <Route path='/play/game/:id' component={GameField} />
