@@ -21,34 +21,26 @@ class Dashboard extends React.Component {
 
         if (localStorage.getItem('username')) {
             console.log('from willmount dashboard', localStorage.getItem('username'))
-            let owner = JSON.stringify({'name': localStorage.getItem('username')});
+            let owner = JSON.stringify({'name': localStorage.getItem('username'), 'token': JSON.parse(localStorage.getItem('token'))});
             fetch('/uploadGamesByOwner', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: owner
             })
                 .then(res => res.json())
-                .then(res => this.setState({ games: res, rerender: false }))
+                .then(res => {
+                    if (res.success === false) {
+                        this.props.history.push('/login');
+                    } else {
+                        this.setState({ games: res, rerender: false })
+                    }
+                })
                 .catch(err => console.log(err))
         } else {
             this.props.history.push('/login');
         }
     }
-    // returnOwnerName = (name) => {
-    //     this.setState({ 'owner': name })
-    //     console.log('start fetch')
-    //     let nameOfOwner = JSON.stringify({ 'name': name });
-
-    //     fetch('/uploadgame', {
-    //         method: 'POST',
-    //         headers: { 'Content-Type': 'application/json' },
-    //         body: nameOfOwner
-    //     })
-    //         .then(res => res.json())
-    //         .then(res => this.setState({ games: res, rerender: false }))
-    //         .catch(err => console.log(err))
-    // };
-
+   
     handleClickDel = (e, data) => {
         let id = JSON.stringify({ 'id': data });
         fetch('/delgame', {

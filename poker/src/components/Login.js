@@ -1,9 +1,14 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import store from './GameField/store/index';
+import LogError from './LogError';
 import '../index.css';
 
 class Login extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {logged: true}
+    }
 
     handleLogIn = () => {
         console.log('click login')
@@ -17,16 +22,20 @@ class Login extends React.Component {
             console.log(res);
             localStorage.setItem('token', JSON.stringify(res.token));
             localStorage.setItem('username', JSON.stringify(res.name));
-            localStorage.setItem('email', JSON.stringify(res.email));
+            localStorage.setItem('useremail', JSON.stringify(res.email));
             localStorage.setItem('isOwner', true);
             this.props.history.push('/dashboard');
         })
-        .catch(err => console.log(err));
+        .catch(err => {
+            this.setState({logged: false})
+            console.log('login error');
+            console.log(err)});
     }
 
     render() {
         return (
             <div className="container-for-login-form">
+                <LogError condition={this.state.logged} />
                 <h4>Login</h4>
                 <form>
                     <label className="register-form-label">Email:</label>
