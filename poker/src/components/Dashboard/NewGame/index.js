@@ -9,7 +9,7 @@ export default class NewGame extends React.Component {
             rows : [],
             owner: 'Dima',
             answers: {},
-            users: [],
+            users: [{name: localStorage.getItem('username'), email: localStorage.getItem('email')}],
             numbQuestions : 1
         };
         this.handleSubmit=this.handleSubmit.bind(this);

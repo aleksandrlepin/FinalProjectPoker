@@ -1,5 +1,6 @@
 import React from 'react';
 import Modal from 'react-modal';
+import { withRouter } from 'react-router-dom';
 import { DBtoStore, addPlayer } from '../../actions';
 import { socket } from '../../constants/consts';
 import openSocket from 'socket.io-client';
@@ -22,7 +23,7 @@ const customStyles = {
 Modal.setAppElement('#root');
 
 
-export default class ModalNewPlayer extends React.Component {
+class ModalNewPlayer extends React.Component {
 
     state = { modalIsOpen: true };
 
@@ -45,20 +46,27 @@ export default class ModalNewPlayer extends React.Component {
             }
         });
 
-        let newBD = {};
+        // Tell the server your username
+        let name = this.refs.name.value;
+        socket.emit('add user', name);
+
         fetch(`/addPlayer`, { method: 'POST', headers: { "Content-Type": "application/json" }, body: data })
             .then(res => res.json())
             .then(res => {
-                store.dispatch(addPlayer(res));
+                console.log('from modal', res.game, res.owner)
+                if (res.owner) {
+                    this.props.history.push('/loginOwnGame');
+                    localStorage.setItem('currentGameId', this.props.match.params.id);
+                    localStorage.setItem('isOwner', true);
+                    localStorage.setItem('username', JSON.stringify(res.username));
+                } else {
+                    store.dispatch(addPlayer(res.game));
+                }
+                
             })
             .catch(err => console.log(err));
 
-        // Tell the server your username
-        let name = this.refs.name.value;
 
-        
-
-        socket.emit('add user', name);
 
     }
 
@@ -100,3 +108,5 @@ export default class ModalNewPlayer extends React.Component {
         )
     }
 }
+
+export default withRouter(ModalNewPlayer)
