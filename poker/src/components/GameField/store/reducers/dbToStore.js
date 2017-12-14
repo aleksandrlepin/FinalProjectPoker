@@ -22,8 +22,16 @@ export default function dbToStore(state = initialState.database, action) {
 			return [{ ...state[0], users: [...payload.users] }];
 			break;
 
-			case types.UPDATE_STORE:
+		case types.UPDATE_STORE:
 			return [payload];
+			break;
+		
+		case types.CHANGE_AVERAGE:
+			console.log('reduserrrrrrrrrrrrrrrrrrrrrrrrrrr',payload)
+			console.log(state[0].answers)
+			let o = payload.index
+			console.log({[o]:payload.average_value})
+			return [{ ...state[0], answers: {...state[0].answers,[o]:payload.average_value}}];
 			break;
 
 		default:

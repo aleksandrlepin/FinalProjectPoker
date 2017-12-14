@@ -2,14 +2,6 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
-  background-color: lightgrey;
-}
-.row {
-  margin: 0;
-}
-[className|=col-]{
- margin: 0;
- padding-left: 0;
 }
 h4 {
   font-size: 31px;
@@ -24,9 +16,9 @@ input {
   padding-left: 5px;
 }
 
-.container-for-login-form {
+.container-for-register-form {
   width: 518px;
-  height: 475px;
+  height: 585px;
   margin: 60px auto;
   background: #061b31;
   padding: 50px;
@@ -55,6 +47,9 @@ input {
   line-height: 1.625;
   text-align: center;
 }
-.log-warning {
-  color: #ff6c00;
+
+#buttonSubmit {
+  display: flex;
+  justify-content: center;
+  
 }

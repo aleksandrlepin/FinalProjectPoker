@@ -127,7 +127,6 @@ export default class NewGame extends React.Component {
            this.refs.question.style.boxShadow="none";
            let a = this.state.numbQuestions;
             // this.state.questions[a] = this.refs.question.value;
-           this.setState({questions: Object.assign(this.state.questions, {[a]: this.refs.question.value})});
            this.setState({answers: Object.assign(this.state.answers, {[a]: ""})});
            this.state.rows.push(this.refs.question.value);
            this.refs.question.value = "";
