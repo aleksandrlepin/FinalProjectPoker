@@ -26,7 +26,7 @@ router.post('/', (req, res, next) => {
             console.log('from else', user)
             userFromDbName = user[0].name;
             userFromDbEmail = user[0].email;
-            var token = jwt.sign(req.body, jwtSecret, { expiresIn: 60 * 1 });
+            var token = jwt.sign(req.body, jwtSecret, { expiresIn: 60 * 30 });
             res.json({ token: token, name: userFromDbName, email: userFromDbEmail });
         } else {
             res.end();
