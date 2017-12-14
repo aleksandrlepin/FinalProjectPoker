@@ -1,6 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import store from './GameField/store/index';
+import '../index.css';
 
 class Login extends React.Component {
 
@@ -23,7 +24,7 @@ class Login extends React.Component {
 
     render() {
         return (
-            <div className="container-for-register-form">
+            <div className="container-for-login-form">
                 <h4>Login</h4>
                 <form>
                     <label className="register-form-label">Email:</label>

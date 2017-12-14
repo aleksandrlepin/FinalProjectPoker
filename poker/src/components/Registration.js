@@ -1,4 +1,5 @@
 import React from 'react';
+import '../registration.css';
 
 export default class Registration extends React.Component {
     
@@ -10,7 +11,7 @@ export default class Registration extends React.Component {
     }
 
     handleSubmit = (e) => {
-        e.preventDefault();
+        // e.preventDefault();
         if (this.state.password == this.state.repeatPassword) {
             let data = this.state
             delete data.repeatPassword
@@ -45,7 +46,7 @@ export default class Registration extends React.Component {
                     <input type="password" name="password" onChange={this.handleChange} />
                     <label className="register-form-label">Repeat password:</label>
                     <input type="password" name="repeatPassword" onChange={this.handleChange} />
-                    <input className="register-form-submit" type="submit" value="Submit" onClick={this.handleSubmit}/>
+                    <input className="register-form-submit" id="buttonSubmit" type="submit" value="Submit" onClick={this.handleSubmit}/>
                 </form>
             </div>
         )

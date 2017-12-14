@@ -2,7 +2,6 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
-  background-color: lightgrey;
 }
 h4 {
   font-size: 31px;
@@ -17,9 +16,9 @@ input {
   padding-left: 5px;
 }
 
-.container-for-login-form {
+.container-for-register-form {
   width: 518px;
-  height: 475px;
+  height: 585px;
   margin: 60px auto;
   background: #061b31;
   padding: 50px;
@@ -47,4 +46,10 @@ input {
   color: rgb(255, 255, 255);
   line-height: 1.625;
   text-align: center;
+}
+
+#buttonSubmit {
+  display: flex;
+  justify-content: center;
+  
 }
