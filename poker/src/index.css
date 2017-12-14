@@ -30,7 +30,7 @@ input {
   margin: 60px auto;
   background: #061b31;
   padding: 50px;
-  // text-align: center;
+ 
 }
 .register-form-label {
   margin-top: 28px;
@@ -56,5 +56,12 @@ input {
   text-align: center;
 }
 .log-warning {
-  color: #ff6c00;
+  font-size: 20px;
+  font-family: "Ubuntu";
+  color: rgb(255, 108, 0);
+  text-align: center
+}
+.register {
+  text-decoration: underline;
+  cursor: pointer;
 }
