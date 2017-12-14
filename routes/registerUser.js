@@ -12,10 +12,13 @@ const db = mongoose.connection;
 
 
 router.post('/', function(req, res, next) {
-
+	console.log('post start')
+	console.log(req.body.password)
+	let respons = { emailValRes : false, nameRes : false, emailRes : false };
 	function validateEmail(email) {
 		var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 		return re.test(email);
+		
 	}
 
 	function validate() {
@@ -27,33 +30,48 @@ router.post('/', function(req, res, next) {
 		}
 	}
 
+
 	if (validate()) {
-		User.find({name: req.body.name}, (err, name) => {
-	    	if (err) console.log(err);
-	    	if (!name.length) {
-	    		User.find({email: req.body.email}, (err, email) => {
-	    			if (err) console.log(err);
-	    			if (!email.length) {
-	    				adduser();
-	    			}
-				})
-	    	} 
-	    })
+		respons.emailValRes = true;
 	}
 
+	User.find({name: req.body.name}, (err, name) => {
+		if (err) console.log(err);
+
+		if (!name.length) {
+			respons.nameRes = true;
+		}
+
+		User.find({email: req.body.email}, (err, email) => {
+			if (err) console.log(err);
+
+			if (!email.length) {
+				respons.emailRes = true;
+			}
+
+			if (respons.emailValRes && respons.nameRes && respons.emailRes) {
+				adduser();
+			} else {
+				console.log(respons)
+				res.send(JSON.stringify(respons));
+			}
+		})
+	})
+	
 
 	function adduser() {
 		console.log('start add')
-		let userObj = {
-			name: req.body.name,
-			email: req.body.email.toLowerCase(),
-			password: md5(req.body.password),
-		}
-		let user = mongoose.model('user', userReg);
-		let adduser = new user(userObj);
-		adduser.save(function(err) {
-			if (err) throw err;
-		});
+		// console.log(respons)
+		// let userObj = {
+		// 	name: req.body.name,
+		// 	email: req.body.email.toLowerCase(),
+		// 	password: md5(req.body.password),
+		// }
+		// let user = mongoose.model('user', userReg);
+		// let adduser = new user(userObj);
+		// adduser.save(function(err) {
+		// 	if (err) throw err;
+		// });
 	}
 });
 

@@ -1,3 +1,9 @@
+let verifyToken = require ('../app');
+var jwt = require('jsonwebtoken');
+var socketioJwt = require('socketio-jwt');
+
+
+
 var express = require('express');
 var router = express.Router();
 const app = express();
@@ -14,8 +20,8 @@ mongoose.connect(url, { useMongoClient: true });
 const db = mongoose.connection;
 const Game = require('../models/game');
 
-router.post('/', (req, res, next) => {
-	// console.log(req.body.name);
+router.post('/', verifyToken, (req, res, next) => {
+	console.log(req.body, verifyToken);
 	let owner = JSON.parse(req.body.name);
 	Game.find({'owner': owner}, (err, game) => {
 		// console.log('games', game)

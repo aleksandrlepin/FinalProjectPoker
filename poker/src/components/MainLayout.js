@@ -14,7 +14,7 @@ export default class MainLayout extends React.Component {
     render() {
         // let url = `../assets/images/favicon.png`;
         return (
-            <div>
+            <div className='container'>
                <Header />
                 {this.props.children}
                 <Footer />

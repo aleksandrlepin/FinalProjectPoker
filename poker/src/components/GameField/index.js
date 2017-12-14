@@ -1,7 +1,7 @@
 import React from 'react';
 import openSocket from 'socket.io-client';
 import { socket } from '../../constants/consts';
-
+import { withRouter } from 'react-router-dom';
 import fibNumbers from '../../constants/fibonachi';
 import VoutingCard from './VoutingCard';
 import UserCard from '../usersCards/UserCard';
@@ -21,18 +21,23 @@ class GameField extends React.Component {
         let gameId = this.props.match.params.id;
 
         this.callSocket();
-        let token = JSON.stringify({token: JSON.parse(localStorage.getItem('token'))});
+        let token = JSON.stringify({ token: JSON.parse(localStorage.getItem('token')) });
         console.log(token);
-        fetch(`${URL}/games/${gameId}`, { 
-            method: 'POST' ,  
+        fetch(`${URL}/games/${gameId}`, {
+            method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: token
         })
             .then(res => res.json())
             .then(res => {
-                console.log('from gamefield')
+                if (res.success === false) {
+                    this.props.history.push('/login');
+                } else {
+                    console.log('from gamefield')
 
-                store.dispatch(DBtoStore(res));
+                    store.dispatch(DBtoStore(res));
+                }
+
 
             })
             .catch(err => console.log(err));
@@ -63,10 +68,15 @@ class GameField extends React.Component {
             // log(message);
         });
 
-        socket.on('renderQuestion', (index) => this.setState({ activeQuestionIndex: index.index}))
+        socket.on('renderQuestion', (index) => this.setState({ activeQuestionIndex: index.index }))
+
+        socket.on('changeAverageInDb', function (y) {
+            console.log('from on changeAverageInDb')
+            store.dispatch(changeAverage(y));
+        })
     }
 
-    callSocket = () =>  {
+    callSocket = () => {
         console.log('callSocket')
         socket.emit('add owner', JSON.parse(localStorage.getItem('username')));
     };
@@ -80,41 +90,44 @@ class GameField extends React.Component {
     checkActiveCard = (value) => (this.state.activeIndex === +value ? "voutingCard vouted-card" : "voutingCard");
 
     changeActiveQuestion = (activeQuestionIndex) => this.setState({ activeQuestionIndex: activeQuestionIndex });
-    
+
     checkActiveQuestion = (value) => (this.state.activeQuestionIndex === value ? "wrapper-for-question active-question" : "wrapper-for-question");
-    
-    addToAnswers = (userId,answer) => {
+
+    addToAnswers = (userId, answer) => {
         // if(this.state.answers[userId])
         console.log(this.state.users_answer[userId])
-        if(this.state.users_answer[userId]){
-            this.state.users_answer[userId]=answer
+        if (this.state.users_answer[userId]) {
+            this.state.users_answer[userId] = answer
         }
-        else{this.setState({users_answer:{...this.state.users_answer,[userId]:answer}})}
+        else { this.setState({ users_answer: { ...this.state.users_answer, [userId]: answer } }) }
     }
 
     calcAverage = () => {
         let answers = this.state.users_answer
         let aver = 0
-        Object.keys(answers).map((item,index)=> aver += answers[item])        
-        
+        Object.keys(answers).map((item, index) => aver += answers[item])
+
         // var aver_el = document.getElementById('average_result');
         // aver_el.innerHTML = aver;
         console.log(" this.state.dbToStore[0].answers ", this.state.activeQuestionIndex);
-        let y = {index:this.state.activeQuestionIndex, average_value:aver}
-        store.dispatch(changeAverage(y));
-        return aver  
+        let y = { index: this.state.activeQuestionIndex, average_value: aver }
+
+
+        socket.emit('renderAverage', y);
+
+        return aver
     }
 
     render() {
         return (
             // <RenderIf condition={true}>
-            
+
             // </RenderIf>
             <div className="game-field">
                 {localStorage.getItem('isOwner') ?
-                 null : 
-                 <ModalNewPlayer gameId={this.props.match.params.id} />}
-               
+                    null :
+                    <ModalNewPlayer gameId={this.props.match.params.id} />}
+
                 {this.state.dbToStore[0] === undefined ?
                     null :
                     <div className='row'>
@@ -130,22 +143,22 @@ class GameField extends React.Component {
                             <div className="addQuestion">+</div>
                         </div>
 
-                        <div className='container-for-main-right-part col-sm-12 col-md-9'>                       
-                                <div className="single-question">
-                                    <span className='question-title'>Question: </span>
-                                    {this.state.dbToStore[0].questions[this.state.activeQuestionIndex]}
-                                    <div></div>
-                                    <span className='question-title'>Number of players: </span>
-                                    {this.state.dbToStore[0].users.length}
-                                </div>
-                                <div className="average-result" id='average_result'>No result</div>
-                                <div className="container-for-user-cards">
-                                    <div id='socket-msg'></div>
-                                    {this.state.dbToStore[0].users.map((user, index) => {
-                                        return <UserCard user={user} key={index} addToAnswers={this.addToAnswers}/>
-                                    })}
-                                </div>
-                                <button className="show-cards" onClick={this.calcAverage}>Flip cards</button>
+                        <div className='container-for-main-right-part col-sm-12 col-md-9'>
+                            <div className="single-question">
+                                <span className='question-title'>Question: </span>
+                                {this.state.dbToStore[0].questions[this.state.activeQuestionIndex]}
+                                <div></div>
+                                <span className='question-title'>Number of players: </span>
+                                {this.state.dbToStore[0].users.length}
+                            </div>
+                            <div className="average-result" id='average_result'>No result</div>
+                            <div className="container-for-user-cards">
+                                <div id='socket-msg'></div>
+                                {this.state.dbToStore[0].users.map((user, index) => {
+                                    return <UserCard user={user} key={index} addToAnswers={this.addToAnswers} />
+                                })}
+                            </div>
+                            <button className="show-cards" onClick={this.calcAverage}>Flip cards</button>
                         </div>
                     </div>}
                 <div className='row'>
@@ -165,4 +178,4 @@ class GameField extends React.Component {
     }
 }
 
-export default GameField;
+export default withRouter(GameField)
