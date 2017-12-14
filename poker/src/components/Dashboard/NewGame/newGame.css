@@ -74,9 +74,9 @@
 #addQuestionsButton:active{
     background-size: 103% 114%;
     background-position: 0px 0px;
-    width: 42px;
-    height: 42px;
-    margin: 6px auto 10px;
+    width: 34px;
+    height: 34px;
+    margin: 5px auto 9px;
 
 }
 #labelQuestions{

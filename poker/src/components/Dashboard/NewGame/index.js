@@ -18,6 +18,7 @@ export default class NewGame extends React.Component {
 
     handleSubmit = (event) => {
          // event.preventDefault();
+
         // -----------proverka NameGame--------------
         let proverkaNameGame = true;
         if (this.refs.nameGame.value.length > 100) {
@@ -33,10 +34,9 @@ export default class NewGame extends React.Component {
             // alert("Название игры не должно быть пустым");
         }
         if (proverkaNameGame === true) {
-            this.refs.question.style.boxShadow = "none";
+            this.refs.nameGame.style.boxShadow = "none";
             console.log("name game TRUE");
         }
-        // -----------End proverka NameGame--------------
 
         // -----------proverka description--------------
         let proverkaDescription = true;
@@ -52,27 +52,23 @@ export default class NewGame extends React.Component {
             proverkaDescription = false;
             // alert("Описание игры не должно состоять из более  чем 100 символов");
         }
-        else if (proverkaDescription === true) {
-            this.refs.question.style.boxShadow = "none";
-            console.log("Description TRUE");
+         if (proverkaDescription === true) {
+            this.refs.description.style.boxShadow = "none";
+            console.log("-----------------------------------------------------Description TRUE");
         }
-        // -----------End proverka questions--------------
 
         // -----------proverkaQuestions--------------
         let proverkaQuestions = true;
         if (this.state.rows.length === 0) {
             event.preventDefault();
             this.refs.question.style.boxShadow = "0px 0px 2px 2px #ff0000";
-            console.log("Description TRUE");
-            // alert("Вы не добавили не одного вопроса");
             proverkaQuestions = false;
         }
         else {
             this.refs.question.style.boxShadow = "none";
         }
-        // -----------end proverkaQuestions--------------
 
-        if (proverkaNameGame === true || proverkaDescription === true || proverkaQuestions === true) {
+        if (proverkaNameGame === true && proverkaDescription && true && proverkaQuestions === true) {
             let objectNewGame = {
                 nameGame: this.refs.nameGame.value,
                 owner: this.state.owner,
@@ -103,7 +99,7 @@ export default class NewGame extends React.Component {
     else{
          alert("Заполните все поля");
         }
-}
+};
 
     addedQuestion=(event)=>{
         event.preventDefault();
@@ -120,7 +116,6 @@ export default class NewGame extends React.Component {
         else{
            this.refs.question.style.boxShadow="none";
            let a = this.state.numbQuestions;
-            // this.state.questions[a] = this.refs.question.value;
            this.setState({answers: Object.assign(this.state.answers, {[a]: ""})});
            this.state.rows.push(this.refs.question.value);
            this.refs.question.value = "";
@@ -187,15 +182,14 @@ export default class NewGame extends React.Component {
                                 }
                             </div>
                             <button id ="createGameCancelButton"
-                                    // onClick={function(){this.props.history.push("/")}}
-                                //     className="btn-default"
-                                    type="submit">
+                                    type="submit"
+                                    >
                                 Cancel
                             </button>
                             <button id ="createGameButton"
                                     onClick={this.handleSubmit}
-                                     type="submit"
-                                >
+                                    type="submit"
+                                    >
                                 Create Game
                             </button>
 
