@@ -6,7 +6,7 @@ import fibNumbers from '../../constants/fibonachi';
 import VoutingCard from './VoutingCard';
 import UserCard from '../usersCards/UserCard';
 import Question from './Question';
-import { DBtoStore, updateStore, userAuthorization } from '../../actions';
+import { DBtoStore, updateStore, userAuthorization, changeAverage } from '../../actions';
 import store from './store/index';
 import './gameField.css';
 import ModalNewPlayer from './ModalNewPlayer';
@@ -17,10 +17,12 @@ const URL = "http://localhost:3000";
 class GameField extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { ...store.getState(), activeIndex: null, activeQuestionIndex: '1' };
+        this.state = { ...store.getState(), activeIndex: null, activeQuestionIndex: '1', users_answer: {} };
         let gameId = this.props.match.params.id;
 
-        let token = JSON.stringify({'token': localStorage.getItem('token')});
+        this.callSocket();
+        let token = JSON.stringify({token: JSON.parse(localStorage.getItem('token'))});
+        console.log(token);
         fetch(`${URL}/games/${gameId}`, { 
             method: 'POST' ,  
             headers: { 'Content-Type': 'application/json' },
@@ -28,13 +30,16 @@ class GameField extends React.Component {
         })
             .then(res => res.json())
             .then(res => {
+                console.log('from gamefield')
+
                 store.dispatch(DBtoStore(res));
+
             })
             .catch(err => console.log(err));
 
         store.subscribe(() => {
             this.setState({ dbToStore: store.getState().dbToStore });
-            // console.log('i am from subcribe>>>>>>>>>>>>>>>>>>> this.state.dbToStore[0].users.length', this.state.dbToStore[0].users.length)
+            console.log('i am from subcribe>>>>>>>>>>>>>>>>>>> this.state.dbToStore[0].users.length', this.state.dbToStore[0].users.length)
         });
 
         // function log(message) {
@@ -43,9 +48,10 @@ class GameField extends React.Component {
         // }
 
         socket.on('updateDb', function (data) {
-            fetch(`${URL}/games/${gameId}`, { method: 'GET' })
+            fetch(`/games/${gameId}`, { method: 'POST' })
                 .then(res => res.json())
                 .then(res => {
+                    console.log(res);
                     store.dispatch(updateStore(res));
                 })
                 .catch(err => console.log(err));
@@ -53,12 +59,17 @@ class GameField extends React.Component {
 
         socket.on('login', function (data) {
             var message = "Player:  " + data;
+            console.log(message);
             // log(message);
         });
 
         socket.on('renderQuestion', (index) => this.setState({ activeQuestionIndex: index.index}))
     }
 
+    callSocket = () =>  {
+        console.log('callSocket')
+        socket.emit('add owner', JSON.parse(localStorage.getItem('username')));
+    };
 
     componentWillUnmount() {
         this.unsubscribe = store.subscribe(() => this.setState(store.getState()));
@@ -71,11 +82,39 @@ class GameField extends React.Component {
     changeActiveQuestion = (activeQuestionIndex) => this.setState({ activeQuestionIndex: activeQuestionIndex });
     
     checkActiveQuestion = (value) => (this.state.activeQuestionIndex === value ? "wrapper-for-question active-question" : "wrapper-for-question");
+    
+    addToAnswers = (userId,answer) => {
+        // if(this.state.answers[userId])
+        console.log(this.state.users_answer[userId])
+        if(this.state.users_answer[userId]){
+            this.state.users_answer[userId]=answer
+        }
+        else{this.setState({users_answer:{...this.state.users_answer,[userId]:answer}})}
+    }
+
+    calcAverage = () => {
+        let answers = this.state.users_answer
+        let aver = 0
+        Object.keys(answers).map((item,index)=> aver += answers[item])        
+        
+        // var aver_el = document.getElementById('average_result');
+        // aver_el.innerHTML = aver;
+        console.log(" this.state.dbToStore[0].answers ", this.state.activeQuestionIndex);
+        let y = {index:this.state.activeQuestionIndex, average_value:aver}
+        store.dispatch(changeAverage(y));
+        return aver  
+    }
 
     render() {
         return (
+            // <RenderIf condition={true}>
+            
+            // </RenderIf>
             <div className="game-field">
-                <ModalNewPlayer gameId={this.props.match.params.id} />
+                {localStorage.getItem('isOwner') ?
+                 null : 
+                 <ModalNewPlayer gameId={this.props.match.params.id} />}
+               
                 {this.state.dbToStore[0] === undefined ?
                     null :
                     <div className='row'>
@@ -99,13 +138,14 @@ class GameField extends React.Component {
                                     <span className='question-title'>Number of players: </span>
                                     {this.state.dbToStore[0].users.length}
                                 </div>
+                                <div className="average-result" id='average_result'>No result</div>
                                 <div className="container-for-user-cards">
                                     <div id='socket-msg'></div>
                                     {this.state.dbToStore[0].users.map((user, index) => {
-                                        return <UserCard user={user} key={index} />
+                                        return <UserCard user={user} key={index} addToAnswers={this.addToAnswers}/>
                                     })}
                                 </div>
-                                <button className="show-cards">Flip cards</button>
+                                <button className="show-cards" onClick={this.calcAverage}>Flip cards</button>
                         </div>
                     </div>}
                 <div className='row'>

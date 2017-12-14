@@ -45,55 +45,56 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 var jsonParser = bodyParser.json();
 
-let verifyToken = (req, res, next) => {
-    console.log('token from mdw req.body', req.body.token.toString());
-    var token = req.body.token;
-    jwt.verify(req.body.token.toString(), jwtSecret, function(err, decoded) {
-        console.log(decoded);
-         res.json(decoded);
-         next(req, res);
-      });
-    // // var token = req.body.token.toString() || req.query.token || req.headers['x-access-token'];
-    //   if (true) {
-           
-    //     jwt.verify(token, jwtSecret, function(err, decoded) {
-    //         // if (err) {
-    //         //     return res.json({ success: false, message: 'Failed to authenticate token.' });
-    //         //     // next(err, req, res)
-    //         // } else {
-    //         //     console.log(decoded);
-    //         //     req.token = decoded;
 
-    //         //      res.json(decoded);
-    //         //      next(req, res);
-    //         // }
-    //         console.log('decoded', decoded);
-    //       });
-          
-    //   }
-    // next(req, res);
+let verifyToken = (req, res, next) => {
+    console.log('token from mdw req.body', req.body);
+    var token = req.body.token;
+    if (token) {
+        jwt.verify(token, jwtSecret, function(err, decoded) {
+            console.log('err', err, 'decoded', decoded);
+            if (err) {
+                return res.json({success: false, message: 'Failed to authenticate token.'})
+            } else {
+                console.log(decoded);
+                req.token = decoded;
+                next();
+            }
+          });
+    } else next();
     
 }
 
 
 app.use('/saveGame', saveGame);
-app.use('/uploadgame', require('./routes/uploadgame'));
+app.use('/uploadGamesByOwner', require('./routes/uploadgame'));
 app.use('/delgame', require('./routes/delgame'));
+app.use('/registerUser', require('./routes/registerUser.js'));
 // app.use('/fetchGame', fetchGame);
 app.use('/addPlayer', addPlayer);
+app.use(logErrors)
 // app.get('/games/');
 // app.use('/games/:id', game_id);
-app.get('/games/:id/users');
-app.get('/games/:id/users/:user_id');
-app.get('/games/:id/question/:question_id');
+// app.get('/games/:id/users');
+// app.get('/games/:id/users/:user_id');
+// app.get('/games/:id/question/:question_id');
 
 
 
+// app.get('/games/:id', (req, res, next) => {
+//     console.log('from get game id', req.path.split('/')[2]);
+//     let gameId = req.path.split('/')[2];
+//     Game.findById(gameId, (err, game) => {
+//         console.log('game', game);
+//         res.send(game);
+//     })
+// })
 
 app.post('/games/:id', verifyToken, (req, res, next) => {
     console.log('from post game id', req.path.split('/')[2]);
+    console.log('req.body from post', req.body)
     let gameId = req.path.split('/')[2];
     Game.findById(gameId, (err, game) => {
+        // console.log('game', game);
         res.send(game);
     })
 })
@@ -102,14 +103,16 @@ app.post('/games/:id', verifyToken, (req, res, next) => {
 //token part
 
 app.post('/login', (req, res, next) => {
-    let userFromDb = {};
-    console.log('req.body.email', req.body.email)
+    let userFromDbName = {},
+    userFromDbEmail = {};
+    // console.log('req.body.email', req.body.email)
     User.find({email: req.body.email}, (err, user) => {
         if (err) console.log(err);
-        userFromDb = user[0].name;
-        console.log('user from db', userFromDb)
-        var token = jwt.sign(req.body, jwtSecret, { expiresIn: 60 * 5 });
-        res.json({ token: token, name: userFromDb });
+        userFromDbName = user[0].name;
+        userFromDbEmail = user[0].email;
+        // console.log('user from db', userFromDbName, userFromDbEmail)
+        var token = jwt.sign(req.body, jwtSecret, { expiresIn: 60 * 30 });
+        res.json({ token: token, name: userFromDbName, email: userFromDbEmail });
     })
    
 
@@ -117,14 +120,6 @@ app.post('/login', (req, res, next) => {
    
 });
 
-app.post('/auth', (req, res, next) => {
-        console.log('token from LC', req.body.token.toString())
-       
-        jwt.verify(req.body.token.toString(), jwtSecret, function(err, decoded) {
-            console.log(decoded);
-             res.json(decoded);
-          });
-    });
 
 
 //socket part
@@ -132,18 +127,6 @@ app.post('/auth', (req, res, next) => {
 var server = http.createServer(app)
 server.listen(config["dev"].port, () => console.log(`Example app listening on port ${config['dev'].port}!`))
 io.listen(server);
-
-// io.set('authorization', socketioJwt.authorize({
-//     secret: jwtSecret,
-//     handshake: true
-//   }));
-
-
-//   io.sockets
-//   .on('connection', function (socket) {
-//      console.log(socket.handshake.decoded_token.email, 'connected');
-//      //socket.on('event');
-//   });
 
 io.on('connection', (socket) => {
     // console.log('socket connected');
@@ -158,6 +141,12 @@ io.on('connection', (socket) => {
         socket.emit('updateDb', username);
 
     });
+    socket.on('add owner', function (username) {
+        console.log('ownername from server', username)
+        socket.username = username;
+        socket.broadcast.emit('updateDb', username);
+        socket.emit('updateDb', username);
+    })
 
     socket.on('transferNumber', (number) => {
         socket.broadcast.emit('renderNumber', { number: number, name: socket.username })
@@ -170,4 +159,9 @@ io.on('connection', (socket) => {
     })
 
 })
+
+function logErrors (err, req, res, next) {
+    console.error(err.stack)
+    next(err)
+  }
 // console.log('listening on port ', port);

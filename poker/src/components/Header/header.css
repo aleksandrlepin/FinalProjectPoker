@@ -17,6 +17,7 @@ ul, li {
     margin-top: 15px;
     margin-left: 145px;
     background-repeat: no-repeat;
+    cursor: pointer;
 }
 .header-nav {
   
@@ -44,7 +45,7 @@ ul, li {
     margin-right: 100px;
     
 }
-.right-menu li {
+.right-menu li, .user-logout {
     font-size: 13px;
     font-family: "Roboto";
     color: rgb(0, 255, 255);
@@ -69,6 +70,7 @@ ul, li {
     color: white;
     font-size: 20px;
     font-weight: bold;
+    margin-bottom: 15px;
 }
   
   

@@ -15,10 +15,10 @@ const db = mongoose.connection;
 const Game = require('../models/game');
 
 router.post('/', (req, res, next) => {
-	console.log(req.body.name);
+	// console.log(req.body.name);
 	let owner = JSON.parse(req.body.name);
 	Game.find({'owner': owner}, (err, game) => {
-		console.log('games', game)
+		// console.log('games', game)
         res.send(game);
   	})
 })

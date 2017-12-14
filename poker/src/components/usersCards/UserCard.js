@@ -26,11 +26,14 @@ export default class UserCard extends React.Component {
         }
         
         let userName = this.props.user.name;
+        let addToAnswers = this.props.addToAnswers
         let self = this;
         function checkUser (data) {
             if (userName === data.name) {
                 self.setState({vouted: true, vout: data.number});
-                console.log('userName', userName, 'data.number', data.number)
+                addToAnswers(data.name, data.number)
+                console.log('userName', userName,'useID', data._id, 'data.number', data.number)
+                console.log(data)
             }
         }
         socket.on('renderNumber', (data) => checkUser(data)) ;

@@ -19,12 +19,23 @@ class Header extends React.Component {
         this.props.history.push(href);
     }
 
+    handleLogout = () => {
+        localStorage.clear();
+    }
+
+    handleLogoClick = () => {
+        if (localStorage.getItem('isOwner')) {
+            this.props.history.push('/dashboard')
+        } else {
+            this.props.history.push('/')
+        }
+    }
 
     render() {
         console.log(localStorage.getItem('name'))
         return (
             <header style={style}>
-                <a href="/"><div style={logo} className="gameLogo"></div></a>
+               <div style={logo} className="gameLogo" onClick={this.handleLogoClick}></div>
                 <nav className="header-nav">
                 
                     <ul className="left-menu">
@@ -33,8 +44,9 @@ class Header extends React.Component {
                     </ul>
                     {localStorage.getItem('username') !== null ? 
                     <div className="user-profile">
-                        <div className="user-avatar"></div>
-                        <div className="user-name">{localStorage.getItem('username')}</div>
+                       
+                        <div className="user-name">{JSON.parse(localStorage.getItem('username'))}</div>
+                        <div className="user-logout" onClick={this.handleLogout}>Log out</div>
                     </div> :
                     <ul className="right-menu">
                         <li onClick={this.handleClick.bind(null, '/registration')}>Register</li>

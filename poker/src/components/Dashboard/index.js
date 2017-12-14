@@ -22,7 +22,7 @@ class Dashboard extends React.Component {
         if (localStorage.getItem('username')) {
             console.log('from willmount dashboard', localStorage.getItem('username'))
             let owner = JSON.stringify({'name': localStorage.getItem('username')});
-            fetch('/uploadgame', {
+            fetch('/uploadGamesByOwner', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: owner
