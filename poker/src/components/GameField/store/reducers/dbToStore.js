@@ -5,16 +5,16 @@ export default function dbToStore(state = initialState.database, action) {
 	let { type, payload } = action;
 	switch (type) {
 		case types.LOAD_DB_TO_STORE:
-			let payloadArr = payload;
 			if (state.length > 0) {
 				state.map((item, index) => {
-					// if(payloadArr._id != item._id){
-					return [...state, payloadArr]
+					console.log('from dbtostore if')
+					return [...state, payload]
 
 					// }
 				})
 			} else {
-				return [...state, payloadArr]
+				console.log('from dbtostore else')
+				return [...state, payload]
 			}
 			break;
 
@@ -35,7 +35,6 @@ export default function dbToStore(state = initialState.database, action) {
 			break;
 
 		default:
-			console.log('default');
 			return state;
 	}
 };

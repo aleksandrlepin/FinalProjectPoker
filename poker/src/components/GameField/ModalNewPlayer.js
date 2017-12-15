@@ -1,13 +1,14 @@
 import React from 'react';
 import Modal from 'react-modal';
 import { withRouter } from 'react-router-dom';
-import { DBtoStore, addPlayer } from '../../actions';
+import { addPlayer } from '../../actions';
 import { socket } from '../../constants/consts';
-import openSocket from 'socket.io-client';
 import store from './store/index';
+import './modal.css'
 
 
 const customStyles = {
+
     content: {
         top: '50%',
         left: '50%',
@@ -17,7 +18,8 @@ const customStyles = {
         transform: 'translate(-50%, -50%)',
         display: 'flex',
         flexDirection: 'column',
-        padding: '20px'
+        padding: '20px',
+        backgroundColor: '#09243b'
     }
 };
 Modal.setAppElement('#root');
@@ -32,12 +34,11 @@ class ModalNewPlayer extends React.Component {
     }
 
     afterOpenModal = () => {
-        this.subtitle.style.color = '#f00';
+        this.subtitle.style.color = '#09243b';
     }
 
     handlePlay = () => {
         this.setState({ modalIsOpen: false });
-        let id = JSON.stringify({ gameId: this.props.gameId });
         let data = JSON.stringify({
             gameId: this.props.gameId,
             user: {
@@ -70,11 +71,8 @@ class ModalNewPlayer extends React.Component {
 
     }
 
-
-
     handleCancel = () => {
         this.setState({ modalIsOpen: false });
-        let id = JSON.stringify({ gameId: this.props.gameId });
     }
     render() {
 
@@ -87,23 +85,16 @@ class ModalNewPlayer extends React.Component {
                 contentLabel="No Overlay Click Modal"
             >
 
-                <h2 id="modal" ref={subtitle => this.subtitle = subtitle}>Join Game</h2>
+                <div id="modal" ref={subtitle => this.subtitle = subtitle}>Join Game</div>
 
                 <form>
-                    <label>Enter your name:
-                     <br></br>
-                        <input ref="name" />
-                    </label>
-                    <br></br>
-                    <label>Enter your email:
-                     <br></br>
-                        <input ref="email" />
-                    </label>
-                    <br></br>
-
+                    <p><label className="modal-label">Enter your name:</label></p>
+                    <p><input className="modal-input" ref="name" placeholder="player nickname" /></p>
+                    <p><label className="modal-label">Enter your email:</label></p>
+                    <p><input className="modal-input" ref="email" placeholder="email"/></p>
                 </form>
-                <button onClick={this.handleCancel}>cancel</button>
-                <button onClick={this.handlePlay}>play</button>
+                <button className="modal-button" onClick={this.handleCancel}>cancel</button>
+                <button className="modal-button" onClick={this.handlePlay}>play</button>
             </Modal>
         )
     }

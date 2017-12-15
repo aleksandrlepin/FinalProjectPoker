@@ -1,13 +1,11 @@
 import React from 'react';
 import { socket } from '../../constants/consts';
-import openSocket from 'socket.io-client';
 
 export default class Question extends React.Component {
 
     handleChangeQuestion = () => {
         this.props.currentQuestion(this.props.index);
-        
-        // socket.emit('transferQuestion', this.props.index);      
+        socket.emit('transferQuestion', this.props.index);      
     }
     
     render() {

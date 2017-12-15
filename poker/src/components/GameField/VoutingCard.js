@@ -1,6 +1,5 @@
 import React from 'react';
 import { socket } from '../../constants/consts';
-import openSocket from 'socket.io-client';
 import './voutingCard.css';
 
 

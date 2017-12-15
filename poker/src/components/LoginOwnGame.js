@@ -1,13 +1,9 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import store from './GameField/store/index';
 import { socket } from '../constants/consts';
 
 class Login extends React.Component {
-    constructor(props) {
-        super(props);
-       
-    }
+
     handleLogIn = () => {
         console.log('click login')
         let profile = JSON.stringify({
