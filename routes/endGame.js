@@ -20,13 +20,35 @@ db.on('error', err => {
 const Game = require('../models/game');
 
 router.post('/', (req, res, next) => {
+	console.log('post', req.body)
+
+	Game.remove({ _id: req.body._id }, function(err) {
+    if (!err) {
+            console.log('notification!');
+    }
+    else {
+            console.log('error');
+    }
     const newGame = new Game(req.body);
     newGame.save((err, game) => {
-        console.log('new game', game);
         if (err) {
             console.log('err', err)
         }
     })
+    console.log('game saved')
+});
+
+// 	Game.findOneAndUpdate(req.body, req.body, {upsert:true}, function(err, doc){
+//     if (err) return res.send(500, { error: err });
+//     return res.send("succesfully saved");
+// });
+	// console.log('game came', req.body)
+ //    const newGame = new Game(req.body);
+ //    newGame.save((err, game) => {
+ //        if (err) {
+ //            console.log('err', err)
+ //        }
+ //    })
 })
 
 module.exports = router;

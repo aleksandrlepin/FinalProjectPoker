@@ -12,6 +12,8 @@ import './gameField.css';
 import ModalNewPlayer from './ModalNewPlayer';
 
 
+
+
 const URL = "http://localhost:3000";
 
 class GameField extends React.Component {
@@ -117,6 +119,40 @@ class GameField extends React.Component {
 
         return aver
     }
+    createNewQuestion  = () => {
+        this.props.history.push(`/game/${this.props.match.params.id}/newQuestion`);
+    }
+
+
+    // finish game and save to db
+    endGame = (e) => {
+        e.preventDefault();
+        let data = JSON.stringify(this.state.dbToStore[0])
+
+        fetch(`${URL}/endgame`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: data
+        })
+            .then(res => res.json())
+            .then(res => {
+            //     if (res.success === false) {
+            //         this.props.history.push('/login');
+            //     } else {
+            //         console.log('from gamefield')
+
+            //         store.dispatch(DBtoStore(res));
+            //     }
+
+
+            })
+            .catch(err => console.log(err));
+
+        // store.subscribe(() => {
+        //     this.setState({ dbToStore: store.getState().dbToStore });
+        //     console.log('i am from subcribe>>>>>>>>>>>>>>>>>>> this.state.dbToStore[0].users.length', this.state.dbToStore[0].users.length)
+        // });
+    }
 
     render() {
         return (
@@ -140,7 +176,7 @@ class GameField extends React.Component {
                                 currentQuestion={this.changeActiveQuestion}
                                 answer={this.state.dbToStore[0].answers[key]}
                             />)}
-                            <div className="addQuestion">+</div>
+                            <div className="addQuestion" onClick={this.createNewQuestion}>+</div>
                         </div>
 
                         <div className='container-for-main-right-part col-sm-12 col-md-9'>
@@ -159,6 +195,7 @@ class GameField extends React.Component {
                                 })}
                             </div>
                             <button className="show-cards" onClick={this.calcAverage}>Flip cards</button>
+                            <button className="show-cards" onClick={this.endGame}>End game</button>
                         </div>
                     </div>}
                 <div className='row'>

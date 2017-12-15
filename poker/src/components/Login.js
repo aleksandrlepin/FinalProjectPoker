@@ -25,6 +25,7 @@ class Login extends React.Component {
             localStorage.setItem('useremail', JSON.stringify(res.email));
             localStorage.setItem('isOwner', true);
             this.props.history.push('/dashboard');
+            
         })
         .catch(err => {
             this.setState({logged: false})

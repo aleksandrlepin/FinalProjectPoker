@@ -6,6 +6,8 @@ var bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
 
+const PORT = process.env.PORT || 3001
+
 var jwt = require('jsonwebtoken');
 var socketioJwt = require('socketio-jwt');
 var jwtSecret = 'mysecret';
@@ -44,7 +46,6 @@ let verifyToken = (req, res, next) => {
             if (err) {
                 return res.json({success: false, message: 'Failed to authenticate token.'})
             } else {
-
                 req.token = decoded;
                 next();
             }
@@ -61,6 +62,7 @@ app.use('/delgame', require('./routes/delgame'));
 app.use('/registerUser', require('./routes/registerUser.js'));
 app.use('/addPlayer', require('./routes/addPlayer'));
 app.use('/games', verifyToken, require('./routes/game_id'));
+app.use('/endGame', require('./routes/endGame'));
 app.use(logErrors)
 // app.get('/games/:id/users');
 // app.get('/games/:id/users/:user_id');
@@ -69,7 +71,8 @@ app.use(logErrors)
 //socket part
 
 var server = http.createServer(app)
-server.listen(config["dev"].port, () => console.log(`Example app listening on port ${config['dev'].port}!`))
+server.listen(PORT, () => console.log(`Example app listening on port ${PORT}!`))
+// server.listen(config["dev"].port, () => console.log(`Example app listening on port ${config['dev'].port}!`))
 io.listen(server);
 
 io.on('connection', (socket) => {
@@ -107,8 +110,12 @@ io.on('connection', (socket) => {
 })
 
 function logErrors (err, req, res, next) {
-    console.error(err.stack)
-    next(err)
+    if(err){
+        console.error(err.stack);
+        res.status(500).json({
+
+        })
+    }
   }
 
 module.exports = verifyToken;

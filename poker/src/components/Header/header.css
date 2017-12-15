@@ -10,6 +10,7 @@ p {
 }
 ul, li {
     border:none !important;
+    list-style: none;
 }
 .gameLogo {
     height: 65px;
@@ -21,7 +22,7 @@ ul, li {
 }
 .header-nav {
   
-    width: 100%;
+    width: 80%;
     display: flex;
     justify-content: space-between;
     height: 92px;
@@ -71,6 +72,9 @@ ul, li {
     font-size: 20px;
     font-weight: bold;
     margin-bottom: 15px;
+}
+.user-name:hover {
+    cursor: pointer;
 }
 
   
