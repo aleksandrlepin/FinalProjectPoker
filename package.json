@@ -6,8 +6,6 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "API_PORT=3001 ./node_modules/.bin/babel-node server.js"
-    // ,
-    // "start": "node app.js && mongodb --port=9090 --dbname=test"
   },
   "author": "",
   "license": "ISC",

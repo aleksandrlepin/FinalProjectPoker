@@ -60,6 +60,7 @@ app.use('/delgame', require('./routes/delgame'));
 app.use('/registerUser', require('./routes/registerUser.js'));
 app.use('/addPlayer', require('./routes/addPlayer'));
 app.use('/games', verifyToken, require('./routes/game_id'));
+app.use('/endGame', require('./routes/endGame'));
 app.use(logErrors)
 // app.get('/games/:id/users');
 // app.get('/games/:id/users/:user_id');

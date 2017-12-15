@@ -17,7 +17,7 @@ export default class NewGame extends React.Component {
     }
 
     handleSubmit = (event) => {
-         // event.preventDefault();
+         event.preventDefault();
 
         // -----------proverka NameGame--------------
         let proverkaNameGame = true;

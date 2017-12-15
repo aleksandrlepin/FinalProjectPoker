@@ -118,6 +118,37 @@ class GameField extends React.Component {
         return aver
     }
 
+
+    // finish game and save to db
+    endGame = (e) => {
+        e.preventDefault();
+        let data = JSON.stringify(this.state.dbToStore[0])
+
+        fetch(`${URL}/endgame`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: data
+        })
+            .then(res => res.json())
+            .then(res => {
+            //     if (res.success === false) {
+            //         this.props.history.push('/login');
+            //     } else {
+            //         console.log('from gamefield')
+
+            //         store.dispatch(DBtoStore(res));
+            //     }
+
+
+            })
+            .catch(err => console.log(err));
+
+        // store.subscribe(() => {
+        //     this.setState({ dbToStore: store.getState().dbToStore });
+        //     console.log('i am from subcribe>>>>>>>>>>>>>>>>>>> this.state.dbToStore[0].users.length', this.state.dbToStore[0].users.length)
+        // });
+    }
+
     render() {
         return (
             // <RenderIf condition={true}>
@@ -159,6 +190,7 @@ class GameField extends React.Component {
                                 })}
                             </div>
                             <button className="show-cards" onClick={this.calcAverage}>Flip cards</button>
+                            <button className="show-cards" onClick={this.endGame}>End game</button>
                         </div>
                     </div>}
                 <div className='row'>
