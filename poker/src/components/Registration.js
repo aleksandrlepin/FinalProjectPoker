@@ -1,9 +1,10 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import '../registration.css';
 
 
 let validation = false;
-export default class Registration extends React.Component {
+class Registration extends React.Component {
     
     state = {
         name : '',
@@ -29,6 +30,7 @@ export default class Registration extends React.Component {
             })
                 .then(res => res.json())
                 .then(res => {
+                    console.log(res)
                     if (!res.emailValRes || !res.emailRes) { 
                         this.refs.email.style.boxShadow = "0px 0px 2px 2px #ff0000"; 
                     } else {
@@ -39,20 +41,26 @@ export default class Registration extends React.Component {
                     } else {
                         this.refs.name.style.boxShadow = "none";
                     }
-                    console.log(res)
+                    if (res.addedToDb) {
+                        localStorage.setItem('token', JSON.stringify(res.token));
+                        localStorage.setItem('username', JSON.stringify(res.name));
+                        localStorage.setItem('useremail', JSON.stringify(res.email));
+                        localStorage.setItem('isOwner', true);
+                        // this.props.history.push('/dashboard');
+                    }
                 })
                 .catch(err => console.log(err));
 
             console.log("------------------------  fetch RUUUUN");
         }
-        this.refs.password.value = '';
-        this.refs.repeatPassword.value = '';
+        // this.refs.password.value = '';
+        // this.refs.repeatPassword.value = '';
     }
     handleChange = (e) => {
         this.setState({
             [e.target.name]: e.target.value
         })
-        if (this.state.name.length<5 || this.state.name.length>20) {
+        if (this.state.name.length<3 || this.state.name.length>20) {
             this.refs.name.style.boxShadow = "0px 0px 2px 2px #ff0000";
             validation = false;
         } else {
@@ -75,12 +83,14 @@ export default class Registration extends React.Component {
             validation = true;
 
         }
-        if (this.state.repeatPassword.length<5 || this.state.repeatPassword.length>20) {
-            this.refs.repeatPassword.style.boxShadow = "0px 0px 2px 2px #ff0000";
-            validation = false;
-        } else {
-            this.refs.repeatPassword.style.boxShadow = "none";
-            validation = true;
+        if (this.state.repeatPassword && this.state.repeatPassword) {
+            if (this.state.repeatPassword.length<5 || this.state.repeatPassword.length>20) {
+                this.refs.repeatPassword.style.boxShadow = "0px 0px 2px 2px #ff0000";
+                validation = false;
+            } else {
+                this.refs.repeatPassword.style.boxShadow = "none";
+                validation = true;
+            }
         }
     }
 
@@ -102,3 +112,4 @@ export default class Registration extends React.Component {
         )
     }
 }
+export default withRouter(Registration);

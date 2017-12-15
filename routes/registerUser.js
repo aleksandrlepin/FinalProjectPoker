@@ -3,6 +3,11 @@ var router = express.Router();
 var bodyParser = require('body-parser');
 var md5 = require('md5');
 
+
+var jwt = require('jsonwebtoken');
+var socketioJwt = require('socketio-jwt');
+var jwtSecret = 'mysecret';
+
 var User = require('../models/user.js')
 var userReg = require('../models/userReg.js');
 var mongoose = require('mongoose');
@@ -12,9 +17,7 @@ const db = mongoose.connection;
 
 
 router.post('/', function(req, res, next) {
-	console.log('post start')
-	console.log(req.body.password)
-	let respons = { emailValRes : false, nameRes : false, emailRes : false };
+	let respons = { emailValRes : false, nameRes : false, emailRes : false, addedToDb : false, token : '', name : '', email : '', isOwner : true };
 	function validateEmail(email) {
 		var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 		return re.test(email);
@@ -47,12 +50,17 @@ router.post('/', function(req, res, next) {
 
 			if (!email.length) {
 				respons.emailRes = true;
+				respons.addedToDb = true;
 			}
 
 			if (respons.emailValRes && respons.nameRes && respons.emailRes) {
 				adduser();
+				respons.name = req.body.name;
+				respons.email = req.body.email;
+				var token = jwt.sign(req.body, jwtSecret, { expiresIn: 60 * 30 });
+				respons.token = token;
+				res.send(JSON.stringify(respons));
 			} else {
-				console.log(respons)
 				res.send(JSON.stringify(respons));
 			}
 		})
@@ -61,17 +69,17 @@ router.post('/', function(req, res, next) {
 
 	function adduser() {
 		console.log('start add')
-		// console.log(respons)
-		// let userObj = {
-		// 	name: req.body.name,
-		// 	email: req.body.email.toLowerCase(),
-		// 	password: md5(req.body.password),
-		// }
-		// let user = mongoose.model('user', userReg);
-		// let adduser = new user(userObj);
-		// adduser.save(function(err) {
-		// 	if (err) throw err;
-		// });
+		console.log(respons)
+		let userObj = {
+			name: req.body.name,
+			email: req.body.email.toLowerCase(),
+			password: md5(req.body.password),
+		}
+		let user = mongoose.model('user', userReg);
+		let adduser = new user(userObj);
+		adduser.save(function(err) {
+			if (err) throw err;
+		});
 	}
 });
 
