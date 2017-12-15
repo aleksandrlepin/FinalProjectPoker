@@ -51,16 +51,14 @@ router.post('/', function(req, res, next) {
 			if (!email.length) {
 				respons.emailRes = true;
 				respons.addedToDb = true;
-				respons.name = req.body.name;
-				respons.email = req.body.email;
-
-				var token = jwt.sign(req.body, jwtSecret, { expiresIn: 60 * 30 });
-				respons.token = token;
-
 			}
 
 			if (respons.emailValRes && respons.nameRes && respons.emailRes) {
 				adduser();
+				respons.name = req.body.name;
+				respons.email = req.body.email;
+				var token = jwt.sign(req.body, jwtSecret, { expiresIn: 60 * 30 });
+				respons.token = token;
 				res.send(JSON.stringify(respons));
 			} else {
 				res.send(JSON.stringify(respons));

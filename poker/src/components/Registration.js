@@ -30,6 +30,7 @@ class Registration extends React.Component {
             })
                 .then(res => res.json())
                 .then(res => {
+                    console.log(res)
                     if (!res.emailValRes || !res.emailRes) { 
                         this.refs.email.style.boxShadow = "0px 0px 2px 2px #ff0000"; 
                     } else {
@@ -45,15 +46,15 @@ class Registration extends React.Component {
                         localStorage.setItem('username', JSON.stringify(res.name));
                         localStorage.setItem('useremail', JSON.stringify(res.email));
                         localStorage.setItem('isOwner', true);
-                        this.props.history.push('/dashboard');
+                        // this.props.history.push('/dashboard');
                     }
                 })
                 .catch(err => console.log(err));
 
             console.log("------------------------  fetch RUUUUN");
         }
-        this.refs.password.value = '';
-        this.refs.repeatPassword.value = '';
+        // this.refs.password.value = '';
+        // this.refs.repeatPassword.value = '';
     }
     handleChange = (e) => {
         this.setState({
