@@ -1,0 +1,58 @@
+.mainPage{
+    /*height: 100rem;*/
+}
+.mainPageContent{
+    height: 100%;
+    background: white;
+    padding-top: 126px;
+    text-align: center;
+}
+button{
+    /*margin: 30px 0 0 70px;*/
+    width: 250px;
+    height: 50px;
+    background-color: #ff6c00;
+    border-radius: 8px;
+    outline: none;
+    font-size: 25px;
+    margin: 66px auto;
+}
+button:active{
+    -webkit-transform: scale(0.9);
+    -ms-transform: scale(0.9);
+    transform: scale(0.9);
+}
+.mainPageHeading{
+    font-size: 25px;
+    /*background-color: #0efeff;*/
+    height: 153px;
+    width: 464px;
+    margin: 0 0 0 368px;
+}
+
+.mainPageHeading>h2 {
+    font-size: 44px;
+    background-color: #0efeff;
+}
+
+
+.mainPageHeading>h2:nth-child(1){
+    width: 463px;
+
+}
+.mainPageHeading>h2:nth-child(2){
+    width: 260px;
+    margin: 10px auto;
+}
+.mainPageHeading>h2:nth-child(3){
+    width: 363px;
+    margin: 10px auto;
+}
+
+
+.mainPageContent>h1{
+    display: block;
+    width: 463px;
+    height: 154px;
+    margin: 0px 0px 0 368px;
+}
