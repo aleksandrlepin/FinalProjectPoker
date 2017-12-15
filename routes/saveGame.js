@@ -22,6 +22,7 @@ const Game = require('../models/game');
 router.post('/', (req, res, next) => {
     const newGame = new Game(req.body);
     newGame.save((err, game) => {
+        console.log('new game', game);
         if (err) {
             console.log('err', err)
         }

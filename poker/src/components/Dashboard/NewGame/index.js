@@ -8,7 +8,7 @@ export default class NewGame extends React.Component {
         this.state={
             questions: {},
             rows : [],
-            owner: 'Dima',
+            owner: JSON.parse(localStorage.getItem('username')),
             answers: {},
             users: [{name: localStorage.getItem('username'), email: localStorage.getItem('email')}],
             numbQuestions : 1
@@ -17,6 +17,7 @@ export default class NewGame extends React.Component {
     }
 
     handleSubmit = (event) => {
+
          event.preventDefault();
 
         // -----------proverka NameGame--------------
@@ -93,7 +94,7 @@ export default class NewGame extends React.Component {
             console.log("------------------------  fetch RUUUUN");
 
             // --------
-            // this.props.history.push("/")
+            this.props.history.push("/dashboard");
                 // ---------
         }
     else{
@@ -116,6 +117,7 @@ export default class NewGame extends React.Component {
         else{
            this.refs.question.style.boxShadow="none";
            let a = this.state.numbQuestions;
+           this.setState({questions: Object.assign(this.state.questions, {[a]: this.refs.question.value})});
            this.setState({answers: Object.assign(this.state.answers, {[a]: ""})});
            this.state.rows.push(this.refs.question.value);
            this.refs.question.value = "";

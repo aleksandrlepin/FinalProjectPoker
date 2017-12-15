@@ -12,6 +12,8 @@ import './gameField.css';
 import ModalNewPlayer from './ModalNewPlayer';
 
 
+
+
 const URL = "http://localhost:3000";
 
 class GameField extends React.Component {
@@ -117,6 +119,9 @@ class GameField extends React.Component {
 
         return aver
     }
+    createNewQuestion  = () => {
+        this.props.history.push(`/game/${this.props.match.params.id}/newQuestion`);
+    }
 
 
     // finish game and save to db
@@ -171,7 +176,7 @@ class GameField extends React.Component {
                                 currentQuestion={this.changeActiveQuestion}
                                 answer={this.state.dbToStore[0].answers[key]}
                             />)}
-                            <div className="addQuestion">+</div>
+                            <div className="addQuestion" onClick={this.createNewQuestion}>+</div>
                         </div>
 
                         <div className='container-for-main-right-part col-sm-12 col-md-9'>
