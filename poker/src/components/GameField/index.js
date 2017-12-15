@@ -72,10 +72,10 @@ class GameField extends React.Component {
 
         socket.on('renderQuestion', (index) => this.setState({ activeQuestionIndex: index.index }))
 
-        socket.on('changeAverageInDb', function (y) {
-            console.log('from on changeAverageInDb')
-            store.dispatch(changeAverage(y));
-        })
+        // socket.on('changeAverageInDb', function (y) {
+        //     console.log('from on changeAverageInDb')
+        //     store.dispatch(changeAverage(y));
+        // })
     }
 
     callSocket = () => {
@@ -114,8 +114,8 @@ class GameField extends React.Component {
         console.log(" this.state.dbToStore[0].answers ", this.state.activeQuestionIndex);
         let y = { index: this.state.activeQuestionIndex, average_value: aver }
 
-
-        socket.emit('renderAverage', y);
+        store.dispatch(changeAverage(y));
+        // socket.emit('renderAverage', y);
 
         return aver
     }
