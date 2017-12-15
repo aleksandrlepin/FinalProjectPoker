@@ -30,9 +30,11 @@ class Header extends React.Component {
             this.props.history.push('/')
         }
     }
+    handleRedirect = () => {
+        this.props.history.push('/dashboard')
+    }
 
     render() {
-        console.log(localStorage.getItem('name'))
         return (
             <header style={style}>
                <div style={logo} className="gameLogo" onClick={this.handleLogoClick}></div>
@@ -45,7 +47,7 @@ class Header extends React.Component {
                     {localStorage.getItem('username') !== null ? 
                     <div className="user-profile">
                        
-                        <div className="user-name">{JSON.parse(localStorage.getItem('username'))}</div>
+                        <div className="user-name" onClick={this.handleRedirect} >{JSON.parse(localStorage.getItem('username'))}</div>
                         <div className="user-logout" onClick={this.handleLogout}>Log out</div>
                     </div> :
                     <ul className="right-menu">
