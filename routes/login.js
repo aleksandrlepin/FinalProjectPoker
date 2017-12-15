@@ -19,7 +19,7 @@ router.post('/', (req, res, next) => {
     User.find({email: req.body.email}, (err, user) => {
         if (err) {
             console.log(err);
-            res.end();
+            next(err);
         } 
         else 
         if (user.length > 0) {

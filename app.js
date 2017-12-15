@@ -106,8 +106,12 @@ io.on('connection', (socket) => {
 })
 
 function logErrors (err, req, res, next) {
-    console.error(err.stack)
-    next(err)
+    if(err){
+        console.error(err.stack);
+        res.status(500).json({
+
+        })
+    }
   }
 
 module.exports = verifyToken;

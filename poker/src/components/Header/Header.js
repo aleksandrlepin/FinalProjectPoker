@@ -21,6 +21,7 @@ class Header extends React.Component {
 
     handleLogout = () => {
         localStorage.clear();
+        this.props.history.push('/')
     }
 
     handleLogoClick = () => {
