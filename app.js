@@ -6,6 +6,8 @@ var bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
 
+const PORT = process.env.PORT || 3001
+
 var jwt = require('jsonwebtoken');
 var socketioJwt = require('socketio-jwt');
 var jwtSecret = 'mysecret';
@@ -68,7 +70,8 @@ app.use(logErrors)
 //socket part
 
 var server = http.createServer(app)
-server.listen(config["dev"].port, () => console.log(`Example app listening on port ${config['dev'].port}!`))
+server.listen(PORT, () => console.log(`Example app listening on port ${PORT}!`))
+// server.listen(config["dev"].port, () => console.log(`Example app listening on port ${config['dev'].port}!`))
 io.listen(server);
 
 io.on('connection', (socket) => {
