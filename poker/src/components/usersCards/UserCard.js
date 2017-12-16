@@ -1,6 +1,5 @@
 import React from 'react';
 import { socket } from '../../constants/consts';
-import openSocket from 'socket.io-client';
 import './usersCards.css';
 import bgBlue from './images/bg_userCard-blue.png';
 import bgWhite from './images/bg_userCard-white.png';

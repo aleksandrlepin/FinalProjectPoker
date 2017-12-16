@@ -1,14 +1,11 @@
 import React from 'react';
 import Menu from './Menu/index';
 import { withRouter } from 'react-router-dom';
-import ModalLogin from './Modal/ModalLogin';
-import store from '../GameField/store/index';
-import { userAuthorization } from '../GameField/store/actions';
 
 import './index.css';
 import { link } from '../../constants/consts.js'
 
-let user = {};
+
 class Dashboard extends React.Component {
 
     state = {
@@ -20,7 +17,6 @@ class Dashboard extends React.Component {
     componentWillMount() {
 
         if (localStorage.getItem('username')) {
-            console.log('from willmount dashboard', localStorage.getItem('username'))
             let owner = JSON.stringify({'name': localStorage.getItem('username'), 'token': JSON.parse(localStorage.getItem('token'))});
             fetch('/uploadGamesByOwner', {
                 method: 'POST',
@@ -51,16 +47,15 @@ class Dashboard extends React.Component {
             .catch(err => console.log(err))
 
         this.state.games.map((item, index) => {
-            console.log(item, data)
+           
             if (item._id === data) {
-                let newState = this.state.games.filter((item) => (item._id != data))
+                let newState = this.state.games.filter((item) => (item._id !== data))
                 this.setState({ games: newState })
             }
         })
     }
 
     render() {
-        console.log(this.state.rerender)
         return (
             <div className="row">
                 {/* <ModalLogin ownerOfGame={this.returnOwnerName} /> */}

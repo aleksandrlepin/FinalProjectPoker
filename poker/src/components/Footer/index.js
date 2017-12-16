@@ -10,7 +10,7 @@ export default class Footer extends React.Component {
         return (
             <footer>
                 <div className="footerLeft">
-                    <a href="#"><p>&#9400; www.covrishki.com</p></a>
+                    <p>&#9400; www.covrishki.com</p>
                 </div>
                 <div className="footerRigth">
                     <p>Bootcamp #3 team</p>

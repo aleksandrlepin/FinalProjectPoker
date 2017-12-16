@@ -1,31 +1,25 @@
 import React from 'react';
-import openSocket from 'socket.io-client';
 import { socket } from '../../constants/consts';
 import { withRouter } from 'react-router-dom';
 import fibNumbers from '../../constants/fibonachi';
 import VoutingCard from './VoutingCard';
 import UserCard from '../usersCards/UserCard';
 import Question from './Question';
-import { DBtoStore, updateStore, userAuthorization, changeAverage } from '../../actions';
+import { DBtoStore, updateStore, changeAverage } from '../../actions';
 import store from './store/index';
 import './gameField.css';
 import ModalNewPlayer from './ModalNewPlayer';
 
-
-
-
-const URL = "http://localhost:3000";
+// const URL = "http://localhost:3000";
 
 class GameField extends React.Component {
     constructor(props) {
         super(props);
         this.state = { ...store.getState(), activeIndex: null, activeQuestionIndex: '1', users_answer: {} };
         let gameId = this.props.match.params.id;
-
         this.callSocket();
         let token = JSON.stringify({ token: JSON.parse(localStorage.getItem('token')) });
-        console.log(token);
-        fetch(`${URL}/games/${gameId}`, {
+        fetch(`/games/${gameId}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: token
@@ -35,8 +29,6 @@ class GameField extends React.Component {
                 if (res.success === false) {
                     this.props.history.push('/login');
                 } else {
-                    console.log('from gamefield')
-
                     store.dispatch(DBtoStore(res));
                 }
 
@@ -46,19 +38,12 @@ class GameField extends React.Component {
 
         store.subscribe(() => {
             this.setState({ dbToStore: store.getState().dbToStore });
-            console.log('i am from subcribe>>>>>>>>>>>>>>>>>>> this.state.dbToStore[0].users.length', this.state.dbToStore[0].users.length)
         });
-
-        // function log(message) {
-        //     var el = document.getElementById('socket-msg');
-        //     el.innerHTML = message;
-        // }
 
         socket.on('updateDb', function (data) {
             fetch(`/games/${gameId}`, { method: 'POST' })
                 .then(res => res.json())
                 .then(res => {
-                    console.log(res);
                     store.dispatch(updateStore(res));
                 })
                 .catch(err => console.log(err));
@@ -67,19 +52,13 @@ class GameField extends React.Component {
         socket.on('login', function (data) {
             var message = "Player:  " + data;
             console.log(message);
-            // log(message);
         });
 
         socket.on('renderQuestion', (index) => this.setState({ activeQuestionIndex: index.index }))
 
-        // socket.on('changeAverageInDb', function (y) {
-        //     console.log('from on changeAverageInDb')
-        //     store.dispatch(changeAverage(y));
-        // })
     }
 
     callSocket = () => {
-        console.log('callSocket')
         socket.emit('add owner', JSON.parse(localStorage.getItem('username')));
     };
 
@@ -96,8 +75,6 @@ class GameField extends React.Component {
     checkActiveQuestion = (value) => (this.state.activeQuestionIndex === value ? "wrapper-for-question active-question" : "wrapper-for-question");
 
     addToAnswers = (userId, answer) => {
-        // if(this.state.answers[userId])
-        console.log(this.state.users_answer[userId])
         if (this.state.users_answer[userId]) {
             this.state.users_answer[userId] = answer
         }
@@ -129,7 +106,7 @@ class GameField extends React.Component {
         e.preventDefault();
         let data = JSON.stringify(this.state.dbToStore[0])
 
-        fetch(`${URL}/endgame`, {
+        fetch(`/endgame`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: data
@@ -147,11 +124,6 @@ class GameField extends React.Component {
 
             })
             .catch(err => console.log(err));
-
-        // store.subscribe(() => {
-        //     this.setState({ dbToStore: store.getState().dbToStore });
-        //     console.log('i am from subcribe>>>>>>>>>>>>>>>>>>> this.state.dbToStore[0].users.length', this.state.dbToStore[0].users.length)
-        // });
     }
 
     render() {

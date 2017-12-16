@@ -15,7 +15,7 @@ class Registration extends React.Component {
     
     handleSubmit = (e) => {
         // e.preventDefault();
-        if (this.state.password != this.state.repeatPassword || !validation) {
+        if (this.state.password !== this.state.repeatPassword || !validation) {
             this.refs.repeatPassword.style.boxShadow = "0px 0px 2px 2px #ff0000";
             this.refs.password.style.boxShadow = "0px 0px 2px 2px #ff0000";
         } else {

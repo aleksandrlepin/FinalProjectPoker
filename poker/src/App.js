@@ -13,9 +13,6 @@ import Login from './components/Login';
 import LoginOwnGame from './components/LoginOwnGame';
 import NewQuestion from './components/GameField/NewQuestion';
 
-const socket = openSocket('http://localhost:3001');
-
-
 class App extends Component {
 
   render() {

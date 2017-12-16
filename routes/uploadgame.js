@@ -1,4 +1,4 @@
-let verifyToken = require ('../app');
+let verifyToken = require ('../index');
 var jwt = require('jsonwebtoken');
 var socketioJwt = require('socketio-jwt');
 

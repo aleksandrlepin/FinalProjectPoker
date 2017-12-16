@@ -1,6 +1,5 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import store from '../GameField/store/index';
 import './header.css';
 import headerBg from'./header-bg.png';
 import headerLogo from'./logo.png';

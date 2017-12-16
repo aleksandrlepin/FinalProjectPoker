@@ -5,6 +5,7 @@ const io = require('socket.io')();
 var bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
+const path = require('path');
 
 const PORT = process.env.PORT || 3001
 
@@ -37,6 +38,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 var jsonParser = bodyParser.json();
 
+app.use(express.static(path.join(__dirname, 'poker/build')));
 
 let verifyToken = (req, res, next) => {
     // console.log('token from mdw req.body', req.body);
@@ -55,6 +57,12 @@ let verifyToken = (req, res, next) => {
 }
 module.exports = verifyToken;
 
+app.get('/', (req, res) => {
+    console.log(__dirname + '/poker/build/index.html');
+    res.sendFile(path.join(__dirname, 'poker/build/index.html'));
+    // res.send('/poker/build/index.html')
+})
+
 app.use('/login', require('./routes/login'));
 app.use('/saveGame', require('./routes/saveGame'));
 app.use('/uploadGamesByOwner', verifyToken, require('./routes/uploadgame'));
@@ -69,6 +77,7 @@ app.use(logErrors)
 // app.get('/games/:id/question/:question_id');
 
 //socket part
+
 
 var server = http.createServer(app)
 server.listen(PORT, () => console.log(`Example app listening on port ${PORT}!`))
