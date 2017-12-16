@@ -57,21 +57,22 @@ class Dashboard extends React.Component {
 
     render() {
         return (
-            <div className="row">
+            <div className="row windowSavedGame">
                 {/* <ModalLogin ownerOfGame={this.returnOwnerName} /> */}
                 <div className="container" key={this.state.rerender}>
-                    <div className="col-lg-2 col-sm-12">
+                    <div className="col-lg-3 col-sm-12">
                         <Menu />
                     </div>
-                    <div className="col-lg-8 col-sm-12">
+                    <div className="col-lg-9 col-sm-12 fieldSavedGames">
                         {this.state.games.map((item, index) => {
                             let gameLinkg = '' + link + '/play/game/' + item._id + ''
                             return (
                                 <div className="gameCard" key={index}>
                                     <div className="col-10">
-                                        <p><span>Game name: </span>{item.nameGame}</p>
+                                        <p className="gameName"><span>[Game_name _] </span>{item.nameGame}</p>
                                         <div className="forURL">
-                                            <span>Link to game: </span>  <a href={gameLinkg}>{link}/play/game/{item._id}</a>
+                                            {/*<span>Link to game: </span>  */}
+                                            <a href={gameLinkg}>{link}/play/game/{item._id}</a>
                                         </div>
                                         <p><span>Description: </span>{item.description}</p>
                                     </div>

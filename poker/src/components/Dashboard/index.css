@@ -5,22 +5,50 @@ a {
 span {
 	font-weight: bold;
 }
-.gameCard{
-	border: 1px solid black;
+.fieldSavedGames{
+	margin: 27px 0 0 0;
+}
+.fieldSavedGames>div{
+
+}
+
+.windowSavedGame{
+	width: 741px;
+	margin: 106px auto;
+	background: lightgrey;
 	border-radius: 5px;
-	width: 600px;
-	min-height: 150px;
-	margin: 5px;
-	background-color: lightblue;
-	padding: 15px;
+	box-shadow: 0 1px 13px 4px black;
+}
+.windowSavedGame>.container{
+	width: 1170px;
+	margin: 0;
+	padding: 0 0 20px 0;
+}
+.gameCard{
+	border-radius: 5px;
+	width: 399px;
+	min-height: 120px;
+	background-color: lightgrey;
+	padding: 10px;
+	box-shadow: 0 0 7px 1px black;
+	margin: 0px 0 10px 0;
+}
+.gameCard>div{
+	margin: 0;
+	padding:0;
+}
+.forURL>a{
+	link: black;
+	color: black;
 }
 .forURL {
-	border: 1px solid black;
 	border-radius: 15px;
 	background-color: lightgrey;
-	height: 35px;
-	padding-left: 15px;
+	height: 18px;
+	padding-left: 10px;
 	margin-bottom: 5px;
+	font-size: 10px;
+	text-decoration: underline;
 }
 .delButton {
 	width: 15px;
@@ -28,4 +56,18 @@ span {
 	background-image: url('./Delete-icon.png');
 	background-size: 100%;
 	float: right;
+}
+.windowSavedGame>.container{
+	width: 1170px;
+	margin: 0;
+	padding: 0;
+}
+.gameName{
+	display: inline;
+	width: 154px;
+	background: #0efeff;
+	font-size: 20px;
+}
+.gameCard>div>p{
+	margin: 0px 0 0 10px;
 }
