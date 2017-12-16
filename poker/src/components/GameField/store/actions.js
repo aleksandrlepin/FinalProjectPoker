@@ -8,3 +8,4 @@ export const changeCurrentQuestion = (payload) => ({type: types.CHANGE_CURRENT_Q
 export const gameBar = (payload) => ({type: types.CHECK_CURRENT_QUESTION, payload});
 export const addPlayer = (payload) => ({type: types.ADD_PLAYER, payload});
 export const userAuthorization = (payload) => ({type: types.USER_AUTHORIZATION, payload});
+export const addQuestion = (payload) => ({type: types.ADD_QUESTION, payload});

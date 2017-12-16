@@ -97,6 +97,8 @@
     background-color: #ff6c00;
     border-radius: 8px;
     outline: none;
+    font-size: 20px;
+
 }
 #createGameButton:active{
     /*-------------variant1-------------*/
@@ -116,6 +118,7 @@
     background-color: #ff6c00;
     border-radius: 8px;
     outline: none;
+    font-size: 20px;
 }
 #createGameCancelButton:active{
     /*-------------variant1-------------*/
