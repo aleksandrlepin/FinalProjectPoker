@@ -111,10 +111,10 @@ io.on('connection', (socket) => {
         socket.emit('renderQuestion', { index: index })
     })
 
-    // socket.on('renderAverage', function(y) {
-    //     socket.emit('changeAverageInDb', y);
-    //     socket.broadcast.emit('changeAverageInDb', y);
-    // })
+    socket.on('renderAverage', function(y) {
+        socket.emit('changeAverageInDb', y);
+        socket.broadcast.emit('changeAverageInDb', y);
+    })
 
 })
 

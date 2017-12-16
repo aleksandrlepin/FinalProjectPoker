@@ -48,9 +48,7 @@ export default class UserCard extends React.Component {
         })
     }
  
-    render() {
-       
-        // console.log('this.props.user.answers', value);
+    render() {      
         return (
             <div className="wrapper-for-user-card" style={this.state.vouted ? stylesWrapper : null}>
                 <div className="user-card" style={!this.state.vouted ? stylesClosed: stylesVouted}></div>

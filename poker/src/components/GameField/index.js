@@ -92,7 +92,7 @@ class GameField extends React.Component {
         let y = { index: this.state.activeQuestionIndex, average_value: aver }
 
         store.dispatch(changeAverage(y));
-        // socket.emit('renderAverage', y);
+        socket.emit('renderAverage', y);
 
         return aver
     }
