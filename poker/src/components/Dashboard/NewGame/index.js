@@ -5,20 +5,46 @@ import "./newGame.css";
 export default class NewGame extends React.Component {
     constructor() {
         super();
-        this.state={
+        this.state = {
             questions: {},
-            rows : [],
+            rows: [],
             owner: JSON.parse(localStorage.getItem('username')),
-            answers: {},
-            users: [{name: localStorage.getItem('username'), email: localStorage.getItem('email')}],
-            numbQuestions : 1
+            answers: {
+                "1": 0,
+                "2": 0,
+                "3": 0,
+                "4": 0,
+                "5": 0,
+                "6": 0,
+                "7": 0,
+                "8": 0,
+                "9": 0,
+                "10": 0,
+                "11": 0,
+                "12": 0,
+                "13": 0,
+                "14": 0,
+                "15": 0,
+                "16": 0,
+                "17": 0,
+                "18": 0,
+                "19": 0,
+                "20": 0,
+                "21": 0,
+                "22": 0,
+                "23": 0,
+                "24": 0,
+                "25": 0,
+            },
+            users: [{ name: localStorage.getItem('username'), email: localStorage.getItem('email'), answers: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] }],
+            numbQuestions: 1
         };
-        this.handleSubmit=this.handleSubmit.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleSubmit = (event) => {
 
-         event.preventDefault();
+        event.preventDefault();
 
         // -----------proverka NameGame--------------
         let proverkaNameGame = true;
@@ -53,7 +79,7 @@ export default class NewGame extends React.Component {
             proverkaDescription = false;
             // alert("Описание игры не должно состоять из более  чем 100 символов");
         }
-         if (proverkaDescription === true) {
+        if (proverkaDescription === true) {
             this.refs.description.style.boxShadow = "none";
             console.log("-----------------------------------------------------Description TRUE");
         }
@@ -85,7 +111,7 @@ export default class NewGame extends React.Component {
 
             fetch('/saveGame', {
                 method: 'POST',
-                headers: {'Content-Type': 'application/json'},
+                headers: { 'Content-Type': 'application/json' },
                 body: newGame
             })
                 .then(res => res.json())
@@ -95,33 +121,32 @@ export default class NewGame extends React.Component {
 
             // --------
             this.props.history.push("/dashboard");
-                // ---------
+            // ---------
         }
-    else{
-         alert("Заполните все поля");
+        else {
+            alert("Заполните все поля");
         }
-};
+    };
 
-    addedQuestion=(event)=>{
+    addedQuestion = (event) => {
         event.preventDefault();
-        console.log("this.refs.question.value.length :"+this.refs.question.value.length);
-        if(this.refs.question.value.length===0){
-            this.refs.question.style.boxShadow="0px 0px 2px 2px #ff0000";
+        console.log("this.refs.question.value.length :" + this.refs.question.value.length);
+        if (this.refs.question.value.length === 0) {
+            this.refs.question.style.boxShadow = "0px 0px 2px 2px #ff0000";
             alert("Перед добавлением вопроса вы должны его написать!!!");
         }
-        else if(this.refs.question.value.length>300)
-        {
-            this.refs.question.style.boxShadow="0px 0px 2px 2px #ff0000";
+        else if (this.refs.question.value.length > 300) {
+            this.refs.question.style.boxShadow = "0px 0px 2px 2px #ff0000";
             alert("Вопрос должен содержать не более 300 символов");
         }
-        else{
-           this.refs.question.style.boxShadow="none";
-           let a = this.state.numbQuestions;
-           this.setState({questions: Object.assign(this.state.questions, {[a]: this.refs.question.value})});
-           this.setState({answers: Object.assign(this.state.answers, {[a]: ""})});
-           this.state.rows.push(this.refs.question.value);
-           this.refs.question.value = "";
-           this.setState({numbQuestions: a + 1});
+        else {
+            this.refs.question.style.boxShadow = "none";
+            let a = this.state.numbQuestions;
+            this.setState({ questions: Object.assign(this.state.questions, { [a]: this.refs.question.value }) });
+            this.setState({ answers: Object.assign(this.state.answers, { [a]: "" }) });
+            this.state.rows.push(this.refs.question.value);
+            this.refs.question.value = "";
+            this.setState({ numbQuestions: a + 1 });
         }
     };
     render() {
@@ -137,7 +162,7 @@ export default class NewGame extends React.Component {
                                 Create New Game
                             </h1>
                             <label htmlFor="nameGame">
-                                <h3 id = "nameGameHeading">Game Name</h3>
+                                <h3 id="nameGameHeading">Game Name</h3>
                                 <input
                                     ref="nameGame"
                                     id="nameGameValue"
@@ -145,17 +170,17 @@ export default class NewGame extends React.Component {
                                     placeholder=" Input name game"
                                 />
                             </label>
-                            <h3 id ="descriptionHeading">Description</h3>
+                            <h3 id="descriptionHeading">Description</h3>
                             <div>
-                                    <textarea id ="descriptionValue"
-                                        ref="description"
-                                        type="text"
-                                        placeholder='  input description'
-                                        >
-                                    </textarea>
+                                <textarea id="descriptionValue"
+                                    ref="description"
+                                    type="text"
+                                    placeholder='  input description'
+                                >
+                                </textarea>
                             </div>
-                            <label htmlFor="question" id = "labelQuestions">
-                                <h3 id = "questionsHeading">Add questions</h3>
+                            <label htmlFor="question" id="labelQuestions">
+                                <h3 id="questionsHeading">Add questions</h3>
                                 <textarea
                                     ref="question"
                                     id="questionsValue"
@@ -163,35 +188,35 @@ export default class NewGame extends React.Component {
                                     placeholder="  input question"
                                 />
                                 <button
-                                        // className="btn-default"
-                                        id ="addQuestionsButton"
-                                        type = "submit"
-                                        onClick={this.addedQuestion}>
+                                    // className="btn-default"
+                                    id="addQuestionsButton"
+                                    type="submit"
+                                    onClick={this.addedQuestion}>
                                 </button>
                             </label>
                             <div
                                 className="listQuestions">
                             </div>
-                            <div id = "questionsField" placeholder="List questions">
+                            <div id="questionsField" placeholder="List questions">
                                 {
-                                    this.state.rows.length>0 ?
-                                        this.state.rows.map((item, index)=>{
-                                            return(
-                                                <p key={index}>{index+1}. {item}</p>)
+                                    this.state.rows.length > 0 ?
+                                        this.state.rows.map((item, index) => {
+                                            return (
+                                                <p key={index}>{index + 1}. {item}</p>)
                                         })
                                         :
-                                        <div className="questionOnNewGame"><span><pre style={{fontSize:22+"px"}}> No questions</pre></span></div>
+                                        <div className="questionOnNewGame"><span><pre style={{ fontSize: 22 + "px" }}> No questions</pre></span></div>
                                 }
                             </div>
-                            <button id ="createGameCancelButton"
-                                    type="submit"
-                                    >
+                            <button id="createGameCancelButton"
+                                type="submit"
+                            >
                                 Cancel
                             </button>
-                            <button id ="createGameButton"
-                                    onClick={this.handleSubmit}
-                                    type="submit"
-                                    >
+                            <button id="createGameButton"
+                                onClick={this.handleSubmit}
+                                type="submit"
+                            >
                                 Create Game
                             </button>
 

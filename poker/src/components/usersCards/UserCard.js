@@ -13,7 +13,7 @@ let stylesVouted = {
 let stylesWrapper = {
     backgroundColor: '#ff6c00'   
 }
-
+let value;
 export default class UserCard extends React.Component {
 
     constructor(props) {
@@ -24,30 +24,37 @@ export default class UserCard extends React.Component {
             vout: null, 
             activeQuestion: 1
         }
-        let value = (this.props.user.answers !== undefined) ? this.props.user.answers[this.state.activeQuestion]: null;
-        this.setState({vout: value})
+        value = (this.props.user.answers !== undefined) ? this.props.user.answers[this.state.activeQuestion]: null;
+       
         let userName = this.props.user.name;
         let addToAnswers = this.props.addToAnswers
         let self = this;
         function checkUser (data) {
             if (userName === data.name) {
                 self.setState({vouted: true, vout: data.number});
+
                 addToAnswers(data.name, data.number)
-                console.log('userName', userName,'useID', data._id, 'data.number', data.number)
-                console.log(data)
+                // console.log('userName', userName,'useID', data._id, 'data.number', data.number)
+                // console.log(data)
             }
         }
         socket.on('renderNumber', (data) => checkUser(data)) ;
         socket.on('renderQuestion', (index) => {
-            console.log('active question', index.index)
             this.setState({activeQuestion: index.index});
-            if (this.props.user.answers !== undefined) {
+            // console.log(' this.props.user.answers[index.index-1]',  this.props.user.answers[index.index-1],  this.props.user.answers[index.index-1] == 0)
+            if (this.props.user.answers[index.index-1] == 0) {
+                this.setState({vouted: false});
+            }
+            if (this.props.user.answers[index.index-1] !== undefined && this.props.user.answers[index.index-1] !== 0)  {
                 this.setState({vouted: true});
                 this.setState({vout: this.props.user.answers[index.index-1]});
             }    
         })
     }
  
+    componentDidMount() {
+        this.setState({vout: value});
+    }
     render() {      
         return (
             <div className="wrapper-for-user-card" style={this.state.vouted ? stylesWrapper : null}>
