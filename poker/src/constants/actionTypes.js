@@ -9,4 +9,7 @@ export const CHANGE_AVERAGE = "CHANGE_AVERAGE";
 export const ADD_QUESTION = "ADD_QUESTION";
 
 export const USER_AUTHORIZATION = "USER_AUTHORIZATION";
+export const RESET_CARDS = "RESET_CARDS";
+export const FLIP_CARDS = "FLIP_CARDS";
+export const SAVE_ANSWER = "SAVE_ANSWER";
 

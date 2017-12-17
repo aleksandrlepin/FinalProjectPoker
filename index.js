@@ -86,7 +86,7 @@ io.listen(server);
 
 io.on('connection', (socket) => {
     socket.on('add user', function (username) {
-
+        console.log('server - from add user', username)
         // we store the username in the socket session for this socket
         socket.username = username;
         socket.emit('login', username);
@@ -101,7 +101,9 @@ io.on('connection', (socket) => {
         socket.emit('updateDb', username);
     })
 
+    // 
     socket.on('transferNumber', (number) => {
+        //on in UserCard component to change view and save to store
         socket.broadcast.emit('renderNumber', { number: number, name: socket.username })
         socket.emit('renderNumber', { number: number, name: socket.username })
     });
@@ -111,10 +113,11 @@ io.on('connection', (socket) => {
         socket.emit('renderQuestion', { index: index })
     })
 
-    // socket.on('renderAverage', function(y) {
-    //     socket.emit('changeAverageInDb', y);
-    //     socket.broadcast.emit('changeAverageInDb', y);
-    // })
+    socket.on('renderAverage', function(y) {
+        console.log('0 from render average', y)
+        socket.emit('changeAverageInDb', y);
+        socket.broadcast.emit('changeAverageInDb', y);
+    })
 
 })
 
