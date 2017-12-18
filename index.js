@@ -101,11 +101,11 @@ io.on('connection', (socket) => {
         socket.emit('updateDb', username);
     })
 
-    // socket.on('resetCards', function() {
-    //     socket.broadcast.emit('updateDb');
-    //     socket.emit('updateDb');
-    // } )
-    // 
+    socket.on('resetCards', function() {
+        socket.broadcast.emit('clearCards');
+        socket.emit('clearCards');
+    } )
+    
     socket.on('transferNumber', (number) => {
         //on in UserCard component to change view and save to store
         socket.broadcast.emit('renderNumber', { number: number, name: socket.username })

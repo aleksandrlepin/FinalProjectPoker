@@ -123,7 +123,8 @@ class GameField extends React.Component {
 
     resetCards = () => {
         store.dispatch(resetCards(this.state.activeQuestionIndex));
-        // socket.emit('resetCards');
+        socket.emit('resetCards');
+        socket.emit('renderAverage', { index: this.state.activeQuestionIndex, average_value: 0 });
     }
 
     // finish game and save to db
