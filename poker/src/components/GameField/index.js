@@ -16,6 +16,7 @@ import ModalNewPlayer from './ModalNewPlayer';
 class GameField extends React.Component {
     constructor(props) {
         super(props);
+        this.state = { isOwner : false }
         this.state = { ...store.getState(), activeIndex: null, activeQuestionIndex: '1', users_answer: {} };
         let gameId = this.props.match.params.id;
         this.callSocket();
@@ -71,6 +72,10 @@ class GameField extends React.Component {
 
     componentWillUnmount() {
         this.unsubscribe = store.subscribe(() => this.setState(store.getState()));
+    }
+
+    componentDidMount() {
+        if (JSON.parse(localStorage.getItem('isOwner'))) this.setState({isOwner : true})
     }
 
     changeActiveCard = (indexVouted) => this.setState({ activeIndex: indexVouted });
@@ -170,7 +175,9 @@ class GameField extends React.Component {
                                 currentQuestion={this.changeActiveQuestion}
                                 answer={this.state.dbToStore[0].answers[key]}
                             />)}
-                            <div className="addQuestion" onClick={this.createNewQuestion}>+</div>
+                            { this.state.isOwner &&
+                                <div className="addQuestion" onClick={this.createNewQuestion}>+</div>
+                            }
                         </div>
 
                         <div className='container-for-main-right-part col-sm-12 col-md-9'>
@@ -191,23 +198,26 @@ class GameField extends React.Component {
 
                         </div>
                     </div>}
-                <div className='row container-for-buttons'>
-                    <button className="show-cards game-button" onClick={this.calcAverage}><i className="fa fa-undo" aria-hidden="true"></i>Flip cards</button>
-                    <button className="reset-cards game-button" onClick={this.resetCards}><i className="fa fa-repeat" aria-hidden="true"></i>Reset cards</button>
-                    <button className="next-question game-button" onClick={this.nextQuestion}><i className="fa fa-arrow-right" aria-hidden="true"></i>Next question</button>
-                    <button className="prev-question game-button" onClick={this.nextQuestion}><i className="fa fa-arrow-left" aria-hidden="true"></i>Previous question</button>
-                </div>
+                    { this.state.isOwner &&
+                        <div className='row container-for-buttons'>
+                            <button className="show-cards game-button" onClick={this.calcAverage}><i className="fa fa-undo" aria-hidden="true"></i>Flip cards</button>
+                            <button className="reset-cards game-button" onClick={this.resetCards}><i className="fa fa-repeat" aria-hidden="true"></i>Reset cards</button>
+                            <button className="prev-question game-button" onClick={this.nextQuestion}><i className="fa fa-arrow-left" aria-hidden="true"></i>Previous question</button>
+                            <button className="next-question game-button" onClick={this.nextQuestion}><i className="fa fa-arrow-right" aria-hidden="true"></i>Next question</button>
+                        </div>
+                    }
                 <div className='row'>
                     <div className='container-for-vouting-cards col-sm-12 col-md-12'>
                         {fibNumbers.map((value, index) => <VoutingCard number={value} key={index}
                             className={this.checkActiveCard(value, index)}
                             onClick={this.changeActiveCard} />)}
+                        <div className='col-sm-12 col-md-12 endGameContainer'>
+                            { this.state.isOwner &&
+                                <button className="endGame" onClick={this.endGame}>End Game</button>
+                            }
+                        </div>
                     </div>
-                    <div className="col-md-8">
-                    </div>
-                    <div className="col-md-2">
-                        <button onClick={this.endGame}>End Game</button>
-                    </div>
+                    
                 </div>
             </div>
         )
