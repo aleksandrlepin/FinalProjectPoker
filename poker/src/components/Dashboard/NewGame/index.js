@@ -8,7 +8,10 @@ export default class NewGame extends React.Component {
         this.state = {
             questions: {},
             rows: [],
-            owner: JSON.parse(localStorage.getItem('username')),
+            owner: {
+                name: JSON.parse(localStorage.getItem('username')),
+                email: JSON.parse(localStorage.getItem('useremail'))
+            },
             answers: {
                 "1": 0,
                 "2": 0,
@@ -36,7 +39,7 @@ export default class NewGame extends React.Component {
                 "24": 0,
                 "25": 0,
             },
-            users: [{ name: localStorage.getItem('username'), email: localStorage.getItem('email'), answers: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] }],
+            users: [{ name: JSON.parse(localStorage.getItem('username')), email: JSON.parse(localStorage.getItem('useremail')), answers: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] }],
             numbQuestions: 1
         };
         this.handleSubmit = this.handleSubmit.bind(this);
