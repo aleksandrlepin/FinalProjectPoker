@@ -2,11 +2,12 @@
 a {
 	line-height: 35px;
 }
-span {
+.gameCard>div>p>span {
 	font-weight: bold;
+	color: #09233c;
 }
 .fieldSavedGames{
-	margin: 27px 0 0 0;
+	margin: 27px 0 0 -16px;
 }
 .fieldSavedGames>div{
 
@@ -15,22 +16,22 @@ span {
 .windowSavedGame{
 	width: 741px;
 	margin: 106px auto;
-	background: lightgrey;
+	background-image: url("./background.png");
 	border-radius: 5px;
-	box-shadow: 0 1px 13px 4px black;
+	/*box-shadow: 0 1px 13px 4px black;*/
 }
-.windowSavedGame>.container{
-	width: 1170px;
-	margin: 0;
-	padding: 0 0 20px 0;
-}
+/*.containerWindowSavedGame{*/
+	/*width: 1170px;*/
+	/*margin: 0;*/
+	/*padding: 0 0 20px 0;*/
+/*}*/
 .gameCard{
 	border-radius: 5px;
 	width: 399px;
-	min-height: 120px;
-	background-color: lightgrey;
+	min-height: 124px;
+	background-color: white;
 	padding: 10px;
-	box-shadow: 0 0 7px 1px black;
+	/*box-shadow: 0 0 7px 1px black;*/
 	margin: 0px 0 10px 0;
 }
 .gameCard>div{
@@ -38,12 +39,11 @@ span {
 	padding:0;
 }
 .forURL>a{
-	link: black;
 	color: black;
 }
 .forURL {
 	border-radius: 15px;
-	background-color: lightgrey;
+	background-color: white;
 	height: 18px;
 	padding-left: 10px;
 	margin-bottom: 5px;
@@ -60,7 +60,7 @@ span {
 .windowSavedGame>.container{
 	width: 1170px;
 	margin: 0;
-	padding: 0;
+	padding: 0 0 20px 0;
 }
 .gameName{
 	display: inline;
@@ -68,6 +68,9 @@ span {
 	background: #0efeff;
 	font-size: 20px;
 }
+.gameName>span{
+	color:#023769;
+}
 .gameCard>div>p{
-	margin: 0px 0 0 10px;
+	margin: 15px 0 0 10px;
 }
