@@ -24,7 +24,7 @@ Modal.setAppElement('#root');
 
 
 
-class ModalFinisGame extends React.Component {
+class ModalFinishGame extends React.Component {
 
     componentWillMount () {
         if(this.props.game) {
@@ -85,4 +85,4 @@ class ModalFinisGame extends React.Component {
     }
 }
 
-export default withRouter(ModalFinisGame)
+export default withRouter(ModalFinishGame)
