@@ -26,10 +26,12 @@ export default class UserCard extends React.Component {
         }
       
         let userName = this.props.user.name;
+        let userEmail = this.props.user.email;
         let addToAnswers = this.props.addToAnswers
         let self = this;
         function checkUser (data) {
-            if (userName === data.name) {
+            console.log('from rendernumber', data)
+            if (userEmail === data.email) {
                 self.setState({vouted: true, vout: data.number});
                 addToAnswers(data.name, data.number)
             }

@@ -85,20 +85,23 @@ server.listen(PORT, () => console.log(`Example app listening on port ${PORT}!`))
 io.listen(server);
 
 io.on('connection', (socket) => {
-    socket.on('add user', function (username) {
-        console.log('server - from add user', username)
-        // we store the username in the socket session for this socket
-        socket.username = username;
-        socket.emit('login', username);
+    socket.on('add user', function (player) {
 
-        socket.broadcast.emit('updateDb', username);
-        socket.emit('updateDb', username);
+        console.log('server - from add user',  player.name, player.email)
+        // we store the username in the socket session for this socket
+        socket.username = player.name;
+        socket.email = player.email;
+        socket.emit('login', player.name);
+
+        socket.broadcast.emit('updateDb', player.name);
+        socket.emit('updateDb', player.name);
 
     });
-    socket.on('add owner', function (username) {
-        socket.username = username;
-        socket.broadcast.emit('updateDb', username);
-        socket.emit('updateDb', username);
+    socket.on('add owner', function (player) {
+        socket.username = player.name;
+        socket.email = player.email;
+        socket.broadcast.emit('updateDb', player.name);
+        socket.emit('updateDb', player.name);
     })
 
     socket.on('resetCards', function() {
@@ -107,9 +110,10 @@ io.on('connection', (socket) => {
     } )
     
     socket.on('transferNumber', (number) => {
+        console.log('server transfer Number socket.username', number, socket.username)
         //on in UserCard component to change view and save to store
-        socket.broadcast.emit('renderNumber', { number: number, name: socket.username })
-        socket.emit('renderNumber', { number: number, name: socket.username })
+        socket.broadcast.emit('renderNumber', { number: number, name: socket.username, email: socket.email })
+        socket.emit('renderNumber', { number: number, name: socket.username, email: socket.email })
     });
 
     socket.on('transferQuestion', (index) => {

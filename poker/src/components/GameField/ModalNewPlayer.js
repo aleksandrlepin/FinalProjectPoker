@@ -46,19 +46,21 @@ class ModalNewPlayer extends React.Component {
                 email: this.refs.email.value,
                 //create array with empty answers to make it possible change answers through map in action SAVE_ANSWER 
                 //!!!will work for games less than 25 questions
-                answers: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                answers: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
             }
         });
 
         // Tell the server your username
-        let name = this.refs.name.value;
-        
+        let player = {
+            name: this.refs.name.value,
+            email: this.refs.email.value
+        }
 
         fetch(`/addPlayer`, { method: 'POST', headers: { "Content-Type": "application/json" }, body: data })
             .then(res => res.json())
             .then(res => {
-                console.log('from modal', res.game, res.owner)
-                socket.emit('add user', name);
+                console.log('from modal', res.game, res.owner, ' player',  player)
+                socket.emit('add user', player);
                 if (res.owner) {
                     this.props.history.push('/loginOwnGame');
                     localStorage.setItem('currentGameId', this.props.match.params.id);
@@ -67,7 +69,7 @@ class ModalNewPlayer extends React.Component {
                 } else {
                     store.dispatch(addPlayer(res.game));
                 }
-                
+
             })
             .catch(err => console.log(err));
 
@@ -95,7 +97,7 @@ class ModalNewPlayer extends React.Component {
                     <p><label className="modal-label">Enter your name:</label></p>
                     <p><input className="modal-input" ref="name" placeholder="player nickname" /></p>
                     <p><label className="modal-label">Enter your email:</label></p>
-                    <p><input className="modal-input" ref="email" placeholder="email"/></p>
+                    <p><input className="modal-input" ref="email" placeholder="email" /></p>
                 </form>
                 <button className="modal-button" onClick={this.handleCancel}>cancel</button>
                 <button className="modal-button" onClick={this.handlePlay}>play</button>
