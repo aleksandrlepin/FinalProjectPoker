@@ -5,6 +5,7 @@ import fibNumbers from '../../constants/fibonachi';
 import VoutingCard from './VoutingCard';
 import UserCard from '../usersCards/UserCard';
 import Question from './Question';
+import ModalFinisGame from './finishGame/ModalFinisGame';
 import { DBtoStore, updateStore, changeAverage, resetCards, saveAnswer } from '../../actions';
 import store from './store/index';
 import './gameField.css';
@@ -33,8 +34,6 @@ class GameField extends React.Component {
                 } else {
                     store.dispatch(DBtoStore(res));
                 }
-
-
             })
             .catch(err => console.log(err));
 
@@ -44,7 +43,6 @@ class GameField extends React.Component {
         });
 
         socket.on('updateDb', function (data) {
-            console.log('from socket updatedb')
             fetch(`/games/${gameId}`, { method: 'POST' })
                 .then(res => res.json())
                 .then(res => {
@@ -60,6 +58,7 @@ class GameField extends React.Component {
         });
 
         socket.on('renderQuestion', (index) => this.setState({ activeQuestionIndex: index.index }))
+
         socket.on('changeAverageInDb', function (y) {
             store.dispatch(changeAverage(y));
         })
@@ -123,9 +122,14 @@ class GameField extends React.Component {
         this.props.history.push(`/game/${this.props.match.params.id}/newQuestion`);
     }
 
+    modalClose = () => {
+        this.setState({endGame : false})
+    }
+
     resetCards = () => {
         store.dispatch(resetCards(this.state.activeQuestionIndex));
-        socket.emit('renderAverage', 0);
+        socket.emit('resetCards');
+        socket.emit('renderAverage', { index: this.state.activeQuestionIndex, average_value: 0 });
     }
 
     // finish game and save to db
@@ -151,6 +155,7 @@ class GameField extends React.Component {
 
             })
             .catch(err => console.log(err));
+            this.setState({endGame : true})
     }
 
     render() {
@@ -158,7 +163,9 @@ class GameField extends React.Component {
             // <RenderIf condition={true}>
 
             // </RenderIf>
+
             <div className="game-field">
+                { this.state.endGame && <ModalFinisGame game={this.state.dbToStore[0]} modal={this.modalClose}/> }
                 {localStorage.getItem('isOwner') ?
                     null :
                     <ModalNewPlayer gameId={this.props.match.params.id} />}
@@ -192,6 +199,7 @@ class GameField extends React.Component {
                             <div className="container-for-user-cards">
                                 <div id='socket-msg'></div>
                                 {this.state.dbToStore[0].users.map((user, index) => {
+
                                     return <UserCard user={user} key={index} addToAnswers={this.addToAnswers} />
                                 })}
                             </div>
