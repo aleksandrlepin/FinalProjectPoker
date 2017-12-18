@@ -32,8 +32,6 @@ class GameField extends React.Component {
                 } else {
                     store.dispatch(DBtoStore(res));
                 }
-
-
             })
             .catch(err => console.log(err));
 
@@ -43,7 +41,6 @@ class GameField extends React.Component {
         });
 
         socket.on('updateDb', function (data) {
-            console.log('from socket updatedb')
             fetch(`/games/${gameId}`, { method: 'POST' })
                 .then(res => res.json())
                 .then(res => {
@@ -59,6 +56,7 @@ class GameField extends React.Component {
         });
 
         socket.on('renderQuestion', (index) => this.setState({ activeQuestionIndex: index.index }))
+
         socket.on('changeAverageInDb', function (y) {
             store.dispatch(changeAverage(y));
         })
@@ -120,7 +118,7 @@ class GameField extends React.Component {
 
     resetCards = () => {
         store.dispatch(resetCards(this.state.activeQuestionIndex));
-        socket.emit('renderAverage', 0);
+        // socket.emit('resetCards');
     }
 
     // finish game and save to db
@@ -185,6 +183,7 @@ class GameField extends React.Component {
                             <div className="container-for-user-cards">
                                 <div id='socket-msg'></div>
                                 {this.state.dbToStore[0].users.map((user, index) => {
+
                                     return <UserCard user={user} key={index} addToAnswers={this.addToAnswers} />
                                 })}
                             </div>
