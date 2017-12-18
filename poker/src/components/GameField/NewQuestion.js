@@ -36,10 +36,10 @@ export default class NewQuestion extends React.Component {
 
 
             // ------------------
-            // let a = "DIMAAAAAAAAAA";
-            // let a = this.props.refs.inputNewQuestion.value;
-            // store.dispatch(addQuestion("hello"));
-            // this.props.history.push(`/play/game/${this.props.match.params.id}`);
+            let B = "DIMAAAAAAAAAA";
+            let a = this.props.refs.inputNewQuestion.value;
+            store.dispatch(addQuestion("hello"));
+            this.props.history.push(`/play/game/${this.props.match.params.id}`);
         };
 
 

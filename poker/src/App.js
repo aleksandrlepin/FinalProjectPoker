@@ -12,6 +12,7 @@ import Registration from './components/Registration';
 import Login from './components/Login';
 import LoginOwnGame from './components/LoginOwnGame';
 import NewQuestion from './components/GameField/NewQuestion';
+import About from "./components/About/About";
 
 class App extends Component {
 
@@ -29,6 +30,7 @@ class App extends Component {
           <Route path='/play/game/:id' component={GameField} />
           <Route path='/card' component={Card} />
           <Route path='/game/:id/newQuestion' component={NewQuestion} />
+          <Route path='/about' component={About} />
         </Switch>
       </MainLayout>
     );
