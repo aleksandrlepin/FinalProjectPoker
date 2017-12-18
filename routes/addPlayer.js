@@ -17,32 +17,16 @@ router.post('/', (req, res, next) => {
     let gameId = req.body.gameId;
     Game.findById(gameId, (err, game) => {
         
-        if (game.owner == user.name) {
+        if (game.owner.email == user.email) {
             console.log('is owner');
-            let userIsExist = false;
-            for (let i = 0; i < game.users.length; i++) {
-                if (game.users[i].name === user.name && game.users[i].email === user.email) {
-                    userIsExist = true;
-                }
-            }
-            if (userIsExist) {
-                let result = { game, owner: true, username: game.owner }
-                res.send(result);
-            } else {
-                console.log('enter in else  ')
-                Game.findByIdAndUpdate(gameId, { $push: { users: user } }, { new: true }, function (err, game) {
-                    if (err) return handleError(err);
-                    let result = { game, owner: true, username: game.owner }
-                    res.send(result);
-                });
-            }
-            // let result = { game, owner: true }
-            // res.send(result);
+            let result = { game, owner: true, username: game.owner.name, useremail: game.owner.email }
+            res.send(result);
+
         } else {
             console.log('not owner')
             let userIsExist = false;
             for (let i = 0; i < game.users.length; i++) {
-                if (game.users[i].name === user.name && game.users[i].email === user.email) {
+                if (game.users[i].email === user.email) {
                     userIsExist = true;
                 }
             }

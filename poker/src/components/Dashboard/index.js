@@ -16,8 +16,8 @@ class Dashboard extends React.Component {
 
     componentWillMount() {
 
-        if (localStorage.getItem('username')) {
-            let owner = JSON.stringify({'name': localStorage.getItem('username'), 'token': JSON.parse(localStorage.getItem('token'))});
+        if (localStorage.getItem('useremail')) {
+            let owner = JSON.stringify({'email': localStorage.getItem('useremail'), 'token': JSON.parse(localStorage.getItem('token'))});
             fetch('/uploadGamesByOwner', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -69,7 +69,7 @@ class Dashboard extends React.Component {
                             return (
                                 <div className="gameCard" key={index}>
                                     <div className="col-10">
-                                        <p className="gameName"><span>[Game_name _] </span>{item.nameGame}</p>
+                                        <p className="gameName"><span>[ {item.nameGame} ] </span>{}</p>
                                         <div className="forURL">
                                             {/*<span>Link to game: </span>  */}
                                             <a href={gameLinkg}>{link}/play/game/{item._id}</a>

@@ -17,7 +17,7 @@ import ModalNewPlayer from './ModalNewPlayer';
 class GameField extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { isOwner : false }
+        this.state = { isOwner: false }
         this.state = { ...store.getState(), activeIndex: null, activeQuestionIndex: '1', users_answer: {} };
         let gameId = this.props.match.params.id;
         this.callSocket();
@@ -66,7 +66,11 @@ class GameField extends React.Component {
     }
 
     callSocket = () => {
-        socket.emit('add owner', JSON.parse(localStorage.getItem('username')));
+
+        socket.emit('add owner', {
+            name: JSON.parse(localStorage.getItem('username')),
+            email: JSON.parse(localStorage.getItem('useremail'))
+        });
     };
 
     componentWillUnmount() {
@@ -74,7 +78,7 @@ class GameField extends React.Component {
     }
 
     componentDidMount() {
-        if (JSON.parse(localStorage.getItem('isOwner'))) this.setState({isOwner : true})
+        if (JSON.parse(localStorage.getItem('isOwner'))) this.setState({ isOwner: true })
     }
 
     changeActiveCard = (indexVouted) => this.setState({ activeIndex: indexVouted });
@@ -93,21 +97,22 @@ class GameField extends React.Component {
         store.dispatch(saveAnswer({
             user_name: userId,
             question_number: this.state.activeQuestionIndex,
-            question_value: answer}))
+            question_value: answer
+        }))
     }
 
     calcAverage = () => {
         let answers = this.state.users_answer
         var aver = 0
-        let players_number =0
+        let players_number = 0
 
-        Object.keys(answers).map((item,index)=> aver += answers[item])    
-        for(i in this.state.users_answer){players_number++}
-        
-        aver = aver/players_number
+        Object.keys(answers).map((item, index) => aver += answers[item])
+        for (i in this.state.users_answer) { players_number++ }
 
-        for(var i=0;i<fibNumbers.length;i++){
-            if(aver>fibNumbers[i] && aver<fibNumbers[i+1]){aver=fibNumbers[i+1]}
+        aver = aver / players_number
+
+        for (var i = 0; i < fibNumbers.length; i++) {
+            if (aver > fibNumbers[i] && aver < fibNumbers[i + 1]) { aver = fibNumbers[i + 1] }
         }
 
 
@@ -123,7 +128,7 @@ class GameField extends React.Component {
     }
 
     modalClose = () => {
-        this.setState({endGame : false})
+        this.setState({ endGame: false })
     }
 
     resetCards = () => {
@@ -146,7 +151,7 @@ class GameField extends React.Component {
             .then(res => {
             })
             .catch(err => console.log(err));
-            this.setState({endGame : true})
+        this.setState({ endGame: true })
     }
 
     prevQuestion = () => {
@@ -182,7 +187,7 @@ class GameField extends React.Component {
             // </RenderIf>
 
             <div className="game-field">
-                { this.state.endGame && <ModalFinishGame game={this.state.dbToStore[0]} modal={this.modalClose}/> }
+                {this.state.endGame && <ModalFinishGame game={this.state.dbToStore[0]} modal={this.modalClose} />}
                 {localStorage.getItem('isOwner') ?
                     null :
                     <ModalNewPlayer gameId={this.props.match.params.id} />}
@@ -199,7 +204,7 @@ class GameField extends React.Component {
                                 currentQuestion={this.changeActiveQuestion}
                                 answer={this.state.dbToStore[0].answers[key]}
                             />)}
-                            { this.state.isOwner &&
+                            {this.state.isOwner &&
                                 <div className="addQuestion" onClick={this.createNewQuestion}>+</div>
                             }
                         </div>
@@ -223,6 +228,7 @@ class GameField extends React.Component {
 
                         </div>
                     </div>}
+
                     { this.state.isOwner &&
                         <div className='row container-for-buttons'>
                             <button className="show-cards game-button" onClick={this.calcAverage}><i className="fa fa-undo" aria-hidden="true"></i>Flip cards</button>
@@ -231,18 +237,19 @@ class GameField extends React.Component {
                             <button className="next-question game-button" onClick={this.nextQuestion}><i className="fa fa-arrow-right" aria-hidden="true"></i>Next question</button>
                         </div>
                     }
+
                 <div className='row'>
                     <div className='container-for-vouting-cards col-sm-12 col-md-12'>
                         {fibNumbers.map((value, index) => <VoutingCard number={value} key={index}
                             className={this.checkActiveCard(value, index)}
                             onClick={this.changeActiveCard} />)}
                         <div className='col-sm-12 col-md-12 endGameContainer'>
-                            { this.state.isOwner &&
+                            {this.state.isOwner &&
                                 <button className="endGame" onClick={this.endGame}>End Game</button>
                             }
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
         )
