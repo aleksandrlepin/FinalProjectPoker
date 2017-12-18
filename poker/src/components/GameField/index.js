@@ -144,15 +144,6 @@ class GameField extends React.Component {
         })
             .then(res => res.json())
             .then(res => {
-                //     if (res.success === false) {
-                //         this.props.history.push('/login');
-                //     } else {
-                //         console.log('from gamefield')
-
-                //         store.dispatch(DBtoStore(res));
-                //     }
-
-
             })
             .catch(err => console.log(err));
             this.setState({endGame : true})
