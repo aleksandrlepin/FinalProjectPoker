@@ -10,3 +10,7 @@ export const addPlayer = (payload) => ({type: types.ADD_PLAYER, payload});
 export const updateStore = (payload) => ({type: types.UPDATE_STORE, payload});
 export const changeAverage = (payload) => ({type: types.CHANGE_AVERAGE, payload});
 export const userAuthorization = (payload) => ({type: types.USER_AUTHORIZATION, payload});
+
+export const resetCards = (payload) => ({type: types.RESET_CARDS, payload});
+export const flipCards = (payload) => ({type: types.FLIP_CARDS, payload});
+export const saveAnswer = (payload) => ({type: types.SAVE_ANSWER, payload});

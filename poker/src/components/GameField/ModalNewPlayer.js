@@ -43,18 +43,22 @@ class ModalNewPlayer extends React.Component {
             gameId: this.props.gameId,
             user: {
                 name: this.refs.name.value,
-                email: this.refs.email.value
+                email: this.refs.email.value,
+                //create array with empty answers to make it possible change answers through map in action SAVE_ANSWER 
+                //!!!will work for games less than 25 questions
+                answers: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
             }
         });
 
         // Tell the server your username
         let name = this.refs.name.value;
-        socket.emit('add user', name);
+        
 
         fetch(`/addPlayer`, { method: 'POST', headers: { "Content-Type": "application/json" }, body: data })
             .then(res => res.json())
             .then(res => {
                 console.log('from modal', res.game, res.owner)
+                socket.emit('add user', name);
                 if (res.owner) {
                     this.props.history.push('/loginOwnGame');
                     localStorage.setItem('currentGameId', this.props.match.params.id);
