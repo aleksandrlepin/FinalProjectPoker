@@ -5,7 +5,7 @@ import fibNumbers from '../../constants/fibonachi';
 import VoutingCard from './VoutingCard';
 import UserCard from '../usersCards/UserCard';
 import Question from './Question';
-import ModalFinishGame from './finishGame/ModalFinisGame';
+import ModalFinishGame from './finishGame/ModalFinishGame';
 import { DBtoStore, updateStore, changeAverage, resetCards, saveAnswer } from '../../actions';
 import store from './store/index';
 import './gameField.css';
@@ -158,6 +158,32 @@ class GameField extends React.Component {
             this.setState({endGame : true})
     }
 
+    prevQuestion = () => {
+        let questions = []
+        for (let key in this.state.dbToStore[0].questions) {
+            questions.push(this.state.dbToStore[0].questions[key])
+        }
+        let index = parseInt(this.state.activeQuestionIndex) - 1;
+        if (parseInt(this.state.activeQuestionIndex) > 1) {
+            this.setState({activeQuestionIndex: ''+index+''})
+        } else { 
+            this.setState({activeQuestionIndex: ''+questions.length+''})
+        }  
+    }
+
+    nextQuestion = () => {
+        let questions = []
+        for (let key in this.state.dbToStore[0].questions) {
+            questions.push(this.state.dbToStore[0].questions[key])
+        }
+        let index = parseInt(this.state.activeQuestionIndex) + 1;
+        if (parseInt(this.state.activeQuestionIndex) < questions.length) {
+            this.setState({activeQuestionIndex: ''+index+''})
+        } else { 
+            this.setState({activeQuestionIndex: ''+1+''})
+        }
+    }
+
     render() {
         return (
             // <RenderIf condition={true}>
@@ -210,7 +236,7 @@ class GameField extends React.Component {
                         <div className='row container-for-buttons'>
                             <button className="show-cards game-button" onClick={this.calcAverage}><i className="fa fa-undo" aria-hidden="true"></i>Flip cards</button>
                             <button className="reset-cards game-button" onClick={this.resetCards}><i className="fa fa-repeat" aria-hidden="true"></i>Reset cards</button>
-                            <button className="prev-question game-button" onClick={this.nextQuestion}><i className="fa fa-arrow-left" aria-hidden="true"></i>Previous question</button>
+                            <button className="prev-question game-button" onClick={this.prevQuestion}><i className="fa fa-arrow-left" aria-hidden="true"></i>Previous question</button>
                             <button className="next-question game-button" onClick={this.nextQuestion}><i className="fa fa-arrow-right" aria-hidden="true"></i>Next question</button>
                         </div>
                     }
