@@ -5,6 +5,7 @@ import fibNumbers from '../../constants/fibonachi';
 import VoutingCard from './VoutingCard';
 import UserCard from '../usersCards/UserCard';
 import Question from './Question';
+import ModalFinisGame from './finishGame/ModalFinisGame';
 import { DBtoStore, updateStore, changeAverage, resetCards, saveAnswer } from '../../actions';
 import store from './store/index';
 import './gameField.css';
@@ -123,6 +124,10 @@ class GameField extends React.Component {
         this.props.history.push(`/game/${this.props.match.params.id}/newQuestion`);
     }
 
+    modalClose = () => {
+        this.setState({endGame : false})
+    }
+
     resetCards = () => {
         store.dispatch(resetCards(this.state.activeQuestionIndex));
         socket.emit('renderAverage', 0);
@@ -151,6 +156,7 @@ class GameField extends React.Component {
 
             })
             .catch(err => console.log(err));
+            this.setState({endGame : true})
     }
 
     render() {
@@ -158,7 +164,9 @@ class GameField extends React.Component {
             // <RenderIf condition={true}>
 
             // </RenderIf>
+
             <div className="game-field">
+                { this.state.endGame && <ModalFinisGame game={this.state.dbToStore[0]} modal={this.modalClose}/> }
                 {localStorage.getItem('isOwner') ?
                     null :
                     <ModalNewPlayer gameId={this.props.match.params.id} />}
