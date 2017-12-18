@@ -1,6 +1,9 @@
 .container-for-vouting-cards {
     display: flex;
     position: relative;
+    flex-wrap: wrap;
+    margin: 100px 0 100px 0;
+    justify-content: center;
 }
 
 .voutingCard {
@@ -18,4 +21,12 @@
 .vouted-card {
     margin: 10px;
     background: #00ffff;
+}
+.endGameContainer {
+    display: flex;
+    justify-content: center;
+}
+.endGame {
+    text-align: center;
+    margin: 50px auto;
 }

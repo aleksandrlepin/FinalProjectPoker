@@ -1,2 +1,2 @@
 # FinalProjectPoker
-to start run node app.js on top level and npm start on react-app level
+to start run node index.js on top level and npm start on react-app level
