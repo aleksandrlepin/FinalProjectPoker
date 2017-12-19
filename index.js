@@ -117,6 +117,7 @@ io.on('connection', (socket) => {
     });
 
     socket.on('transferQuestion', (index) => {
+        console.log('question number', index)
         socket.broadcast.emit('renderQuestion', { index: index })
         socket.emit('renderQuestion', { index: index })
     })

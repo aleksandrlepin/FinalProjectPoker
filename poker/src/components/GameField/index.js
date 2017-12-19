@@ -18,7 +18,7 @@ class GameField extends React.Component {
     constructor(props) {
         super(props);
         this.state = { isOwner: false }
-        this.state = { ...store.getState(), activeIndex: null, activeQuestionIndex: '1', users_answer: {}, userCardIsOpened: false };
+        this.state = { ...store.getState(), activeIndex: null, activeQuestionIndex: 1, users_answer: {}, userCardIsOpened: false };
        
         let gameId = this.props.match.params.id;
         this.callSocket();
@@ -56,7 +56,9 @@ class GameField extends React.Component {
             console.log(message);
         });
 
-        socket.on('renderQuestion', (index) => this.setState({ activeQuestionIndex: index.index }))
+        socket.on('renderQuestion', (index) => {
+            this.setState({ activeQuestionIndex: index.index });
+        })
 
         socket.on('changeAverageInDb', function (y) {
             store.dispatch(changeAverage(y));
@@ -87,7 +89,7 @@ class GameField extends React.Component {
 
     changeActiveQuestion = (activeQuestionIndex) => this.setState({ activeQuestionIndex: activeQuestionIndex });
 
-    checkActiveQuestion = (value) => (this.state.activeQuestionIndex === value ? "wrapper-for-question active-question" : "wrapper-for-question");
+    checkActiveQuestion = (value) => (this.state.activeQuestionIndex === +value ? "wrapper-for-question active-question" : "wrapper-for-question");
 
     addToAnswers = (userId, answer) => {
         if (this.state.users_answer[userId]) {
@@ -159,12 +161,15 @@ class GameField extends React.Component {
         for (let key in this.state.dbToStore[0].questions) {
             questions.push(this.state.dbToStore[0].questions[key])
         }
-        let index = parseInt(this.state.activeQuestionIndex) - 1;
-        if (parseInt(this.state.activeQuestionIndex) > 1) {
-            this.setState({activeQuestionIndex: ''+index+''})
+        let index = +this.state.activeQuestionIndex;
+        if (+this.state.activeQuestionIndex > 1) {
+            this.setState({activeQuestionIndex: +this.state.activeQuestionIndex-1});
+            index -=1;
         } else { 
-            this.setState({activeQuestionIndex: ''+questions.length+''})
+            this.setState({activeQuestionIndex: questions.length});
+            index = questions.length
         }  
+        socket.emit('transferQuestion', index);  
     }
 
     nextQuestion = () => {
@@ -172,12 +177,15 @@ class GameField extends React.Component {
         for (let key in this.state.dbToStore[0].questions) {
             questions.push(this.state.dbToStore[0].questions[key])
         }
-        let index = parseInt(this.state.activeQuestionIndex) + 1;
-        if (parseInt(this.state.activeQuestionIndex) < questions.length) {
-            this.setState({activeQuestionIndex: ''+index+''})
+        let index = +this.state.activeQuestionIndex;
+        if (+this.state.activeQuestionIndex < questions.length) {
+            this.setState({activeQuestionIndex: +this.state.activeQuestionIndex+1})
+            index +=1
         } else { 
-            this.setState({activeQuestionIndex: ''+1+''})
+            this.setState({activeQuestionIndex: 1})
+            index = 1
         }
+        socket.emit('transferQuestion', index);     
     }
 
     render() {
