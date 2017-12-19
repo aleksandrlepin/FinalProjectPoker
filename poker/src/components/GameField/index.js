@@ -18,7 +18,8 @@ class GameField extends React.Component {
     constructor(props) {
         super(props);
         this.state = { isOwner: false }
-        this.state = { ...store.getState(), activeIndex: null, activeQuestionIndex: '1', users_answer: {} };
+        this.state = { ...store.getState(), activeIndex: null, activeQuestionIndex: '1', users_answer: {}, userCardIsOpened: false };
+       
         let gameId = this.props.match.params.id;
         this.callSocket();
         let token = JSON.stringify({ token: JSON.parse(localStorage.getItem('token')) });
@@ -38,7 +39,6 @@ class GameField extends React.Component {
             .catch(err => console.log(err));
 
         store.subscribe(() => {
-            console.log('store subscribe')
             this.setState({ dbToStore: store.getState().dbToStore });
         });
 
@@ -46,7 +46,6 @@ class GameField extends React.Component {
             fetch(`/games/${gameId}`, { method: 'POST' })
                 .then(res => res.json())
                 .then(res => {
-                    console.log('from fetch socket updatedb')
                     store.dispatch(updateStore(res));
                 })
                 .catch(err => console.log(err));
@@ -78,7 +77,8 @@ class GameField extends React.Component {
     }
 
     componentDidMount() {
-        if (JSON.parse(localStorage.getItem('isOwner'))) this.setState({ isOwner: true })
+        if (JSON.parse(localStorage.getItem('isOwner'))) this.setState({ isOwner: true });
+       
     }
 
     changeActiveCard = (indexVouted) => this.setState({ activeIndex: indexVouted });
@@ -222,7 +222,12 @@ class GameField extends React.Component {
                                 <div id='socket-msg'></div>
                                 {this.state.dbToStore[0].users.map((user, index) => {
 
-                                    return <UserCard user={user} key={index} addToAnswers={this.addToAnswers} />
+                                    return <UserCard 
+                                    user={user} 
+                                    key={index} 
+                                    addToAnswers={this.addToAnswers}
+                                    answers={this.state.dbToStore[0].answers}
+                                    currentQuestion={this.state.activeQuestionIndex} />
                                 })}
                             </div>
 
