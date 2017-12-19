@@ -45,6 +45,8 @@ ul, li {
     display: flex;
     flex-direction: column;
     // margin-right: 100px;
+    margin: 0;
+    padding-top: 20px;
     
 }
 .right-menu li, .user-logout {
