@@ -202,7 +202,7 @@ class GameField extends React.Component {
                                 question={this.state.dbToStore[0].questions[key]}
                                 className={this.checkActiveQuestion(key)}
                                 currentQuestion={this.changeActiveQuestion}
-                                answer={this.state.dbToStore[0].answers[key]}
+                                answer={this.state.dbToStore[0].answers[key] ? this.state.dbToStore[0].answers[key] : '-'}
                             />)}
                             {this.state.isOwner &&
                                 <div className="addQuestion" onClick={this.createNewQuestion}>+</div>
@@ -217,7 +217,7 @@ class GameField extends React.Component {
                                 <span className='question-title'>Number of players: </span>
                                 {this.state.dbToStore[0].users.length}
                             </div>
-                            <div className="average-result" id='average_result'>No result</div>
+                            {/* <div className="average-result" id='average_result'>No result</div> */}
                             <div className="container-for-user-cards">
                                 <div id='socket-msg'></div>
                                 {this.state.dbToStore[0].users.map((user, index) => {

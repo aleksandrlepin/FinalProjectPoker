@@ -42,7 +42,7 @@ class ModalNewPlayer extends React.Component {
         let data = JSON.stringify({
             gameId: this.props.gameId,
             user: {
-                name: this.refs.name.value,
+                name: this.refs.name.value.toLowerCase(),
                 email: this.refs.email.value,
                 //create array with empty answers to make it possible change answers through map in action SAVE_ANSWER 
                 //!!!will work for games less than 25 questions
