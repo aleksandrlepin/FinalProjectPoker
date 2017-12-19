@@ -10,7 +10,6 @@ import { withRouter } from 'react-router-dom';
         return (
           <div className="mainPage">
               <div className="mainPageContent">
-
                       <div className = "mainPageHeading">
                         <h2>[Complex tasks through</h2>
                           <h2>simple ways.</h2>

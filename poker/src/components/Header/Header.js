@@ -47,8 +47,8 @@ class Header extends React.Component {
                     {localStorage.getItem('username') !== null ? 
                     <div className="user-profile">
                        
-                        <div className="user-name" onClick={this.handleRedirect} >{JSON.parse(localStorage.getItem('username'))}</div>
-                        <div className="user-logout" onClick={this.handleLogout}>Log out</div>
+                        <p className="user-name" onClick={this.handleRedirect} >{JSON.parse(localStorage.getItem('username'))}</p>
+                        <p className="user-logout" onClick={this.handleLogout}>Log out</p>
                     </div> :
                     <ul className="right-menu">
                         <li onClick={this.handleClick.bind(null, '/registration')}>Register</li>
