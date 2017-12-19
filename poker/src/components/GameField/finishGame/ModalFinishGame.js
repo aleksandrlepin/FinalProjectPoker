@@ -72,7 +72,7 @@ class ModalFinishGame extends React.Component {
                 <div className="modalEndGameBox">
                     {questions.map((item, index) => { 
                         return (
-                            <p key={index}><span className="numberModal">{index+1}</span>{item}<span className="answersModal">{this.props.game.answers[index]}</span></p>
+                            <p key={index}><span className="numberModal">{index+1}</span>{item}<span className="answersModal">{this.props.game.answers[index+1]}</span></p>
                         )
                     })}
                 </div>

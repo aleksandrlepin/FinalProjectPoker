@@ -170,7 +170,7 @@ export default class NewGame extends React.Component {
                                     ref="nameGame"
                                     id="nameGameValue"
                                     type="text"
-                                    placeholder=" Input name game"
+                                    placeholder="Game name"
                                 />
                             </label>
                             <h3 id="descriptionHeading">Description</h3>
@@ -178,7 +178,7 @@ export default class NewGame extends React.Component {
                                 <textarea id="descriptionValue"
                                     ref="description"
                                     type="text"
-                                    placeholder='  input description'
+                                    placeholder='  Description'
                                 >
                                 </textarea>
                             </div>
@@ -188,7 +188,7 @@ export default class NewGame extends React.Component {
                                     ref="question"
                                     id="questionsValue"
                                     type="text"
-                                    placeholder="  input question"
+                                    placeholder="  Question"
                                 />
                                 <button
                                     // className="btn-default"
@@ -200,7 +200,7 @@ export default class NewGame extends React.Component {
                             <div
                                 className="listQuestions">
                             </div>
-                            <div id="questionsField" placeholder="List questions">
+                            <div id="questionsField" placeholder="List of questions">
                                 {
                                     this.state.rows.length > 0 ?
                                         this.state.rows.map((item, index) => {
