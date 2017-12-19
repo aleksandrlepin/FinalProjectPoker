@@ -10,6 +10,7 @@ import { DBtoStore, updateStore, changeAverage, resetCards, saveAnswer } from '.
 import store from './store/index';
 import './gameField.css';
 import ModalNewPlayer from './ModalNewPlayer';
+import ModalAddQuestion from './addQuestion/ModalAddQuestion.js';
 
 
 // const URL = "http://localhost:3000";
@@ -119,7 +120,7 @@ class GameField extends React.Component {
         return aver
     }
     createNewQuestion = () => {
-        this.props.history.push(`/game/${this.props.match.params.id}/newQuestion`);
+        this.setState({addQuestion:true});
     }
 
     modalClose = () => {
@@ -166,6 +167,7 @@ class GameField extends React.Component {
 
             <div className="game-field">
                 { this.state.endGame && <ModalFinisGame game={this.state.dbToStore[0]} modal={this.modalClose}/> }
+                { this.state.addQuestion && <ModalAddQuestion game={this.state.dbToStore[0]} modal={this.modalClose}/> }
                 {localStorage.getItem('isOwner') ?
                     null :
                     <ModalNewPlayer gameId={this.props.match.params.id} />}
