@@ -5,15 +5,14 @@ export default function dbToStore(state = initialState.database, action) {
 	let { type, payload } = action;
 	switch (type) {
 		case types.LOAD_DB_TO_STORE:
-		return [payload];
+			return [payload];
 
 		case types.ADD_PLAYER:
 			return [{ ...state[0], users: [...payload.users] }];
-			break;
 
 		case types.UPDATE_STORE:
 			return [payload];
-			break;
+
 
 		case types.ADD_QUESTION:
 			break;
@@ -21,7 +20,7 @@ export default function dbToStore(state = initialState.database, action) {
 		case types.CHANGE_AVERAGE:
 			let o = payload.index;
 			return [{ ...state[0], answers: { ...state[0].answers, [o]: payload.average_value } }];
-			break;
+
 
 		case types.RESET_CARDS:
 			return [{
@@ -48,7 +47,7 @@ export default function dbToStore(state = initialState.database, action) {
 				users: state[0].users.map((user, index) => {
 					if (user.name === userName) {
 						return {
-							name: user.name, email: user.email,  answers: user.answers.map((answer, index) => {
+							name: user.name, email: user.email, answers: user.answers.map((answer, index) => {
 								if (index === question - 1) {
 									return answer = value;
 								} else return answer;

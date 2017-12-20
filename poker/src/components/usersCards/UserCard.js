@@ -2,13 +2,14 @@ import React from 'react';
 import { socket } from '../../constants/consts';
 import './usersCards.css';
 import bgBlue from './images/bg_userCard-blue.png';
-import bgWhite from './images/bg_userCard-white.png';
+// import bgWhite from './images/bg_userCard-white.png';
+import bgBootcamp from './images/bg_userCard-bootcamp.png';
 
 let stylesClosed = {
     backgroundImage: `url(${bgBlue})`
 }
 let stylesVouted = {
-    backgroundImage: `url(${bgWhite})`
+    backgroundImage: `url(${bgBootcamp})`
 }
 let stylesWrapper = {
     backgroundColor: '#ff6c00'
@@ -23,8 +24,7 @@ export default class UserCard extends React.Component {
             vout: this.props.user.answers[0] ? this.props.user.answers[0] : null,
             activeQuestion: 1
         }
-
-        let userName = this.props.user.name;
+        
         let userEmail = this.props.user.email;
         let addToAnswers = this.props.addToAnswers
         let self = this;

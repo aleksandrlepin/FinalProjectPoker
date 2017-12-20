@@ -96,7 +96,7 @@ class Registration extends React.Component {
 
 
     render() {
-        const { name, email, password, repeatPassword } = this.state
+        // const { name, email, password, repeatPassword } = this.state
         return (
             <div className="container-for-register-form">
                     <label className="register-form-label">Player name:</label>

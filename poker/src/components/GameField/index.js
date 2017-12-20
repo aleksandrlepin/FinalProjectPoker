@@ -11,6 +11,11 @@ import store from './store/index';
 import './gameField.css';
 import ModalNewPlayer from './ModalNewPlayer';
 
+import addQuestionButton from'./addQuestionButton.png';
+
+let buttonAddQuestion = {
+    backgroundImage: `url(${addQuestionButton})`
+}
 
 // const URL = "http://localhost:3000";
 
@@ -110,7 +115,7 @@ class GameField extends React.Component {
         let players_number = 0
 
         Object.keys(answers).map((item, index) => aver += answers[item])
-        for (i in this.state.users_answer) { players_number++ }
+        for (let i in this.state.users_answer) { players_number++ }
 
         aver = aver / players_number
 
@@ -214,7 +219,9 @@ class GameField extends React.Component {
                                 answer={this.state.dbToStore[0].answers[key] ? this.state.dbToStore[0].answers[key] : '-'}
                             />)}
                             {this.state.isOwner &&
-                                <div className="addQuestion" onClick={this.createNewQuestion}>+</div>
+                                <div className="addQuestion" style={buttonAddQuestion} onClick={this.createNewQuestion}>
+                                
+                                </div>
                             }
                         </div>
 
