@@ -127,11 +127,11 @@ componentDiDMoutn() {
         console.log('rerender header', this.state.playername)
         return (
             <header style={style}>
-                <div style={logo} className="gameLogo" onClick={this.handleLogoClick}></div>
-                <nav className="header-nav">
-
+               <div style={logo} className="gameLogo" onClick={this.handleLogoClick}></div>
+                <nav className="header-nav headerForm">
+                
                     <ul className="left-menu">
-                        <li onClick={this.handleClick.bind(null, '/contact')}><p>Contact</p></li>
+                        <li onClick={this.handleClick.bind(null, '/contacts')}><p>Contact</p></li>
                         <li onClick={this.handleClick.bind(null, '/about')}><p>About</p></li>
                     </ul>
                     {localStorage.getItem('username') !== null ?

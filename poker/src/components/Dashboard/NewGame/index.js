@@ -97,6 +97,7 @@ export default class NewGame extends React.Component {
         else {
             this.refs.question.style.boxShadow = "none";
         }
+        // ---------------------------------------------
 
         if (proverkaNameGame === true && proverkaDescription && true && proverkaQuestions === true) {
             let objectNewGame = {

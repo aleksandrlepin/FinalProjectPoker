@@ -10,6 +10,9 @@ import { DBtoStore, updateStore, changeAverage, resetCards, saveAnswer } from '.
 import store from './store/index';
 import './gameField.css';
 import ModalNewPlayer from './ModalNewPlayer';
+import ModalAddQuestion from './addQuestion/ModalAddQuestion.js';
+import {addQuestion} from "./store/actions";
+
 
 import addQuestionButton from './addQuestionButton.png';
 
@@ -111,14 +114,16 @@ class GameField extends React.Component {
     }
 
     calcAverage = () => {
-        let answers = this.state.users_answer
-        var aver = 0
-        let players_number = 0
+        let answers = this.state.users_answer;
+        var aver = 0;
+        let players_number = 0;
+
 
         Object.keys(answers).map((item, index) => aver += answers[item])
         for (let i in this.state.users_answer) { players_number++ }
 
-        aver = aver / players_number
+
+        aver = aver / players_number;
 
         for (var i = 0; i < fibNumbers.length; i++) {
             if (aver > fibNumbers[i] && aver < fibNumbers[i + 1]) { aver = fibNumbers[i + 1] }
@@ -133,11 +138,19 @@ class GameField extends React.Component {
         return aver
     }
     createNewQuestion = () => {
-        this.props.history.push(`/game/${this.props.match.params.id}/newQuestion`);
+        this.setState({addQuestion:true});
     }
 
     modalClose = () => {
-        this.setState({ endGame: false })
+        this.setState({ endGame: false });
+        this.setState({ addQuestion: false });
+    }
+
+    addQuestionToGame = (data) =>{
+        store.dispatch(addQuestion(data));
+
+
+        // console.log( data);
     }
 
     resetCards = () => {
@@ -197,12 +210,10 @@ class GameField extends React.Component {
 
     render() {
         return (
-            // <RenderIf condition={true}>
-
-            // </RenderIf>
-
             <div className="game-field">
-                {this.state.endGame && <ModalFinishGame game={this.state.dbToStore[0]} modal={this.modalClose} />}
+                { this.state.endGame && <ModalFinishGame game={this.state.dbToStore[0]} modal={this.modalClose}/> }
+                { this.state.addQuestion && <ModalAddQuestion addNewQuestion={this.addQuestionToGame} modal={this.modalClose}/> }
+
                 {localStorage.getItem('isOwner') ?
                     null :
                     <ModalNewPlayer gameId={this.props.match.params.id} />}
