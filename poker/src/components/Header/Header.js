@@ -38,7 +38,7 @@ class Header extends React.Component {
         return (
             <header style={style}>
                <div style={logo} className="gameLogo" onClick={this.handleLogoClick}></div>
-                <nav className="header-nav">
+                <nav className="header-nav headerForm">
                 
                     <ul className="left-menu">
                         <li onClick={this.handleClick.bind(null, '/contact')}><p>Contact</p></li>
@@ -47,8 +47,8 @@ class Header extends React.Component {
                     {localStorage.getItem('username') !== null ? 
                     <div className="user-profile">
                        
-                        <div className="user-name" onClick={this.handleRedirect} >{JSON.parse(localStorage.getItem('username'))}</div>
-                        <div className="user-logout" onClick={this.handleLogout}>Log out</div>
+                        <p className="user-name" onClick={this.handleRedirect} >{JSON.parse(localStorage.getItem('username'))}</p>
+                        <p className="user-logout" onClick={this.handleLogout}>Log out</p>
                     </div> :
                     <ul className="right-menu">
                         <li onClick={this.handleClick.bind(null, '/registration')}>Register</li>

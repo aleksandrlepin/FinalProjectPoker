@@ -3,6 +3,10 @@
     /*text-decoration: none !important;*/
     /*color: #fff !important;*/
 /*}*/
+a:hover {
+    cursor: pointer;
+    color: white;
+}
 footer {
     max-width: 1200px;
     padding: 2px;
@@ -12,13 +16,19 @@ footer {
     color: #fff;
     font-size: 14px;
     display: flex;
-    justify-content: space-between; 
+    justify-content: space-around; 
 }
 .footerLeft {
-    margin-left: 50px;
+    // margin-left: 50px;
+    line-height: 0;
+}
+.footer-link {
+    line-height: 1.5;
+    color: white;
+    text-decoration: none;
 }
 .footerRigth {
-    margin-right: 50px;
+    // margin-right: 50px;
 }
   
   

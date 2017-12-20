@@ -8,7 +8,10 @@ export default class NewGame extends React.Component {
         this.state = {
             questions: {},
             rows: [],
-            owner: JSON.parse(localStorage.getItem('username')),
+            owner: {
+                name: JSON.parse(localStorage.getItem('username')),
+                email: JSON.parse(localStorage.getItem('useremail'))
+            },
             answers: {
                 "1": 0,
                 "2": 0,
@@ -36,7 +39,7 @@ export default class NewGame extends React.Component {
                 "24": 0,
                 "25": 0,
             },
-            users: [{ name: localStorage.getItem('username'), email: localStorage.getItem('email'), answers: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] }],
+            users: [{ name: JSON.parse(localStorage.getItem('username')), email: JSON.parse(localStorage.getItem('useremail')), answers: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] }],
             numbQuestions: 1
         };
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -94,6 +97,7 @@ export default class NewGame extends React.Component {
         else {
             this.refs.question.style.boxShadow = "none";
         }
+        // ---------------------------------------------
 
         if (proverkaNameGame === true && proverkaDescription && true && proverkaQuestions === true) {
             let objectNewGame = {
@@ -167,7 +171,7 @@ export default class NewGame extends React.Component {
                                     ref="nameGame"
                                     id="nameGameValue"
                                     type="text"
-                                    placeholder=" Input name game"
+                                    placeholder="Game name"
                                 />
                             </label>
                             <h3 id="descriptionHeading">Description</h3>
@@ -175,7 +179,7 @@ export default class NewGame extends React.Component {
                                 <textarea id="descriptionValue"
                                     ref="description"
                                     type="text"
-                                    placeholder='  input description'
+                                    placeholder='  Description'
                                 >
                                 </textarea>
                             </div>
@@ -185,7 +189,7 @@ export default class NewGame extends React.Component {
                                     ref="question"
                                     id="questionsValue"
                                     type="text"
-                                    placeholder="  input question"
+                                    placeholder="  Question"
                                 />
                                 <button
                                     // className="btn-default"
@@ -197,7 +201,7 @@ export default class NewGame extends React.Component {
                             <div
                                 className="listQuestions">
                             </div>
-                            <div id="questionsField" placeholder="List questions">
+                            <div id="questionsField" placeholder="List of questions">
                                 {
                                     this.state.rows.length > 0 ?
                                         this.state.rows.map((item, index) => {

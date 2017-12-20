@@ -30,11 +30,14 @@ export default function dbToStore(state = initialState.database, action) {
 
 		case types.ADD_QUESTION:
 
-			console.log("case types.ADD_QUESTION: -----------------", payload);
+			// console.log("case types.ADD_QUESTION: -----------------", payload);
+			let count =1;
+			for(let key in state[0].questions){
+				count++;
+			}
 
-			// console.log("state: -----------------", state);
-			// return [{ ...state[0], questions: {...questions}}];
-			// return state;
+			console.log(state[0].questions);
+			return [{ ...state[0], questions:{ ...state[0].questions, [count]:payload}}];
 			break;
 
 		case types.CHANGE_AVERAGE:

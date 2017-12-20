@@ -23,8 +23,8 @@ class Menu extends React.Component {
 					<li  onClick = {this.handleClickCreate}>Create new game</li>
 					<hr />
 					<li  onClick = {this.handleSavedGames}>Saved games</li>
-					<hr/>
-					<li  onClick = {this.handleAccount}>Accont</li>
+					{/*<hr/>
+					<li  onClick = {this.handleAccount}>Accont</li>*/}
 				</ul>
 			</div>
             

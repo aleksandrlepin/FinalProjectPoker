@@ -5,12 +5,14 @@ import fibNumbers from '../../constants/fibonachi';
 import VoutingCard from './VoutingCard';
 import UserCard from '../usersCards/UserCard';
 import Question from './Question';
-import ModalFinisGame from './finishGame/ModalFinisGame';
+import ModalFinishGame from './finishGame/ModalFinishGame';
 import { DBtoStore, updateStore, changeAverage, resetCards, saveAnswer } from '../../actions';
 import store from './store/index';
 import './gameField.css';
 import ModalNewPlayer from './ModalNewPlayer';
 import ModalAddQuestion from './addQuestion/ModalAddQuestion.js';
+import {addQuestion} from "./store/actions";
+
 
 
 // const URL = "http://localhost:3000";
@@ -18,7 +20,7 @@ import ModalAddQuestion from './addQuestion/ModalAddQuestion.js';
 class GameField extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { isOwner : false }
+        this.state = { isOwner: false }
         this.state = { ...store.getState(), activeIndex: null, activeQuestionIndex: '1', users_answer: {} };
         let gameId = this.props.match.params.id;
         this.callSocket();
@@ -67,7 +69,11 @@ class GameField extends React.Component {
     }
 
     callSocket = () => {
-        socket.emit('add owner', JSON.parse(localStorage.getItem('username')));
+
+        socket.emit('add owner', {
+            name: JSON.parse(localStorage.getItem('username')),
+            email: JSON.parse(localStorage.getItem('useremail'))
+        });
     };
 
     componentWillUnmount() {
@@ -75,7 +81,7 @@ class GameField extends React.Component {
     }
 
     componentDidMount() {
-        if (JSON.parse(localStorage.getItem('isOwner'))) this.setState({isOwner : true})
+        if (JSON.parse(localStorage.getItem('isOwner'))) this.setState({ isOwner: true })
     }
 
     changeActiveCard = (indexVouted) => this.setState({ activeIndex: indexVouted });
@@ -94,21 +100,22 @@ class GameField extends React.Component {
         store.dispatch(saveAnswer({
             user_name: userId,
             question_number: this.state.activeQuestionIndex,
-            question_value: answer}))
+            question_value: answer
+        }))
     }
 
     calcAverage = () => {
-        let answers = this.state.users_answer
-        var aver = 0
-        let players_number =0
+        let answers = this.state.users_answer;
+        var aver = 0;
+        let players_number = 0;
 
-        Object.keys(answers).map((item,index)=> aver += answers[item])    
-        for(i in this.state.users_answer){players_number++}
-        
-        aver = aver/players_number
+        Object.keys(answers).map((item, index) => aver += answers[item]);
+        for (i in this.state.users_answer) { players_number++ }
 
-        for(var i=0;i<fibNumbers.length;i++){
-            if(aver>fibNumbers[i] && aver<fibNumbers[i+1]){aver=fibNumbers[i+1]}
+        aver = aver / players_number;
+
+        for (var i = 0; i < fibNumbers.length; i++) {
+            if (aver > fibNumbers[i] && aver < fibNumbers[i + 1]) { aver = fibNumbers[i + 1] }
         }
 
 
@@ -124,7 +131,15 @@ class GameField extends React.Component {
     }
 
     modalClose = () => {
-        this.setState({endGame : false})
+        this.setState({ endGame: false });
+        this.setState({ addQuestion: false });
+    }
+
+    addQuestionToGame = (data) =>{
+        store.dispatch(addQuestion(data));
+
+
+        // console.log( data);
     }
 
     resetCards = () => {
@@ -145,29 +160,43 @@ class GameField extends React.Component {
         })
             .then(res => res.json())
             .then(res => {
-                //     if (res.success === false) {
-                //         this.props.history.push('/login');
-                //     } else {
-                //         console.log('from gamefield')
-
-                //         store.dispatch(DBtoStore(res));
-                //     }
-
-
             })
             .catch(err => console.log(err));
-            this.setState({endGame : true})
+        this.setState({ endGame: true })
+    }
+
+    prevQuestion = () => {
+        let questions = []
+        for (let key in this.state.dbToStore[0].questions) {
+            questions.push(this.state.dbToStore[0].questions[key])
+        }
+        let index = parseInt(this.state.activeQuestionIndex) - 1;
+        if (parseInt(this.state.activeQuestionIndex) > 1) {
+            this.setState({activeQuestionIndex: ''+index+''})
+        } else { 
+            this.setState({activeQuestionIndex: ''+questions.length+''})
+        }  
+    }
+
+    nextQuestion = () => {
+        let questions = []
+        for (let key in this.state.dbToStore[0].questions) {
+            questions.push(this.state.dbToStore[0].questions[key])
+        }
+        let index = parseInt(this.state.activeQuestionIndex) + 1;
+        if (parseInt(this.state.activeQuestionIndex) < questions.length) {
+            this.setState({activeQuestionIndex: ''+index+''})
+        } else { 
+            this.setState({activeQuestionIndex: ''+1+''})
+        }
     }
 
     render() {
         return (
-            // <RenderIf condition={true}>
-
-            // </RenderIf>
-
             <div className="game-field">
-                { this.state.endGame && <ModalFinisGame game={this.state.dbToStore[0]} modal={this.modalClose}/> }
-                { this.state.addQuestion && <ModalAddQuestion game={this.state.dbToStore[0]} modal={this.modalClose}/> }
+                { this.state.endGame && <ModalFinishGame game={this.state.dbToStore[0]} modal={this.modalClose}/> }
+                { this.state.addQuestion && <ModalAddQuestion addNewQuestion={this.addQuestionToGame} modal={this.modalClose}/> }
+
                 {localStorage.getItem('isOwner') ?
                     null :
                     <ModalNewPlayer gameId={this.props.match.params.id} />}
@@ -182,9 +211,9 @@ class GameField extends React.Component {
                                 question={this.state.dbToStore[0].questions[key]}
                                 className={this.checkActiveQuestion(key)}
                                 currentQuestion={this.changeActiveQuestion}
-                                answer={this.state.dbToStore[0].answers[key]}
+                                answer={this.state.dbToStore[0].answers[key] ? this.state.dbToStore[0].answers[key] : '-'}
                             />)}
-                            { this.state.isOwner &&
+                            {this.state.isOwner &&
                                 <div className="addQuestion" onClick={this.createNewQuestion}>+</div>
                             }
                         </div>
@@ -197,7 +226,7 @@ class GameField extends React.Component {
                                 <span className='question-title'>Number of players: </span>
                                 {this.state.dbToStore[0].users.length}
                             </div>
-                            <div className="average-result" id='average_result'>No result</div>
+                            {/* <div className="average-result" id='average_result'>No result</div> */}
                             <div className="container-for-user-cards">
                                 <div id='socket-msg'></div>
                                 {this.state.dbToStore[0].users.map((user, index) => {
@@ -208,26 +237,28 @@ class GameField extends React.Component {
 
                         </div>
                     </div>}
+
                     { this.state.isOwner &&
                         <div className='row container-for-buttons'>
                             <button className="show-cards game-button" onClick={this.calcAverage}><i className="fa fa-undo" aria-hidden="true"></i>Flip cards</button>
                             <button className="reset-cards game-button" onClick={this.resetCards}><i className="fa fa-repeat" aria-hidden="true"></i>Reset cards</button>
-                            <button className="prev-question game-button" onClick={this.nextQuestion}><i className="fa fa-arrow-left" aria-hidden="true"></i>Previous question</button>
+                            <button className="prev-question game-button" onClick={this.prevQuestion}><i className="fa fa-arrow-left" aria-hidden="true"></i>Previous question</button>
                             <button className="next-question game-button" onClick={this.nextQuestion}><i className="fa fa-arrow-right" aria-hidden="true"></i>Next question</button>
                         </div>
                     }
+
                 <div className='row'>
                     <div className='container-for-vouting-cards col-sm-12 col-md-12'>
                         {fibNumbers.map((value, index) => <VoutingCard number={value} key={index}
                             className={this.checkActiveCard(value, index)}
                             onClick={this.changeActiveCard} />)}
                         <div className='col-sm-12 col-md-12 endGameContainer'>
-                            { this.state.isOwner &&
+                            {this.state.isOwner &&
                                 <button className="endGame" onClick={this.endGame}>End Game</button>
                             }
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
         )

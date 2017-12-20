@@ -27,11 +27,7 @@ Modal.setAppElement('#root');
 class ModalAddQuestion extends React.Component {
 
     componentWillMount () {
-        if(this.props.game) {
-            for (let key in this.props.game.questions) {
-                questions.push(this.props.game.questions[key])
-            }
-        }
+
 
     }
 
@@ -45,19 +41,31 @@ class ModalAddQuestion extends React.Component {
         this.subtitle.style.color = '#09243b';
     }
 
-    handleEnd = () => {
+    handleAddQuestion = () => {
+        // ---------Proverka_poley------
+        let result="";
+
+        if (this.refs.question.value ==="") {
+            this.refs.question.style.boxShadow = "0px 0px 2px 2px #ff0000";
+
+        }
+        else {
+            this.refs.question.style.boxShadow = "none";
+            result=this.refs.question.value;
+        // --------------
+        this.props.modal();
+        this.props.addNewQuestion(result);
         this.setState({ modalIsOpen: false });
-        this.props.history.push('/dashboard');
+
+        }
     }
 
-    handleBack = () => {
+    handleCancel = () => {
         questions = [];
         this.setState({ modalIsOpen: false });
         this.props.modal();
-        this.props.history.push(`/play/game/${this.props.game._id}`);
-    }
+    };
     render() {
-        console.log(this.props.game)
         return (
             <Modal
                 isOpen={this.state.modalIsOpen}
@@ -65,20 +73,19 @@ class ModalAddQuestion extends React.Component {
                 onRequestClose={this.closeModal}
                 style={customStylesForm}
                 contentLabel="No Overlay Click Modal"
-            >
-
+                >
                 <div id="modal" ref={subtitle => this.subtitle = subtitle}>Add new question</div>
-                <h2 className="modalGameName">{this.props.game.nameGame}</h2>
-                <div className="modalEndGameBox">
-                    {questions.map((item, index) => {
-                        return (
-                            <p key={index}><span className="numberModal">{index+1}</span>{item}<span className="answersModal">{this.props.game.answers[index]}</span></p>
-                        )
-                    })}
-                </div>
                 <div className="modalButtonWrap">
-                    <button className="modalEndGameButton" onClick={this.handleBack}>Back to game</button>
-                    <button className="modalEndGameButton" onClick={this.handleEnd}>End game</button>
+                    <textarea
+                        ref="question"
+                        id="questionsValue"
+                        type="text"
+                        placeholder="  Question"
+                    />
+                    <div className = "buttonAddQuestionForm">
+                        <button className="modalEndGameButton" onClick={this.handleCancel}>Back to game</button>
+                        <button className="modalEndGameButton" onClick={this.handleAddQuestion}>Add question</button>
+                    </div>
                 </div>
             </Modal>
         )

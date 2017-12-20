@@ -24,7 +24,7 @@ Modal.setAppElement('#root');
 
 
 
-class ModalFinisGame extends React.Component {
+class ModalFinishGame extends React.Component {
 
     componentWillMount () {
         if(this.props.game) {
@@ -72,7 +72,7 @@ class ModalFinisGame extends React.Component {
                 <div className="modalEndGameBox">
                     {questions.map((item, index) => { 
                         return (
-                            <p key={index}><span className="numberModal">{index+1}</span>{item}<span className="answersModal">{this.props.game.answers[index]}</span></p>
+                            <p key={index}><span className="numberModal">{index+1}</span>{item}<span className="answersModal">{this.props.game.answers[index+1]}</span></p>
                         )
                     })}
                 </div>
@@ -85,4 +85,4 @@ class ModalFinisGame extends React.Component {
     }
 }
 
-export default withRouter(ModalFinisGame)
+export default withRouter(ModalFinishGame)

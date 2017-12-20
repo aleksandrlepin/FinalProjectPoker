@@ -22,8 +22,8 @@ const Game = require('../models/game');
 
 router.post('/', verifyToken, (req, res, next) => {
 	console.log(req.body, verifyToken);
-	let owner = JSON.parse(req.body.name);
-	Game.find({'owner': owner}, (err, game) => {
+	let ownerEmail = JSON.parse(req.body.email);
+	Game.find({'owner.email': ownerEmail}, (err, game) => {
 		// console.log('games', game)
         res.send(game);
   	})
