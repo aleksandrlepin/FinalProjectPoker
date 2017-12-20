@@ -4,8 +4,8 @@ import { socket } from '../../constants/consts';
 export default class Question extends React.Component {
 
     handleChangeQuestion = () => {
-        this.props.currentQuestion(this.props.index);
-        socket.emit('transferQuestion', this.props.index);      
+        this.props.currentQuestion(+this.props.index);
+        socket.emit('transferQuestion', +this.props.index);      
     }
     
     render() {

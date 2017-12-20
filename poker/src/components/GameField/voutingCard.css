@@ -2,7 +2,7 @@
     display: flex;
     position: relative;
     flex-wrap: wrap;
-    margin: 100px 0 100px 0;
+    margin: 20px 0 0px 0;
     justify-content: center;
 }
 
@@ -19,7 +19,9 @@
     text-align: center;
 }
 .vouted-card {
-    margin: 10px;
+    position: relative;
+    bottom: 25px;
+    left: 10px;
     background: #00ffff;
 }
 .endGameContainer {
@@ -28,5 +30,5 @@
 }
 .endGame {
     text-align: center;
-    margin: 50px auto;
+    margin: 20px auto;
 }

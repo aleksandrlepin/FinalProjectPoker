@@ -7,7 +7,7 @@
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
-    margin: 70px 0 0 0;
+    // margin: 70px 0 0 0;
 }
 .game-button {
     margin: 0 auto;

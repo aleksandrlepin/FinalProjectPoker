@@ -21,7 +21,8 @@ class GameField extends React.Component {
     constructor(props) {
         super(props);
         this.state = { isOwner: false }
-        this.state = { ...store.getState(), activeIndex: null, activeQuestionIndex: '1', users_answer: {} };
+        this.state = { ...store.getState(), activeIndex: null, activeQuestionIndex: 1, users_answer: {}, playerName: '' };
+       
         let gameId = this.props.match.params.id;
         this.callSocket();
         let token = JSON.stringify({ token: JSON.parse(localStorage.getItem('token')) });
@@ -41,7 +42,6 @@ class GameField extends React.Component {
             .catch(err => console.log(err));
 
         store.subscribe(() => {
-            console.log('store subscribe')
             this.setState({ dbToStore: store.getState().dbToStore });
         });
 
@@ -49,18 +49,20 @@ class GameField extends React.Component {
             fetch(`/games/${gameId}`, { method: 'POST' })
                 .then(res => res.json())
                 .then(res => {
-                    console.log('from fetch socket updatedb')
                     store.dispatch(updateStore(res));
                 })
                 .catch(err => console.log(err));
         });
 
-        socket.on('login', function (data) {
-            var message = "Player:  " + data;
-            console.log(message);
-        });
+        // socket.on('login', function (name) {
+        //     localStorage.setItem('playername', JSON.stringify(name));
+        //     // this.setState({playerName: name})
+        //     console.log('player', name);
+        // });
 
-        socket.on('renderQuestion', (index) => this.setState({ activeQuestionIndex: index.index }))
+        socket.on('renderQuestion', (index) => {
+            this.setState({ activeQuestionIndex: index.index });
+        })
 
         socket.on('changeAverageInDb', function (y) {
             store.dispatch(changeAverage(y));
@@ -81,7 +83,8 @@ class GameField extends React.Component {
     }
 
     componentDidMount() {
-        if (JSON.parse(localStorage.getItem('isOwner'))) this.setState({ isOwner: true })
+        if (JSON.parse(localStorage.getItem('isOwner'))) this.setState({ isOwner: true });
+       
     }
 
     changeActiveCard = (indexVouted) => this.setState({ activeIndex: indexVouted });
@@ -90,7 +93,7 @@ class GameField extends React.Component {
 
     changeActiveQuestion = (activeQuestionIndex) => this.setState({ activeQuestionIndex: activeQuestionIndex });
 
-    checkActiveQuestion = (value) => (this.state.activeQuestionIndex === value ? "wrapper-for-question active-question" : "wrapper-for-question");
+    checkActiveQuestion = (value) => (this.state.activeQuestionIndex === +value ? "wrapper-for-question active-question" : "wrapper-for-question");
 
     addToAnswers = (userId, answer) => {
         if (this.state.users_answer[userId]) {
@@ -170,12 +173,15 @@ class GameField extends React.Component {
         for (let key in this.state.dbToStore[0].questions) {
             questions.push(this.state.dbToStore[0].questions[key])
         }
-        let index = parseInt(this.state.activeQuestionIndex) - 1;
-        if (parseInt(this.state.activeQuestionIndex) > 1) {
-            this.setState({activeQuestionIndex: ''+index+''})
+        let index = +this.state.activeQuestionIndex;
+        if (+this.state.activeQuestionIndex > 1) {
+            this.setState({activeQuestionIndex: +this.state.activeQuestionIndex-1});
+            index -=1;
         } else { 
-            this.setState({activeQuestionIndex: ''+questions.length+''})
+            this.setState({activeQuestionIndex: questions.length});
+            index = questions.length
         }  
+        socket.emit('transferQuestion', index);  
     }
 
     nextQuestion = () => {
@@ -183,12 +189,15 @@ class GameField extends React.Component {
         for (let key in this.state.dbToStore[0].questions) {
             questions.push(this.state.dbToStore[0].questions[key])
         }
-        let index = parseInt(this.state.activeQuestionIndex) + 1;
-        if (parseInt(this.state.activeQuestionIndex) < questions.length) {
-            this.setState({activeQuestionIndex: ''+index+''})
+        let index = +this.state.activeQuestionIndex;
+        if (+this.state.activeQuestionIndex < questions.length) {
+            this.setState({activeQuestionIndex: +this.state.activeQuestionIndex+1})
+            index +=1
         } else { 
-            this.setState({activeQuestionIndex: ''+1+''})
+            this.setState({activeQuestionIndex: 1})
+            index = 1
         }
+        socket.emit('transferQuestion', index);     
     }
 
     render() {
@@ -231,7 +240,12 @@ class GameField extends React.Component {
                                 <div id='socket-msg'></div>
                                 {this.state.dbToStore[0].users.map((user, index) => {
 
-                                    return <UserCard user={user} key={index} addToAnswers={this.addToAnswers} />
+                                    return <UserCard 
+                                    user={user} 
+                                    key={index} 
+                                    addToAnswers={this.addToAnswers}
+                                    answers={this.state.dbToStore[0].answers}
+                                    currentQuestion={this.state.activeQuestionIndex} />
                                 })}
                             </div>
 
