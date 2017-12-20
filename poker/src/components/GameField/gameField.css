@@ -12,12 +12,13 @@
 .game-button {
     margin: 0 auto;
     width: 200px;
-    height: 35px;
+    height: 40px;
     font-size: 20px;
     font-family: "Roboto";
     color: rgb(255, 255, 255);
     text-align: center;
     border-radius: 4px;
+    border: 0px solid transparent;
     box-shadow: 0px 1px 0px 0px rgba(120, 120, 120, 0.004),inset 0px 1px 1px 0px rgba(255, 255, 255, 0.004);
 }
 .game-button .fa {
@@ -61,7 +62,7 @@
     justify-content: center;
 }
 .question-number {
-    width: 32px;
+    width: 45px;
     text-align: center;
     font-size: 12px;
     color: rgb(32, 43, 82);
@@ -80,13 +81,14 @@
     width: 33px;
     height: 33px;
     background-size: 100%;
-    margin: 0 auto;
+    margin: 5px auto;
     padding: 5px;
 }
 .single-question {
     text-align: left;
     font-size: 19px;
     font-weight: bold;
+    margin: 25px 160px 10px 40px;
 }
 .question-title {
     color: #ff6c00;

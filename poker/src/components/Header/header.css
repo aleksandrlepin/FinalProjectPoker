@@ -22,7 +22,7 @@ ul, li {
     cursor: pointer;
 }
 .header-nav{
-    width: 80%;
+    width: 90%;
     display: flex;
     justify-content: space-between;
     // height: 92px;
@@ -79,6 +79,19 @@ ul, li {
 .user-name:hover {
     cursor: pointer;
 }
+.fa-user-times {
+    color: white;
+    padding-bottom: 5px;
+}
+.user-profile-with-logo {
+    display: flex;
+}
+.ownerAvatar {
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+    background-repeat: no-repeat;
+    background-size: contain;
+}  
 
-  
   

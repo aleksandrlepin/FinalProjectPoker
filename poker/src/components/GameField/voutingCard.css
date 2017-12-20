@@ -7,21 +7,24 @@
 }
 
 .voutingCard {
-    width: 44px;
-    height: 55px;
+    width: 50px;
+    height: 75px;
     border-radius: 5px;
     margin: 20px;
-    background: #cbcbcb;
+    background: #202b52;
     font-size: 30px;
     font-family: "Roboto";
     color: rgb(255, 255, 255);
-    line-height: 1.2;
+    line-height: 2.5;
     text-align: center;
+    transition: all, 1s;
+    position: relative;
+    bottom: 0;
 }
 .vouted-card {
     position: relative;
     bottom: 25px;
-    left: 15px;
+    /* left: 15px; */
     background: #00ffff;
 }
 .endGameContainer {
@@ -29,6 +32,8 @@
     justify-content: center;
 }
 .endGame {
+    color: white;
     text-align: center;
     margin: 20px auto;
+    border: 0px solid transparent;
 }

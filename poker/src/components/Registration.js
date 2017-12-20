@@ -46,7 +46,7 @@ class Registration extends React.Component {
                         localStorage.setItem('username', JSON.stringify(res.name));
                         localStorage.setItem('useremail', JSON.stringify(res.email));
                         localStorage.setItem('isOwner', true);
-                        this.props.history.push('/dashboard');
+                        this.props.history.push('/login');
                     }
                 })
                 .catch(err => console.log(err));

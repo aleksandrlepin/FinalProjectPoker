@@ -2,11 +2,11 @@ import React from 'react';
 import { socket } from '../../constants/consts';
 import './usersCards.css';
 import bgBlue from './images/bg_userCard-blue.png';
-// import bgWhite from './images/bg_userCard-white.png';
+import bgWhite from './images/bg_userCard-white.png';
 import bgBootcamp from './images/bg_userCard-bootcamp.png';
 
 let stylesClosed = {
-    backgroundImage: `url(${bgBlue})`
+    backgroundImage: `url(${bgWhite})`
 }
 let stylesVouted = {
     backgroundImage: `url(${bgBootcamp})`

@@ -11,7 +11,7 @@ import store from './store/index';
 import './gameField.css';
 import ModalNewPlayer from './ModalNewPlayer';
 
-import addQuestionButton from'./addQuestionButton.png';
+import addQuestionButton from './addQuestionButton.png';
 
 let buttonAddQuestion = {
     backgroundImage: `url(${addQuestionButton})`
@@ -24,8 +24,9 @@ class GameField extends React.Component {
         super(props);
         this.state = { isOwner: false }
         this.state = { ...store.getState(), activeIndex: null, activeQuestionIndex: 1, users_answer: {}, playerName: '' };
-       
+
         let gameId = this.props.match.params.id;
+        localStorage.setItem('gameId', JSON.stringify(gameId));
         this.callSocket();
         let token = JSON.stringify({ token: JSON.parse(localStorage.getItem('token')) });
         fetch(`/games/${gameId}`, {
@@ -86,7 +87,7 @@ class GameField extends React.Component {
 
     componentDidMount() {
         if (JSON.parse(localStorage.getItem('isOwner'))) this.setState({ isOwner: true });
-       
+
     }
 
     changeActiveCard = (indexVouted) => this.setState({ activeIndex: indexVouted });
@@ -169,13 +170,13 @@ class GameField extends React.Component {
         }
         let index = +this.state.activeQuestionIndex;
         if (+this.state.activeQuestionIndex > 1) {
-            this.setState({activeQuestionIndex: +this.state.activeQuestionIndex-1});
-            index -=1;
-        } else { 
-            this.setState({activeQuestionIndex: questions.length});
+            this.setState({ activeQuestionIndex: +this.state.activeQuestionIndex - 1 });
+            index -= 1;
+        } else {
+            this.setState({ activeQuestionIndex: questions.length });
             index = questions.length
-        }  
-        socket.emit('transferQuestion', index);  
+        }
+        socket.emit('transferQuestion', index);
     }
 
     nextQuestion = () => {
@@ -185,13 +186,13 @@ class GameField extends React.Component {
         }
         let index = +this.state.activeQuestionIndex;
         if (+this.state.activeQuestionIndex < questions.length) {
-            this.setState({activeQuestionIndex: +this.state.activeQuestionIndex+1})
-            index +=1
-        } else { 
-            this.setState({activeQuestionIndex: 1})
+            this.setState({ activeQuestionIndex: +this.state.activeQuestionIndex + 1 })
+            index += 1
+        } else {
+            this.setState({ activeQuestionIndex: 1 })
             index = 1
         }
-        socket.emit('transferQuestion', index);     
+        socket.emit('transferQuestion', index);
     }
 
     render() {
@@ -209,55 +210,55 @@ class GameField extends React.Component {
                 {this.state.dbToStore[0] === undefined ?
                     null :
                     <div className='row'>
-                        <div className='container-for-questions col-sm-12 col-md-3'>
-                            {Object.keys(this.state.dbToStore[0].questions).map(key => <Question
-                                key={key}
-                                index={key}
-                                question={this.state.dbToStore[0].questions[key]}
-                                className={this.checkActiveQuestion(key)}
-                                currentQuestion={this.changeActiveQuestion}
-                                answer={this.state.dbToStore[0].answers[key] ? this.state.dbToStore[0].answers[key] : '-'}
-                            />)}
-                            {this.state.isOwner &&
-                                <div className="addQuestion" style={buttonAddQuestion} onClick={this.createNewQuestion}>
-                                
-                                </div>
-                            }
+                        <div className='col-sm-12 col-md-3'>
+                            <div className='container-for-questions'>
+                                {Object.keys(this.state.dbToStore[0].questions).map(key => <Question
+                                    key={key}
+                                    index={key}
+                                    question={this.state.dbToStore[0].questions[key]}
+                                    className={this.checkActiveQuestion(key)}
+                                    currentQuestion={this.changeActiveQuestion}
+                                    answer={this.state.dbToStore[0].answers[key] ? this.state.dbToStore[0].answers[key] : '-'}
+                                />)}
+                                {this.state.isOwner &&
+                                    <div className="addQuestion" style={buttonAddQuestion} onClick={this.createNewQuestion}>
+
+                                    </div>
+                                }
+                            </div>
                         </div>
 
                         <div className='container-for-main-right-part col-sm-12 col-md-9'>
                             <div className="single-question">
-                                <span className='question-title'>Question: </span>
+                                <span className='question-title'> </span>
                                 {this.state.dbToStore[0].questions[this.state.activeQuestionIndex]}
                                 <div></div>
-                                <span className='question-title'>Number of players: </span>
-                                {this.state.dbToStore[0].users.length}
+
                             </div>
                             {/* <div className="average-result" id='average_result'>No result</div> */}
                             <div className="container-for-user-cards">
-                                <div id='socket-msg'></div>
                                 {this.state.dbToStore[0].users.map((user, index) => {
 
-                                    return <UserCard 
-                                    user={user} 
-                                    key={index} 
-                                    addToAnswers={this.addToAnswers}
-                                    answers={this.state.dbToStore[0].answers}
-                                    currentQuestion={this.state.activeQuestionIndex} />
+                                    return <UserCard
+                                        user={user}
+                                        key={index}
+                                        addToAnswers={this.addToAnswers}
+                                        answers={this.state.dbToStore[0].answers}
+                                        currentQuestion={this.state.activeQuestionIndex} />
                                 })}
                             </div>
 
                         </div>
                     </div>}
 
-                    { this.state.isOwner &&
-                        <div className='row container-for-buttons'>
-                            <button className="show-cards game-button" onClick={this.calcAverage}><i className="fa fa-undo" aria-hidden="true"></i>Flip cards</button>
-                            <button className="reset-cards game-button" onClick={this.resetCards}><i className="fa fa-repeat" aria-hidden="true"></i>Reset cards</button>
-                            <button className="prev-question game-button" onClick={this.prevQuestion}><i className="fa fa-arrow-left" aria-hidden="true"></i>Previous question</button>
-                            <button className="next-question game-button" onClick={this.nextQuestion}><i className="fa fa-arrow-right" aria-hidden="true"></i>Next question</button>
-                        </div>
-                    }
+                {this.state.isOwner &&
+                    <div className='row container-for-buttons'>
+                        <button className="show-cards game-button" onClick={this.calcAverage}><i className="fa fa-undo" aria-hidden="true"></i>Flip cards</button>
+                        <button className="reset-cards game-button" onClick={this.resetCards}><i className="fa fa-repeat" aria-hidden="true"></i>Reset cards</button>
+                        <button className="prev-question game-button" onClick={this.prevQuestion}><i className="fa fa-arrow-left" aria-hidden="true"></i>Previous question</button>
+                        <button className="next-question game-button" onClick={this.nextQuestion}><i className="fa fa-arrow-right" aria-hidden="true"></i>Next question</button>
+                    </div>
+                }
 
                 <div className='row'>
                     <div className='container-for-vouting-cards col-sm-12 col-md-12'>

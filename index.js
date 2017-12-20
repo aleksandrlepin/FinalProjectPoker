@@ -71,6 +71,7 @@ app.use('/registerUser', require('./routes/registerUser.js'));
 app.use('/addPlayer', require('./routes/addPlayer'));
 app.use('/games', verifyToken, require('./routes/game_id'));
 app.use('/endGame', require('./routes/endGame'));
+app.use('/clearPlayers', require('./routes/clearPlayers'));
 app.use(logErrors)
 // app.get('/games/:id/users');
 // app.get('/games/:id/users/:user_id');
@@ -102,6 +103,10 @@ io.on('connection', (socket) => {
         socket.email = player.email;
         socket.broadcast.emit('updateDb', player.name);
         socket.emit('updateDb', player.name);
+    })
+
+    socket.on('clearPlayers', function() {
+        socket.broadcast.emit('updateDb');
     })
 
     socket.on('resetCards', function() {
