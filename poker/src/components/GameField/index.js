@@ -18,7 +18,7 @@ class GameField extends React.Component {
     constructor(props) {
         super(props);
         this.state = { isOwner: false }
-        this.state = { ...store.getState(), activeIndex: null, activeQuestionIndex: 1, users_answer: {}, userCardIsOpened: false };
+        this.state = { ...store.getState(), activeIndex: null, activeQuestionIndex: 1, users_answer: {}, playerName: '' };
        
         let gameId = this.props.match.params.id;
         this.callSocket();
@@ -51,10 +51,11 @@ class GameField extends React.Component {
                 .catch(err => console.log(err));
         });
 
-        socket.on('login', function (data) {
-            var message = "Player:  " + data;
-            console.log(message);
-        });
+        // socket.on('login', function (name) {
+        //     localStorage.setItem('playername', JSON.stringify(name));
+        //     // this.setState({playerName: name})
+        //     console.log('player', name);
+        // });
 
         socket.on('renderQuestion', (index) => {
             this.setState({ activeQuestionIndex: index.index });

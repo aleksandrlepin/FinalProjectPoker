@@ -1,5 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import { socket } from '../../constants/consts';
 import './header.css';
 import headerBg from'./header-bg.png';
 import headerLogo from'./logo.png';
@@ -13,6 +14,21 @@ let logo = {
 }
 
 class Header extends React.Component {
+    constructor() {
+        super();
+        this.state = {playername: ''}
+
+        socket.on('login', (name) => {
+
+            // localStorage.setItem('playername', JSON.stringify(name));
+            this.setState({playername: name.toLocaleUpperCase()})
+            // this.setState({playerName: JSON.parse(localStorage.getItem('playername'))})
+
+            console.log('socket from header', name, this.state.playername)
+            console.log('player', name);
+        });
+    }
+
 
     handleClick = (href) => {
         this.props.history.push(href);
@@ -35,6 +51,7 @@ class Header extends React.Component {
     }
 
     render() {
+        console.log('rerender header', this.state.playername)
         return (
             <header style={style}>
                <div style={logo} className="gameLogo" onClick={this.handleLogoClick}></div>
@@ -50,9 +67,16 @@ class Header extends React.Component {
                         <p className="user-name" onClick={this.handleRedirect} >{JSON.parse(localStorage.getItem('username'))}</p>
                         <p className="user-logout" onClick={this.handleLogout}>Log out</p>
                     </div> :
+                    this.state.playername ?
+                    <div className="user-profile">
+                    
+                     <p className="user-name" onClick={this.handleRedirect} >{this.state.playername}</p>
+                     <p className="user-logout" onClick={this.handleLogout}>Log out</p>
+                 </div> :
                     <ul className="right-menu">
                         <li onClick={this.handleClick.bind(null, '/registration')}>Register</li>
                         <li onClick={this.handleClick.bind(null, '/login')}>Log in</li>
+                        <li onClick={this.handleClick.bind(null, '/login')}>{this.state.playername}</li>
                     </ul>
                     }
                 </nav>
