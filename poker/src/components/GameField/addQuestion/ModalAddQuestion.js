@@ -76,15 +76,15 @@ class ModalAddQuestion extends React.Component {
                 >
                 <div id="modal" ref={subtitle => this.subtitle = subtitle}>Add new question</div>
                 <div className="modalButtonWrap">
-                    <textarea
+                    <input
                         ref="question"
-                        id="questionsValue"
+                        id="addqusetion-input"
                         type="text"
                         placeholder="  Question"
                     />
-                    <div className = "buttonAddQuestionForm">
-                        <button className="modalEndGameButton" onClick={this.handleCancel}>Back to game</button>
-                        <button className="modalEndGameButton" onClick={this.handleAddQuestion}>Add question</button>
+                    <div className="addquestion-buttons">
+                        <button id="addqusetion-left" className="modalEndGameButton" onClick={this.handleCancel}>Back to game</button>
+                        <button id="addqusetion-right" className="modalEndGameButton" onClick={this.handleAddQuestion}>Add question</button>
                     </div>
                 </div>
             </Modal>

@@ -44,6 +44,7 @@
     font-size: 18px;
     font-weight: normal;
     border-radius: 5px;
+    resize: vertical;
 }
 #questionsHeading{
     color: white;
@@ -58,6 +59,7 @@
     font-size: 18px;
     font-weight: normal;
     border-radius: 5px;
+    resize: vertical;
 
 }
 #addQuestionsButton{
