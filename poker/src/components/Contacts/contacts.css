@@ -1,5 +1,30 @@
-.contactsBlock{
-    height: 200px;
-    width: 200px;
-    background: red;
+.dev-wrap {
+	display: flex;
+	flex-wrap: wrap;
+	// flex-direction: column;
+	padding-top: 30px;
+}
+.dev-card {
+	width: 500px;
+	height: 150px;
+	margin: 25px;
+	// border: 1px solid black;
+	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.46);
+	padding-left: 50px;
+}
+.dev-login {
+	text-align: center;
+}
+.dev-avatars {
+	width: 100px;
+	position: relative;
+	bottom: 30px;
+	border-radius: 50%;
+	margin-right: 50px;
+}
+.dev-link{
+	color: black;
+}
+.dev-link:hover {
+	color: black;
 }
