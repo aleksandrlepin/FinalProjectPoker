@@ -44,6 +44,7 @@
     font-size: 18px;
     font-weight: normal;
     border-radius: 5px;
+    resize: vertical;
 }
 #questionsHeading{
     color: white;
@@ -58,6 +59,7 @@
     font-size: 18px;
     font-weight: normal;
     border-radius: 5px;
+    resize: vertical;
 
 }
 #addQuestionsButton{
@@ -139,6 +141,7 @@
     background-color: white;
     font-size: 18px;
     border-radius: 7px;
+    padding-left: 10px;
 }
 
 .questionOnNewGame > span > pre{

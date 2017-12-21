@@ -12,6 +12,7 @@
 // color: rgb(255, 255, 255);
     /* line-height: 1.625; */
     text-align: center;
+
 }
 
 #modal {
@@ -28,22 +29,32 @@
     border-radius: 15px;
     width: 450px;
     background-color: #fff;
-
-}
-.answersModal{
-    color: #ff6c00;
-    float: right;
-}
-.numberModal {
-    float: left;
-    margin-right: 25px;
 }
 .modalButtonWrap {
-    display: flex;
+    // display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    min-height: 150px;
+    width: 450px;
 }
 .modalGameName {
     color: rgb(255, 255, 255);
 }
-.buttonAddQuestionForm{
-
+.addquestion-buttons {
+    position: relative;
+}
+#addqusetion-left {
+    position: absolute;
+    top: 70px;
+    left: -450px;
+}
+#addqusetion-right {
+    position: absolute;
+    top: 70px;
+    left: -200px;
+}
+#addqusetion-input {
+    margin-top: 30px;
+    height: 30px;
+    width: 455px;
 }
