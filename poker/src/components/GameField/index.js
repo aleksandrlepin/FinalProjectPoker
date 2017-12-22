@@ -11,7 +11,7 @@ import store from './store/index';
 import './gameField.css';
 import ModalNewPlayer from './ModalNewPlayer';
 import ModalAddQuestion from './addQuestion/ModalAddQuestion.js';
-import {addQuestion} from "./store/actions";
+import { addQuestion } from "./store/actions";
 
 
 import addQuestionButton from './addQuestionButton.png';
@@ -25,8 +25,7 @@ let buttonAddQuestion = {
 class GameField extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { isOwner: false }
-        this.state = { ...store.getState(), activeIndex: null, activeQuestionIndex: 1, users_answer: {}, playerName: '' };
+        this.state = { ...store.getState(), activeIndex: null, activeQuestionIndex: 1, users_answer: {}, playerName: '', isOwner: false };
 
         let gameId = this.props.match.params.id;
         localStorage.setItem('gameId', JSON.stringify(gameId));
@@ -138,7 +137,7 @@ class GameField extends React.Component {
         return aver
     }
     createNewQuestion = () => {
-        this.setState({addQuestion:true});
+        this.setState({ addQuestion: true });
     }
 
     modalClose = () => {
@@ -146,7 +145,7 @@ class GameField extends React.Component {
         this.setState({ addQuestion: false });
     }
 
-    addQuestionToGame = (data) =>{
+    addQuestionToGame = (data) => {
         store.dispatch(addQuestion(data));
 
 
@@ -211,16 +210,18 @@ class GameField extends React.Component {
     render() {
         return (
             <div className="game-field">
-                { this.state.endGame && <ModalFinishGame game={this.state.dbToStore[0]} modal={this.modalClose}/> }
-                { this.state.addQuestion && <ModalAddQuestion addNewQuestion={this.addQuestionToGame} modal={this.modalClose}/> }
+                {this.state.endGame && <ModalFinishGame game={this.state.dbToStore[0]} modal={this.modalClose} />}
+                {this.state.addQuestion && <ModalAddQuestion addNewQuestion={this.addQuestionToGame} modal={this.modalClose} />}
 
-                {localStorage.getItem('isOwner') ?
-                    null :
-                    <ModalNewPlayer gameId={this.props.match.params.id} />}
+
 
                 {this.state.dbToStore[0] === undefined ?
                     null :
                     <div className='row'>
+
+                        {localStorage.getItem('useremail') === this.state.dbToStore[0].owner.email ?
+                            null :
+                            <ModalNewPlayer gameId={this.props.match.params.id} />}
                         <div className='col-sm-12 col-md-3'>
                             <div className='container-for-questions'>
                                 {Object.keys(this.state.dbToStore[0].questions).map(key => <Question
