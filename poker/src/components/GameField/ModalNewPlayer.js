@@ -1,7 +1,7 @@
 import React from 'react';
 import Modal from 'react-modal';
 import { withRouter } from 'react-router-dom';
-import { addPlayer } from '../../actions';
+import { addPlayer, updateStore } from '../../actions';
 import { socket } from '../../constants/consts';
 import store from './store/index';
 import './modal.css'
@@ -61,13 +61,20 @@ class ModalNewPlayer extends React.Component {
             .then(res => {
                 console.log('from modal', res.game, res.owner, ' player',  player)
                 socket.emit('add user', player);
+                console.log('from addplayer', res)
                 if (res.owner) {
+                    console.log('if', res.owner
+                
+                )
                     this.props.history.push('/loginOwnGame');
                     localStorage.setItem('currentGameId', this.props.match.params.id);
                     localStorage.setItem('isOwner', true);
                     localStorage.setItem('username', JSON.stringify(res.username));
                 } else {
-                    store.dispatch(addPlayer(res.game));
+                    console.log('else')
+                    localStorage.setItem('isOwner', false);
+                    store.dispatch(addPlayer(res.game)); 
+                    this.props.history.push(`/play/game/${this.props.gameId}`);                 
                 }
 
             })

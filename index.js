@@ -88,7 +88,6 @@ io.listen(server);
 io.on('connection', (socket) => {
     socket.on('add user', function (player) {
 
-        console.log('server - from add user',  player.name, player.email)
         // we store the username in the socket session for this socket
         socket.username = player.name;
         socket.email = player.email;
