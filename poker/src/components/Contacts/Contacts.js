@@ -26,7 +26,7 @@ export default class Contacts extends Component {
 				}
 				this.setState({ usersRes: [...this.state.usersRes, user] });
 			}
-				if (this.state.usersRes.length < 5) this.uploadData(this.state.users[this.state.usersRes.length -1])
+				if (this.state.usersRes.length < this.state.users.length +1) this.uploadData(this.state.users[this.state.usersRes.length -1])
 		})
 		.catch(res => console.log('error', res));
 	}
