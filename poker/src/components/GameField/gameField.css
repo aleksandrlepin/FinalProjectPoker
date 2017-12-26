@@ -4,6 +4,7 @@
     margin: 0 auto;
 }
 .container-for-buttons {
+    margin-top: 25px;
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
