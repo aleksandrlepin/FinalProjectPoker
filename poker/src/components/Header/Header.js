@@ -7,7 +7,7 @@ import { DBtoStore } from '../../actions';
 import store from '../GameField/store/index';
 
 import headerBg from './header-bg.png';
-import headerLogo from './logo.png';
+import headerLogo from './logo_goit.png';
 import Sasha from './Sasha1.jpg';
 import Misha from './Misha.jpg';
 import Dima from './Dima.jpg';

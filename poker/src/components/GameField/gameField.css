@@ -7,6 +7,7 @@
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
+    margin-top: 10px;
 
 }
 .game-button {
@@ -50,7 +51,7 @@
     justify-content: space-between;
     min-height: 40px;
     border-bottom: 1px solid #b7b7b7;
-    padding: 2px 0;
+    margin-bottom: 3px;
 } 
 .active-question {
     background: grey;
@@ -70,9 +71,10 @@
 }
 .question-text {
     font-size: 12px;
+    width: 150px;
 }
 .question-score {
-    width: 50px;
+    width: 45px;
     font-weight: bold;
     background: #00ffff;
     text-align: center;

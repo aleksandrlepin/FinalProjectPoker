@@ -219,7 +219,7 @@ class GameField extends React.Component {
                     null :
                     <div className='row'>
 
-                        {localStorage.getItem('useremail') === this.state.dbToStore[0].owner.email ?
+                        {localStorage.getItem('isOwner') ?
                             null :
                             <ModalNewPlayer gameId={this.props.match.params.id} />}
                         <div className='col-sm-12 col-md-3'>

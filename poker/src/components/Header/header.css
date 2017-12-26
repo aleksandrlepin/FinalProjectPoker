@@ -18,9 +18,8 @@ header {
 }
 .gameLogo {
     height: 65px;
-    width: 85px;
-    // margin-top: 15px;
-    // margin-left: 145px;
+    width: 185px;
+    margin-top: 10px;
     background-repeat: no-repeat;
     cursor: pointer;
 }
