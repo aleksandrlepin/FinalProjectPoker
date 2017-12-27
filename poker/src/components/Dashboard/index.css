@@ -12,10 +12,15 @@ a {
 .fieldSavedGames>div{
 
 }
-
+.wrapper-dashboard {
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
 .windowSavedGame{
 	width: 741px;
-	margin: 106px auto;
+	margin: 0px auto;
 	background-image: url("./background.png");
 	border-radius: 5px;
 	/*box-shadow: 0 1px 13px 4px black;*/

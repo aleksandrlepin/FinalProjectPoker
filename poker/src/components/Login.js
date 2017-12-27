@@ -32,6 +32,7 @@ class Login extends React.Component {
 
     render() {
         return (
+            <div className="wrapper-login">
             <div className="container-for-login-form">
                 <LogError condition={this.state.logged} />
                 <h4>Login</h4>
@@ -43,6 +44,7 @@ class Login extends React.Component {
                    
                     <div className="register-form-submit" onClick={this.handleLogIn}>Log in</div>
                 </form>
+            </div>
             </div>
         )
     }

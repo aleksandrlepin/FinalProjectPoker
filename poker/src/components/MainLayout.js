@@ -6,7 +6,7 @@ export default class MainLayout extends React.Component {
 
     render() {
         return (
-            <div className='container'>
+            <div className='wrapper'>
                <Header />
                 {this.props.children}
                 <Footer />

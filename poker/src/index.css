@@ -23,11 +23,15 @@ h4 {
   font-size: 19px;
   padding-left: 5px;
 }
-
+.wrapper-login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
 .container-for-login-form {
   width: 518px;
   height: 475px;
-  margin: 60px auto;
   background: #061b31;
   padding: 50px;
  
