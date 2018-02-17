@@ -1,3 +1,9 @@
+.wrapper-new-game {
+    padding-top: 100px;
+    display: flex;
+    justify-content: center;
+}
+
 .formNewGame{
     display: block;
     margin: 30px auto;

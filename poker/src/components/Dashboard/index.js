@@ -59,7 +59,7 @@ class Dashboard extends React.Component {
         return (
             <div className="row wrapper-dashboard">
                 <div className="windowSavedGame">
-                    <div className="container" key={this.state.rerender}>
+                    <div className="container1" key={this.state.rerender}>
                         <div className="col-lg-3 col-sm-12">
                             <Menu />
                         </div>

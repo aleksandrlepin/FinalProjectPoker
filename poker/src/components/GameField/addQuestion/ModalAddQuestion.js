@@ -2,7 +2,9 @@ import React from 'react';
 import Modal from 'react-modal';
 import { withRouter } from 'react-router-dom';
 import './ModalAddQuestion.css';
+// eslint-disable-next-line
 let questions = [];
+
 
 const customStylesForm = {
 

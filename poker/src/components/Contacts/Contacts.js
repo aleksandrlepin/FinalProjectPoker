@@ -4,7 +4,7 @@ import './loader.css';
 
 export default class Contacts extends Component {
 	state = {
-		users : ['MichaeIK', 'dmitriyamelchenko', 'Isabell07', 'Soverdo'],
+		users : ['MichaeIK', 'dmitriyamelchenko', 'bella007', 'Soverdo'],
 		usersRes : {}
 	}
 

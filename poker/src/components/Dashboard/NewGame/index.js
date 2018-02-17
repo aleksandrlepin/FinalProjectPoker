@@ -156,7 +156,7 @@ export default class NewGame extends React.Component {
     render() {
         return (
             <div className='row'>
-                <div className='container'>
+                <div className='wrapper-new-game'>
                     <div className="col-lg-3 col-sm-12">
                         <Menu />
                     </div>

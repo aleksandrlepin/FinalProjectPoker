@@ -2,7 +2,7 @@
 	display: flex;
 	flex-wrap: wrap;
 	// flex-direction: column;
-	padding-top: 30px;
+	padding-top: 100px;
 }
 .dev-card {
 	width: 500px;
