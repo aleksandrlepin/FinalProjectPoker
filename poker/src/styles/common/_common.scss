@@ -1,0 +1,144 @@
+@import 'variables';
+
+body {
+	position: relative;
+	min-height: 100vh;
+	background-color: $main-background;
+}
+footer {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+}
+button {
+	transition: background-color .2s;
+  cursor: pointer;
+
+	&:hover {
+		transition: background-color .2s;
+	}
+}
+input {
+  font-family: $roboto-font;
+}
+
+  @keyframes logo-left {
+    from,
+    60%,
+    75%,
+    90%,
+    to {
+      animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    }
+
+    0% {
+      opacity: 0;
+      transform: translate3d(-3000px, 0, 0);
+    }
+
+    60% {
+      opacity: 1;
+      transform: translate3d(25px, 0, 0);
+    }
+
+    75% {
+      transform: translate3d(-10px, 0, 0);
+    }
+
+    90% {
+      transform: translate3d(5px, 0, 0);
+    }
+
+    to {
+      transform: translate3d(0, 0, 0);
+    }
+  }
+  @keyframes logo-flip {
+    from {
+      transform: perspective(400px) rotate3d(0, 1, 0, 90deg);
+      animation-timing-function: ease-in;
+      opacity: 0;
+    }
+
+    40% {
+      transform: perspective(400px) rotate3d(0, 1, 0, -20deg);
+      animation-timing-function: ease-in;
+    }
+
+    60% {
+      transform: perspective(400px) rotate3d(0, 1, 0, 10deg);
+      opacity: 1;
+    }
+
+    80% {
+      transform: perspective(400px) rotate3d(0, 1, 0, -5deg);
+    }
+
+    to {
+      transform: perspective(400px);
+    }
+  }
+  @keyframes rotate {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(-360deg);
+	}
+}
+@keyframes rotate-reverse {
+	0% {
+		transform: rotate(0deg) scaleX(-1);
+	}
+	100% {
+		transform: rotate(360deg) scaleX(-1);
+
+	}
+}
+
+@keyframes left {
+	0% {
+		left: 0;
+	}
+	25% {
+		left: -8px;
+	}
+	75% {
+		left: 6px;
+	}
+	100% {
+		left: 0;
+	}
+}
+@keyframes right {
+	0% {
+		left: 0;
+	}
+	25% {
+		left: 8px;
+	}
+	75% {
+		left: -6px;
+	}
+
+	100% {
+		left: 0;
+	}
+}
+
+// :placeholder {
+// 	color: $form-font;
+// }
+// input {
+// 	height: 30px;
+// 	padding-left: 10px;
+// 	color: $font-grey;
+// 	font-size: 13px;
+// }
+// input:focus {
+// 	border: 1px solid transparent;
+// 	outline: 1px solid transparent;
+// }
+// input {
+// 	задать бордер согласно макету
+// }

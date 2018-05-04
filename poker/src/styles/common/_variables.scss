@@ -1,0 +1,69 @@
+/*colors*/
+$main-background: #F1F2F2;
+$primary-dark-font: #3F3E40;
+$font-grey: #808386;
+$orange: #FF6C00;
+$form-font: #D1D4D5;
+$form-border: #F0F0F1;
+$form-title-darkblue: #132752;
+$buttom-font: #ffffff;
+$buttom-grey: #D1D4D5;
+$list-white: #ffffff;
+$list-grey: #F1F2F2;
+$list-activ-grey: #D1D4D5;
+$list-orange: #FFB077;
+$list-activ-orange: #FEA067;
+$footer-font-grey: #E5E7E7;
+$footer-background: #3F3E40;
+
+/*fonts*/
+$roboto-font: 'Roboto', sans-serif;
+$ubuntu-font: 'Ubuntu', sans-serif;
+
+/*Mixin*/
+@mixin button ($width, $padd, $bagcol, $fs, $bordcol){
+    width: $width;
+    padding: $padd;
+    background-color: $bagcol;
+    font-size: $fs;
+    color: $buttom-font;
+    border-radius:  4px;
+    font-family: "Ubuntu";
+    border-color: $bordcol;
+}
+@mixin buttons-orange ($width, $padd, $fs){
+    width: $width;
+    padding-top: $padd;
+    padding-bottom: $padd;
+    font-size: $fs;
+    background-color: $orange;
+    text-align: center;
+    color: $buttom-font;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    border-bottom-left-radius: 4px;
+    border-bottom: 2px solid lighten($orange, 20%); 
+    border-right: 2px solid lighten($orange, 20%);
+    border-left: 2px solid darken($orange, 15%);
+    border-top: 2px solid darken($orange, 15%);
+    font-family: $ubuntu-font;
+}
+@mixin buttons-grey ($width, $padd, $fs){
+    width: $width;
+    padding-top: $padd;
+    padding-bottom: $padd;
+    font-size: $fs;
+    background-color: $buttom-grey;
+    text-align: center;
+    color: $buttom-font;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    border-bottom-left-radius: 4px;
+    border-top: 2px solid lighten($buttom-grey, 20%); 
+    border-left: 2px solid lighten($buttom-grey, 20%);
+    border-right: 2px solid darken($buttom-grey, 15%);
+    border-bottom: 2px solid darken($buttom-grey, 15%);
+    font-family: $ubuntu-font;
+}

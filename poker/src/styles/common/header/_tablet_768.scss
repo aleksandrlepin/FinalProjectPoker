@@ -1,0 +1,45 @@
+@media only screen and (min-width:768px) {
+    .header {
+        padding: 15px 25px;
+
+        &__logo {
+            &-go {
+                width: 75px;
+                height: auto;
+                animation: logo-left 1s cubic-bezier(.17,.37,.55,1.11);
+                animation-fill-mode: backwards;
+                animation-delay: .5s;
+            }
+            &-it {
+                width: 59px;
+                height: auto;
+                animation: logo-flip 1s cubic-bezier(.17,.37,.55,1.11);
+            }
+        }
+        &__img {
+            width: 138px;
+        }
+        &__navigation,
+        &__control {
+            display: flex;
+        }
+        &__register-link,
+        &__log-link {
+            font-family: $ubuntu-font;
+            font-size: 13px;
+        }
+        &__image-block {
+            margin-bottom: 8px;
+        }
+        &__profile {
+            position: relative;
+            left: -25px;
+            display: block;
+            color: $orange;
+            font-family: $ubuntu-font;
+            font-size: 11px;
+            text-align: right;
+        }
+    }
+    
+}

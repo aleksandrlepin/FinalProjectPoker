@@ -1,0 +1,46 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 25px 60px;
+    &__container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+    &__img {
+        width: 100%;
+        height: auto;
+    }
+    &__menu {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+    &__link {
+        color: $orange;
+        padding: 10px 25px;
+        text-decoration: none;
+        font-size: 24px;
+        font-family: 'Ubuntu',sans-serif;
+    }
+    &__control {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+    &__register-link,
+    &__log-link {
+        color: $orange;
+        padding: 5px 0;
+        text-decoration: none;
+    }
+    &__user-image {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+}

@@ -13,13 +13,14 @@ import Login from './components/Login';
 import LoginOwnGame from './components/LoginOwnGame';
 import About from "./components/About/About";
 import Contacts from "./components/Contacts/Contacts";
+import './styles/index.css';
 
 class App extends Component {
 
   render() {
 
     return (
-      <MainLayout> 
+      <MainLayout>
         <Switch>
           <Route exact path='/' component={MainPage} />
           <Route path='/registration' component={Registration} />
