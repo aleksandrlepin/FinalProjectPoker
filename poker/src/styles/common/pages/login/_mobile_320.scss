@@ -1,0 +1,61 @@
+.login {
+  background-color: $main-background;
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+
+  &__case {
+    margin-top: 90px;
+  }
+
+  &__title {
+    font-size: 20px;
+    font-family: $roboto-font;
+    text-align: center;
+    color: $primary-dark-font;
+    font-weight: 500;
+  }
+
+  .form {
+    &__title {
+      display: block;
+      color: $orange;
+      font-size: 16px;
+      font-family: $roboto-font;
+      margin-top: 20px;
+    }
+
+    &__input {
+      height: 30px;
+      width: 256px;
+      font-size: 13px;
+      border: 0 none;
+      background-color: $main-background;
+      border-bottom: 1px solid #C8CBCC;
+      padding-left: 10px;
+      margin-top: 10px;
+      color: $font-grey;
+
+      &::placeholder {
+        color: $form-font;
+      }
+
+      &:focus {
+        border: 1px solid transparent;
+        outline: 1px solid transparent;
+        border-bottom: 1px solid #C8CBCC;
+      }
+    }
+    &__btn {
+      @include buttons-grey (144px, 7px, 13px);
+      display: block;
+      margin: 138px auto 30px;
+
+      &:hover {
+        @include buttons-orange (144px, 7px, 13px);
+      }
+    }
+  }
+}
+
+

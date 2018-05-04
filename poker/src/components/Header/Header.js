@@ -158,6 +158,7 @@ class Header extends React.Component {
                                 <img src={userpic} alt="user image" className="header__user-image" />
                             </div>
                             <p className="header__profile">{JSON.parse(localStorage.getItem('username'))}</p>
+                            {/* <p className="header__profile">{this.state.playername}</p> */}
                         </a>
                     </div>
                     : null

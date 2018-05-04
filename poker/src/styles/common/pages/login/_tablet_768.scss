@@ -1,0 +1,42 @@
+@media only screen and (min-width:768px) {
+  .login {
+    background-color: $main-background;
+
+    &__case {
+      box-sizing: border-box;
+      width: 416px;
+      height: 454px;
+      background-color: #ffffff;
+      padding: 35px 30px;
+      margin-bottom: 160px;
+    }
+
+    &__title {
+      font-size: 30px;
+    }
+
+    .form {
+      &__title {
+        font-size: 20px;
+      }
+
+      &__input {
+        box-sizing: border-box;
+        width: 354px;
+        height: 30px;
+        font-size: 13px;
+        background-color: #ffffff;
+        border: 1px solid $form-border;
+        padding: 10px 16px;
+        color: $font-grey;
+        &:placeholder {
+          color: $form-font;
+        }
+        
+        &:focus {
+          border: 1px solid $form-border;
+        }
+      }
+    }
+  }
+}

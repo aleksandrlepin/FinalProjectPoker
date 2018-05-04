@@ -1,8 +1,5 @@
 import React from 'react';
 import './index.css';
-// import headerBg from'./header-bg.png';
-
-
 
 export default class Footer extends React.Component {
 
