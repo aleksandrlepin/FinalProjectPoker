@@ -587,3 +587,20 @@ input {
     display: block;
     width: 100%;
     height: auto; }
+
+@media only screen and (min-width: 320px) {
+  .footer {
+    display: none; } }
+
+@media only screen and (min-width: 768px) {
+  .footer {
+    display: flex; } }
+
+.footer {
+  background-color: #3F3E40;
+  padding: 5px 0;
+  display: flex;
+  justify-content: space-around; }
+  .footer__link-team {
+    text-decoration: none;
+    color: #E5E7E7; }

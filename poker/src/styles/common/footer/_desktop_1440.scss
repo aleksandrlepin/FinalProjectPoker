@@ -1,0 +1,10 @@
+.footer {
+    background-color: $footer-background;
+    padding: 5px 0;
+    display: flex;
+    justify-content: space-around;
+    &__link-team {
+        text-decoration: none;
+        color: $footer-font-grey;
+    }
+}

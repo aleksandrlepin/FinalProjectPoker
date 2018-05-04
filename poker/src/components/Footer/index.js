@@ -5,16 +5,16 @@ import './index.css';
 
 
 export default class Footer extends React.Component {
-    
+
     render() {
         return (
-            <footer>
-                <div className="footerLeft">
-                    <span>&#9400; </span><a href="https://goit.ua" className="footer-link">https://goit.ua</a>
-                </div>
-                <div className="footerRigth">
-                    <p>Bootcamp #3 team</p>
-                </div>
+            <footer class="footer">
+                <a href="https://goit.ua" class="footer__link-team">
+                    GoIt 2018
+                </a>
+                <a href="#" class="footer__link-team">
+                    Bootcamp #3 team
+                </a>
             </footer>
         )
     }
