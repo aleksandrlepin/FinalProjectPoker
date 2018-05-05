@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import LogError from './LogError';
-import '../index.css';
+// import '../index.css';
 
 class Login extends React.Component {
     constructor(props) {
@@ -39,9 +39,9 @@ class Login extends React.Component {
                     <LogError condition={this.state.logged} />
                     <h1 className="login__title">Log in</h1>
                     <form className="form" action="#">
-                        <label for="mail" className="form__title">Email</label>
+                        <label htmlFor="mail" className="form__title">Email</label>
                         <input id="mail" ref="email" className="form__input" type="mail" name="email" placeholder="email@gmail.com" />
-                        <label for="passw" className="form__title">Password</label>
+                        <label htmlFor="passw" className="form__title">Password</label>
                         <input id="passw" ref="password" className="form__input" type="password" name="password" placeholder="&bull; &bull; &bull; &bull; &bull; &bull;" />
                         <button className="form__btn" onClick={this.handleLogIn}>Log in</button>
                     </form>

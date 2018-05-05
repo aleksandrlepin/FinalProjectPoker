@@ -1,0 +1,33 @@
+.index {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  &__main {
+    max-width: 220px;
+    margin: auto;
+  }
+
+  &__text {
+    text-align: center;
+    font-size: 20px;
+    font-family: $ubuntu-font;
+    color: $font-grey;
+  }
+
+  &__container-button {
+    margin-top: 168px;
+  }
+
+  &__btn {
+		display: block;
+		margin: auto;
+		@include buttons-grey(146px, 10px, 15px);
+
+		&:hover {
+			@include buttons-orange(146px, 10px, 15px);
+		}
+  }
+}
+     

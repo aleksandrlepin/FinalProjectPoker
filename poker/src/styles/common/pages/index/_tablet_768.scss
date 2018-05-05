@@ -1,0 +1,12 @@
+@media only screen and (min-width: 768px) {
+	.index {
+
+		&__main {
+			max-width: 330px;
+		}
+		
+		&__container-button {
+			margin-top: 68px;
+		}
+	}
+}

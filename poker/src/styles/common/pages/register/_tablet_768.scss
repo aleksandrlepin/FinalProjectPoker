@@ -1,0 +1,18 @@
+@media only screen and (min-width:768px) {
+  .register {
+    margin-top: 50px;
+    padding-bottom: 80px;
+    
+    &__container-form-registation {
+      background: $list-white;
+      box-shadow: 1px 1px 1px 1px $font-grey;
+    }
+
+    .form {
+      
+      &__input {
+        border: 1px solid $list-activ-grey;
+      }
+    }        
+  }
+}

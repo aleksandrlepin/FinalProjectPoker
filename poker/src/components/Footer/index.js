@@ -1,15 +1,15 @@
 import React from 'react';
-import './index.css';
+// import './index.css';
 
 export default class Footer extends React.Component {
 
     render() {
         return (
-            <footer class="footer">
-                <a href="https://goit.ua" class="footer__link-team">
+            <footer className="footer">
+                <a href="https://goit.ua" className="footer__link-team">
                     GoIt 2018
                 </a>
-                <a href="#" class="footer__link-team">
+                <a className="footer__link-team">
                     Bootcamp #3 team
                 </a>
             </footer>

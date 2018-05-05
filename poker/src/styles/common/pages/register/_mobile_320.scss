@@ -1,0 +1,69 @@
+* {
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+}
+.register {
+  margin-top: 50px;
+
+  &__container-form-registation {
+      max-width: 410px;
+      padding: 30px;
+      margin: 0 auto;
+  }
+
+  .form {
+    
+    &__title {
+      text-align: center;
+      font-family: $ubuntu-font;
+      font-size: 24px;
+    }
+
+    &__field {
+      padding: 18px 0 0;
+    }
+
+    &__label {
+      display: block;
+      font-size: 20px;
+      color: $orange;
+      font-family: $ubuntu-font;
+      padding: 0 0 10px;
+    }
+
+    &__input {
+      width: 100%;
+      height: 30px;   
+      padding-left: 10px;
+      color: $font-grey;
+      font-size: 13px;
+      background-color: transparent;
+      border: 1px solid transparent;
+      border-bottom: 1px solid $list-activ-grey;
+      background-color: transparent;
+
+      &::placeholder {
+        color: $form-font;
+      }
+
+      &:focus {
+        outline: 1px solid transparent;
+      }
+    }
+
+    &__buttons {
+      padding: 30px 0 0;
+    }
+
+    &__continue-button {
+      @include buttons-grey (146px, 10px, 15px);
+      cursor: pointer;
+      display: block;
+      margin: 0 auto;
+
+      &:hover {
+          @include buttons-orange (146px, 10px, 15px);
+      }
+    }
+  }
+}

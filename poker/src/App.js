@@ -1,7 +1,7 @@
 // import openSocket from 'socket.io-client';
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import './App.css';
+// import './App.css';
 import MainLayout from './components/MainLayout';
 import Dashboard from './components/Dashboard/index';
 import GameField from './components/GameField/index';

@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { socket } from '../../constants/consts';
-import './header.css';
+// import './header.css';
 
 import { DBtoStore } from '../../actions';
 import store from '../GameField/store/index';
