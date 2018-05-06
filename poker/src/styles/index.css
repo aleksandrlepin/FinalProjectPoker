@@ -906,3 +906,325 @@ body {
     max-width: 330px; }
   .index__container-button {
     margin-top: 68px; } }
+
+.create-game {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 320px;
+  margin: 0 auto; }
+  .create-game .form {
+    display: flex;
+    flex-direction: column; }
+    .create-game .form__button-create {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      width: 290px;
+      height: 40px;
+      background-color: #ffffff;
+      font-family: "Roboto", sans-serif;
+      font-size: 16px;
+      color: #808386;
+      border: none;
+      box-shadow: 1px 1px 2px 0 rgba(0, 0, 0, 0.3);
+      transition: background-color 0.2s; }
+    .create-game .form__button-saved {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      width: 290px;
+      height: 40px;
+      background-color: #ffffff;
+      font-family: "Roboto", sans-serif;
+      font-size: 16px;
+      color: #808386;
+      border: none;
+      box-shadow: 1px 1px 2px 0 rgba(0, 0, 0, 0.3); }
+    .create-game .form__create {
+      padding: 20px; }
+    .create-game .form__title {
+      font-size: 0; }
+    .create-game .form__label {
+      display: block;
+      color: #FF6C00;
+      font-family: "Roboto", sans-serif;
+      font-size: 16px; }
+    .create-game .form__input {
+      background: transparent;
+      width: 98%;
+      height: 30px;
+      padding-left: 10px;
+      margin-bottom: 20px;
+      color: #808386;
+      font-size: 13px;
+      border: none;
+      border-bottom: 1px solid #cbcdce; }
+      .create-game .form__input::placeholder {
+        color: #D1D4D5; }
+      .create-game .form__input:focus {
+        outline: transparent; }
+      .create-game .form__input_min {
+        border-bottom: 1px solid #cbcdce; }
+    .create-game .form__button-add {
+      cursor: pointer;
+      display: block;
+      background: none;
+      border: none;
+      margin: 15px auto; }
+      .create-game .form__button-add:active {
+        outline: none;
+        transition: all 1s;
+        -webkit-transform: scale(0.8, 0.8);
+        -moz-transform: scale(0.8, 0.8);
+        -ms-transform: scale(0.8, 0.8);
+        -o-transform: scale(0.8, 0.8);
+        transform: scale(0.8, 0.8); }
+    .create-game .form__button-block {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 20px; }
+    .create-game .form__button-cancel {
+      width: 142px;
+      padding-top: 6px;
+      padding-bottom: 6px;
+      font-size: 15px;
+      background-color: #D1D4D5;
+      text-align: center;
+      color: #ffffff;
+      border-top-right-radius: 4px;
+      border-top-left-radius: 6px;
+      border-bottom-right-radius: 6px;
+      border-bottom-left-radius: 4px;
+      border-top: 2px solid white;
+      border-left: 2px solid white;
+      border-right: 2px solid #a9afb0;
+      border-bottom: 2px solid #a9afb0;
+      font-family: "Ubuntu", sans-serif;
+      border-top-left-radius: 5px;
+      border-bottom-right-radius: 5px;
+      font-family: "Ubuntu", sans-serif;
+      font-weight: 500;
+      margin-top: 6px;
+      cursor: pointer; }
+      .create-game .form__button-cancel:hover {
+        width: 142px;
+        padding-top: 6px;
+        padding-bottom: 6px;
+        font-size: 15px;
+        background-color: #FF6C00;
+        text-align: center;
+        color: #ffffff;
+        border-top-right-radius: 4px;
+        border-top-left-radius: 6px;
+        border-bottom-right-radius: 6px;
+        border-bottom-left-radius: 4px;
+        border-bottom: 2px solid #ffa766;
+        border-right: 2px solid #ffa766;
+        border-left: 2px solid #b34c00;
+        border-top: 2px solid #b34c00;
+        font-family: "Ubuntu", sans-serif;
+        border-top-left-radius: 5px;
+        border-bottom-right-radius: 5px; }
+      .create-game .form__button-cancel:active {
+        outline: none;
+        transition: all 1s;
+        -webkit-transform: scale(0.9, 0.9);
+        -moz-transform: scale(0.9, 0.9);
+        -ms-transform: scale(0.9, 0.9);
+        -o-transform: scale(0.9, 0.9);
+        transform: scale(0.9, 0.9); }
+    .create-game .form__button-game {
+      width: 142px;
+      padding-top: 6px;
+      padding-bottom: 6px;
+      font-size: 15px;
+      background-color: #D1D4D5;
+      text-align: center;
+      color: #ffffff;
+      border-top-right-radius: 4px;
+      border-top-left-radius: 6px;
+      border-bottom-right-radius: 6px;
+      border-bottom-left-radius: 4px;
+      border-top: 2px solid white;
+      border-left: 2px solid white;
+      border-right: 2px solid #a9afb0;
+      border-bottom: 2px solid #a9afb0;
+      font-family: "Ubuntu", sans-serif;
+      border-top-left-radius: 5px;
+      border-bottom-right-radius: 5px;
+      font-family: "Ubuntu", sans-serif;
+      font-weight: 500;
+      margin-top: 6px;
+      cursor: pointer; }
+      .create-game .form__button-game:hover {
+        width: 142px;
+        padding-top: 6px;
+        padding-bottom: 6px;
+        font-size: 15px;
+        background-color: #FF6C00;
+        text-align: center;
+        color: #ffffff;
+        border-top-right-radius: 4px;
+        border-top-left-radius: 6px;
+        border-bottom-right-radius: 6px;
+        border-bottom-left-radius: 4px;
+        border-bottom: 2px solid #ffa766;
+        border-right: 2px solid #ffa766;
+        border-left: 2px solid #b34c00;
+        border-top: 2px solid #b34c00;
+        font-family: "Ubuntu", sans-serif;
+        border-top-left-radius: 5px;
+        border-bottom-right-radius: 5px; }
+      .create-game .form__button-game:active {
+        outline: none;
+        transition: all 1s;
+        -webkit-transform: scale(0.9, 0.9);
+        -moz-transform: scale(0.9, 0.9);
+        -ms-transform: scale(0.9, 0.9);
+        -o-transform: scale(0.9, 0.9);
+        transform: scale(0.9, 0.9); }
+    .create-game .form .button-create__svg-plus {
+      width: 26px;
+      height: 26px;
+      margin-right: 15px; }
+      .create-game .form .button-create__svg-plus_active-path {
+        fill: #FF6C00; }
+      .create-game .form .button-create__svg-plus_secondary-path {
+        fill: #fff; }
+    .create-game .form .button-add__svg-plus {
+      width: 19px;
+      height: 19px; }
+      .create-game .form .button-add__svg-plus_active-path {
+        fill: #FF6C00; }
+      .create-game .form .button-add__svg-plus_secondary-path {
+        fill: #fff; }
+    .create-game .form .button-saved__svg-list {
+      width: 26px;
+      height: 26px;
+      margin-right: 15px; }
+      .create-game .form .button-saved__svg-list_active-path {
+        fill: #FF6C00; }
+      .create-game .form .button-saved__svg-list_secondary-path {
+        fill: #fff; }
+
+@media all and (min-width: 768px) {
+  .create-game {
+    box-sizing: border-box;
+    display: flex;
+    align-items: flex-end;
+    width: 768px;
+    position: relative;
+    padding: 0 30px;
+    margin-top: 30px; }
+    .create-game .form {
+      display: flex;
+      width: 440px;
+      padding: 20px;
+      background-color: #ffffff;
+      margin: 0;
+      margin-bottom: 160px; }
+      .create-game .form__button-create {
+        width: 190px;
+        position: absolute;
+        top: 0;
+        left: 25px; }
+      .create-game .form__button-saved {
+        width: 190px;
+        position: absolute;
+        top: 50px;
+        left: 25px; }
+      .create-game .form__create {
+        display: block;
+        padding: 20px 60px; }
+      .create-game .form__title {
+        font-family: "Roboto", sans-serif;
+        font-size: 31px;
+        text-align: center;
+        color: #132752;
+        margin-bottom: 20px; }
+      .create-game .form__title-min {
+        font-size: 21px;
+        font-weight: 500; }
+      .create-game .form__input {
+        padding-left: 10px;
+        margin-top: 14px;
+        border: 1px solid #F0F0F1; }
+      .create-game .form__button-block {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        justify-content: space-evenly; }
+      .create-game .form__button-cancel {
+        width: 125px;
+        padding-top: 6px;
+        padding-bottom: 6px;
+        font-size: 15px;
+        background-color: #D1D4D5;
+        text-align: center;
+        color: #ffffff;
+        border-top-right-radius: 4px;
+        border-top-left-radius: 6px;
+        border-bottom-right-radius: 6px;
+        border-bottom-left-radius: 4px;
+        border-top: 2px solid white;
+        border-left: 2px solid white;
+        border-right: 2px solid #a9afb0;
+        border-bottom: 2px solid #a9afb0;
+        font-family: "Ubuntu", sans-serif; }
+        .create-game .form__button-cancel:hover {
+          width: 125px;
+          padding-top: 6px;
+          padding-bottom: 6px;
+          font-size: 15px;
+          background-color: #FF6C00;
+          text-align: center;
+          color: #ffffff;
+          border-top-right-radius: 4px;
+          border-top-left-radius: 6px;
+          border-bottom-right-radius: 6px;
+          border-bottom-left-radius: 4px;
+          border-bottom: 2px solid #ffa766;
+          border-right: 2px solid #ffa766;
+          border-left: 2px solid #b34c00;
+          border-top: 2px solid #b34c00;
+          font-family: "Ubuntu", sans-serif; }
+      .create-game .form__button-game {
+        width: 125px;
+        padding-top: 6px;
+        padding-bottom: 6px;
+        font-size: 15px;
+        background-color: #D1D4D5;
+        text-align: center;
+        color: #ffffff;
+        border-top-right-radius: 4px;
+        border-top-left-radius: 6px;
+        border-bottom-right-radius: 6px;
+        border-bottom-left-radius: 4px;
+        border-top: 2px solid white;
+        border-left: 2px solid white;
+        border-right: 2px solid #a9afb0;
+        border-bottom: 2px solid #a9afb0;
+        font-family: "Ubuntu", sans-serif; }
+        .create-game .form__button-game:hover {
+          width: 125px;
+          padding-top: 6px;
+          padding-bottom: 6px;
+          font-size: 15px;
+          background-color: #FF6C00;
+          text-align: center;
+          color: #ffffff;
+          border-top-right-radius: 4px;
+          border-top-left-radius: 6px;
+          border-bottom-right-radius: 6px;
+          border-bottom-left-radius: 4px;
+          border-bottom: 2px solid #ffa766;
+          border-right: 2px solid #ffa766;
+          border-left: 2px solid #b34c00;
+          border-top: 2px solid #b34c00;
+          font-family: "Ubuntu", sans-serif; }
+      .create-game .form .button-add__svg-plus {
+        width: 27px;
+        height: 27px; } }

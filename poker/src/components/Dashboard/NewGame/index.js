@@ -1,6 +1,6 @@
 import React from 'react';
 import Menu from '../Menu/index.js';
-import "./newGame.css";
+// import "./newGame.css";
 
 export default class NewGame extends React.Component {
     constructor() {
@@ -155,79 +155,141 @@ export default class NewGame extends React.Component {
     };
     render() {
         return (
-            <div className='row'>
-                <div className='wrapper-new-game'>
-                    <div className="col-lg-3 col-sm-12">
-                        <Menu />
-                    </div>
-                    <div className="col-lg-5">
-                        <form className="formNewGame">
-                            <h1 id="formNewGameHeading">
-                                Create New Game
-                            </h1>
-                            <label htmlFor="nameGame">
-                                <h3 id="nameGameHeading">Game Name</h3>
-                                <input
-                                    ref="nameGame"
-                                    id="nameGameValue"
-                                    type="text"
-                                    placeholder="Game name"
-                                />
-                            </label>
-                            <h3 id="descriptionHeading">Description</h3>
-                            <div>
-                                <textarea id="descriptionValue"
-                                    ref="description"
-                                    type="text"
-                                    placeholder='  Description'
-                                >
-                                </textarea>
-                            </div>
-                            <label htmlFor="question" id="labelQuestions">
-                                <h3 id="questionsHeading">Add questions</h3>
-                                <textarea
-                                    ref="question"
-                                    id="questionsValue"
-                                    type="text"
-                                    placeholder="  Question"
-                                />
-                                <button
-                                    // className="btn-default"
-                                    id="addQuestionsButton"
-                                    type="submit"
-                                    onClick={this.addedQuestion}>
-                                </button>
-                            </label>
-                            <div
-                                className="listQuestions">
-                            </div>
-                            <div id="questionsField" placeholder="List of questions">
-                                {
-                                    this.state.rows.length > 0 ?
-                                        this.state.rows.map((item, index) => {
-                                            return (
-                                                <p key={index}>{index + 1}. {item}</p>)
-                                        })
-                                        :
-                                        <div className="questionOnNewGame"><span><pre style={{ fontSize: 22 + "px" }}> No questions</pre></span></div>
-                                }
-                            </div>
-                            <button id="createGameCancelButton"
-                                type="submit"
-                            >
-                                Cancel
-                            </button>
-                            <button id="createGameButton"
-                                onClick={this.handleSubmit}
-                                type="submit"
-                            >
-                                Create Game
-                            </button>
+            <main className="create-game">
+            <form action="" className="form">
 
-                        </form>
-                    </div>
+              <button className="form__button-create button-create">
+                <svg className="button-create__svg-plus" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 512 512" style={{enableBackground:"new 0 0 512 512"}} xmlSpace="preserve" width="512px" height="512px">
+                    <circle className="button-create__svg-plus_active-path" cx="256" cy="256" r="256" data-original="#25B6D2" data-old_color="#F9F8F8"/>
+                    <rect className="button-create__svg-plus_secondary-path" x="240" y="120" width="40" height="280" data-original="#FFFFFF" data-old_color="#EEE4E0"/>
+                    <rect className="button-create__svg-plus_secondary-path" x="120" y="240" width="280" height="40" data-original="#FFFFFF" data-old_color="#EEE4E0"/>
+                </svg>
+                Create new game
+              </button>
+
+              <div className="form__create">
+                <h1 className="form__title" id="formNewGameHeading">Create New Game</h1>
+                <label htmlFor="nameGameValue" className="form__label" id="nameGameHeading">Game name</label>
+                <input className="form__input" type="text" ref="nameGame" id="nameGameValue" placeholder="Game name"/>
+                <label htmlFor="descriptionValue" className="form__label">Description</label>
+                <input className="form__input" id="descriptionValue" ref="description" type="text" placeholder="Description"/>
+                <label htmlFor="questionsValue" className="form__label">Add question</label>
+                <input className="form__input" ref="question" id="questionsValue" type="text" placeholder="Question"/>
+                <button className="form__button-add button-add" id="addQuestionsButton" onClick={this.addedQuestion}>
+                  <svg className="button-add__svg-plus" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 512 512" style={{enableBackground:"new 0 0 512 512"}} xmlSpace="preserve" width="512px" height="512px">
+                      <circle className="button-add__svg-plus_active-path" cx="256" cy="256" r="256" data-original="#25B6D2" data-old_color="#F9F8F8"/>
+                    <rect className="button-add__svg-plus_secondary-path" x="240" y="120" width="40" height="280" data-original="#FFFFFF" data-old_color="#EEE4E0"/>
+                      <rect className="button-add__svg-plus_secondary-path" x="120" y="240" width="280" height="40" data-original="#FFFFFF" data-old_color="#EEE4E0"/>
+                  </svg>
+                </button>
+                <div>
+                    {this.state.rows.length > 0
+                        ? this.state.rows.map((item, index) => {
+                            return (
+                                <p className="form__input form__input_min" key={index}>{index + 1}. {item}</p>
+                            )
+                        })
+                        : <p className="form__input form__input_min">
+                            No question
+                        </p>
+                    }
                 </div>
-            </div>
+              </div>
+
+              <button className="form__button-saved button-saved">
+                <svg className="button-saved__svg-list" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 496.158 496.158" style={{enableBackground:"new 0 0 496.158 496.158"}} xmlSpace="preserve" width="512px" height="512px"><g/>
+                  <path className="button-saved__svg-list_active-path" d="M496.158,248.085c0-137.021-111.07-248.082-248.076-248.082C111.07,0.003,0,111.063,0,248.085  c0,137.002,111.07,248.07,248.083,248.07C385.088,496.155,496.158,385.087,496.158,248.085z" data-original="#E04F5F" data-old_color="#ff6c00"/><g/>
+                  <path className="button-saved__svg-list_secondary-path" d="M392.579,226.079h-225.5c-5.523,0-10,4.479-10,10v24c0,5.523,4.477,10,10,10h225.5   c5.523,0,10-4.477,10-10v-24C402.579,230.558,398.102,226.079,392.579,226.079z" data-original="#FFFFFF" data-old_color="#E9E5E2"/>
+                  <path className="button-saved__svg-list_secondary-path" d="M127.579,226.079h-24c-5.523,0-10,4.479-10,10v24c0,5.523,4.477,10,10,10h24c5.523,0,10-4.477,10-10   v-24C137.579,230.558,133.102,226.079,127.579,226.079z" data-original="#FFFFFF" data-old_color="#E9E5E2"/>
+                  <path className="button-saved__svg-list_secondary-path" d="M392.579,157.079h-225.5c-5.523,0-10,4.479-10,10v24c0,5.523,4.477,10,10,10h225.5   c5.523,0,10-4.477,10-10v-24C402.579,161.558,398.102,157.079,392.579,157.079z" data-original="#FFFFFF" data-old_color="#E9E5E2"/>
+                  <path className="button-saved__svg-list_secondary-path" d="M127.579,157.079h-24c-5.523,0-10,4.479-10,10v24c0,5.523,4.477,10,10,10h24c5.523,0,10-4.477,10-10   v-24C137.579,161.558,133.102,157.079,127.579,157.079z" data-original="#FFFFFF" data-old_color="#E9E5E2"/>
+                  <path className="button-saved__svg-list_secondary-path" d="M392.579,295.079h-225.5c-5.523,0-10,4.479-10,10v24c0,5.523,4.477,10,10,10h225.5   c5.523,0,10-4.477,10-10v-24C402.579,299.558,398.102,295.079,392.579,295.079z" data-original="#FFFFFF" data-old_color="#E9E5E2"/>
+                  <path className="button-saved__svg-list_secondary-path" d="M127.579,295.079h-24c-5.523,0-10,4.479-10,10v24c0,5.523,4.477,10,10,10h24c5.523,0,10-4.477,10-10   v-24C137.579,299.558,133.102,295.079,127.579,295.079z" data-original="#FFFFFF" data-old_color="#E9E5E2"/>
+                </svg>
+                Saved games
+              </button>
+
+              <section className="form__button-block">
+                <button className="form__button-cancel">Cancel</button>
+                <button className="form__button-game" onClick={this.handleSubmit}>Create game</button>
+              </section>
+
+            </form>
+          </main>
+
+            // <div className='row'>
+            //     <div className='wrapper-new-game'>
+            //         <div className="col-lg-3 col-sm-12">
+            //             <Menu />
+            //         </div>
+            //         <div className="col-lg-5">
+            //             <form className="formNewGame">
+            //                 <h1 id="formNewGameHeading">
+            //                     Create New Game
+            //                 </h1>
+            //                 <label htmlFor="nameGame">
+            //                     <h3 id="nameGameHeading">Game Name</h3>
+            //                     <input
+            //                         ref="nameGame"
+            //                         id="nameGameValue"
+            //                         type="text"
+            //                         placeholder="Game name"
+            //                     />
+            //                 </label>
+            //                 <h3 id="descriptionHeading">Description</h3>
+            //                 <div>
+            //                     <textarea id="descriptionValue"
+            //                         ref="description"
+            //                         type="text"
+            //                         placeholder='  Description'
+            //                     >
+            //                     </textarea>
+            //                 </div>
+            //                 <label htmlFor="question" id="labelQuestions">
+            //                     <h3 id="questionsHeading">Add questions</h3>
+            //                     <textarea
+            //                         ref="question"
+            //                         id="questionsValue"
+            //                         type="text"
+            //                         placeholder="  Question"
+            //                     />
+            //                     <button
+            //                         // className="btn-default"
+            //                         id="addQuestionsButton"
+            //                         type="submit"
+            //                         onClick={this.addedQuestion}>
+            //                     </button>
+            //                 </label>
+            //                 <div
+            //                     className="listQuestions">
+            //                 </div>
+            //                 <div id="questionsField" placeholder="List of questions">
+            //                     {
+            //                         this.state.rows.length > 0 ?
+            //                             this.state.rows.map((item, index) => {
+            //                                 return (
+            //                                     <p key={index}>{index + 1}. {item}</p>)
+            //                             })
+            //                             :
+            //                             <div className="questionOnNewGame"><span><pre style={{ fontSize: 22 + "px" }}> No questions</pre></span></div>
+            //                     }
+            //                 </div>
+            //                 <button id="createGameCancelButton"
+            //                     type="submit"
+            //                 >
+            //                     Cancel
+            //                 </button>
+            //                 <button id="createGameButton"
+            //                     onClick={this.handleSubmit}
+            //                     type="submit"
+            //                 >
+            //                     Create Game
+            //                 </button>
+
+            //             </form>
+            //         </div>
+            //     </div>
+            // </div>
         )
     }
 }

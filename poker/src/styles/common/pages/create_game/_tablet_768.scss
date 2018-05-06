@@ -1,0 +1,83 @@
+@media all and (min-width: 768px){
+  .create-game {
+    box-sizing: border-box;
+    display: flex;
+    align-items: flex-end;
+    width: 768px;
+    position: relative;
+    padding: 0 30px;
+    margin-top: 30px;
+  
+  
+    .form {
+      display: flex;
+      width: 440px;
+      padding: 20px;
+      background-color: $buttom-font;
+      margin: 0;
+      margin-bottom: 160px;
+
+      &__button-create {
+        width: 190px;
+        position: absolute;
+        top: 0;
+        left: 25px;
+      }
+      &__button-saved {
+        width: 190px;
+        position: absolute;
+        top: 50px;
+        left: 25px;
+      }
+      &__create {
+        display: block;
+        padding: 20px 60px;
+      }
+      &__title {
+        font-family: $roboto-font;
+        font-size: 31px;
+        text-align: center;
+        color: $form-title-darkblue;
+        margin-bottom: 20px;
+      }
+      &__title-min {
+        font-size: 21px;
+        font-weight: 500;
+      }
+      &__input {
+        padding-left: 10px;
+        margin-top: 14px;
+        border: 1px solid $form-border;
+        
+      }
+
+      &__button-block {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around; //for 11 IE
+        justify-content: space-evenly;
+      }
+      &__button-cancel {
+        @include buttons-grey (125px, 6px, 15px);
+        &:hover {
+          @include buttons-orange(125px, 6px, 15px)
+        }
+      }
+      &__button-game {
+        @include buttons-grey (125px, 6px, 15px);
+        &:hover {
+          @include buttons-orange(125px, 6px, 15px)
+        }
+      }
+
+      //styles for inline SVG
+      .button-add {
+
+        &__svg-plus {
+          width: 27px;
+          height: 27px;
+        }
+      }
+    }
+  }
+}
