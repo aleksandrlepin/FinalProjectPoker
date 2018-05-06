@@ -4,7 +4,10 @@
 @import "./common/common";
 @import "./common/header/index";
 @import "./common/footer/index";
-@import "./common/pages/login/index";
-@import "./common/pages/register/index";
-@import "./common/pages/index/index";
-@import "./common/pages/create_game/index";
+@import "./pages/login/index";
+@import "./pages/register/index";
+@import "./pages/index/index";
+@import "./pages/create_game/index";
+@import "./pages/save_game/index";
+@import "./pages/game/index";
+@import "./pages/edit_story/index";

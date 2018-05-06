@@ -1,0 +1,77 @@
+@media all and (min-width: 768px) {
+  .save-game {
+
+    .result {
+      box-sizing: border-box;
+      width: 530px;
+      background: #fff;
+      position: relative;
+      margin-bottom: 70px;
+      padding: 30px;
+      display: flex;
+      align-items: flex-end;
+
+      &__button-saved {
+        width: 160px;
+        position: absolute;
+        top: 20px;
+        left: 25px;
+        background: $list-grey;
+      }
+
+      &__button-create {
+        width: 160px;
+        position: absolute;
+        top: 70px;
+        left: 25px;
+        background: $list-grey;
+      }
+
+      &__button-account {
+        width: 160px;
+        position: absolute;
+        top: 120px;
+        left: 25px;
+        background: $list-grey;
+      }
+
+      &__information {
+        width: 280px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      &__title {
+        font-family: $ubuntu-font;
+        font-size: 23px;
+        color: $form-title-darkblue;
+      }
+
+      &__game-name {
+        position: relative;
+        margin-top: 20px;
+      }
+
+      &__game-remove {
+        top: 17px;
+      }
+
+      &__text {
+        text-align: left;
+      }
+
+      &__table {
+        text-align: center;
+      }
+
+      &__button-game {
+        @include buttons-grey(142px, 6px, 15px);
+
+        &:hover {
+          @include buttons-orange(142px, 6px, 15px);
+        }
+      }
+    }
+  }
+}

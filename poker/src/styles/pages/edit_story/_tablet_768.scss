@@ -1,0 +1,30 @@
+@media only screen and (min-width:768px) {
+    .edit-story {
+        margin-top: 50px;
+        padding-bottom: 168px;
+        &__container-form-edit {
+
+            background-color: $list-white;
+            -webkit-box-shadow: 1px 1px 1px 1px $font-grey;
+                    box-shadow: 1px 1px 1px 1px $font-grey;
+        }
+        &__edit-container-buttons {
+            flex-direction: row;
+        }
+        &__edit-form-input {
+            border: 1px solid $form-border;
+            &::placeholder {
+                
+            }
+        }
+        &__edit-save-button,
+        &__edit-cancel-button,
+        &__edit-delete-button {
+            -ms-flex-preferred-size: 30%;
+                flex-basis: 30%;
+        }
+        &__edit-container-buttons {
+            padding: 60px 0 0;
+        }
+    }
+}

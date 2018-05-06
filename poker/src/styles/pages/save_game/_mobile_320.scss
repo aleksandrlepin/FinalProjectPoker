@@ -1,0 +1,192 @@
+.save-game {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .result {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &__button-saved {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      width: 290px;
+      height: 40px;
+      background-color: $buttom-font;
+      font-family: $roboto-font;
+      font-size: 16px;
+      color: $font-grey;
+      border: none;
+      box-shadow: 1px 1px 2px 0 rgba(0,0,0,0.3);
+      margin: 8px 0;
+    }
+
+    &__button-create {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      width: 290px;
+      height: 40px;
+      background-color: $buttom-font;
+      font-family: $roboto-font;
+      font-size: 16px;
+      color: $font-grey;
+      border: none;
+      box-shadow: 1px 1px 2px 0 rgba(0,0,0,0.3);
+      margin: 8px 0;
+    }
+
+    &__button-account {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      width: 290px;
+      height: 40px;
+      background-color: $buttom-font;
+      font-family: $roboto-font;
+      font-size: 16px;
+      color: $font-grey;
+      border: none;
+      box-shadow: 1px 1px 2px 0 rgba(0,0,0,0.3);
+      margin: 8px 0;
+    }
+    &__information {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    &__title {
+      font-size: 0;
+    }
+
+    &__game-name {
+      padding-right: 10px;
+      font-size: 18px;
+      font-weight: 400;
+      color: $orange;
+      font-family: $roboto-font;
+      margin-top: 14px;
+    }
+
+    &__game-container {
+      position: relative;
+      margin-bottom: 10px;
+    }
+
+    &__game-remove {
+      position: absolute;
+      right: 0;
+      top: 10px;
+      font-size: 18px;
+      font-weight: 400;
+      color: $orange;
+      font-family: $roboto-font;
+      cursor: pointer;
+    }
+    &__link {
+      font-family: $roboto-font;
+      font-size: 10px;
+      color: #202b52;
+      margin: 5px 0 30px;
+    }
+
+    &__text {
+      font-family: $roboto-font;
+      font-size: 14px;
+      color: $font-grey;
+      text-align: center;
+      line-height: 1.2;
+      padding: 10px 0;
+      width: 200px;
+    }
+
+    &__table {
+      font-family: $roboto-font;
+      font-size: 10px;
+      color: $font-grey;
+      text-align: center;
+      line-height: 1.2;
+      &_border {
+        border-right: 2px solid #d2d2d2;
+      }
+    }
+
+    &__table-title {
+      color: $orange;
+      padding: 0 6px;
+    }
+
+    &__table-data {
+      padding: 2px 6px;
+    }
+
+    &__button-game {
+      @include buttons-grey(134px, 6px, 11px);
+      border-top-left-radius: 5px;
+      border-bottom-right-radius: 5px;
+      font-family: $ubuntu-font;
+      font-weight: 500;
+      margin: 25px 0;
+      cursor: pointer;
+      &:hover {
+        @include buttons-orange(134px, 6px, 11px);
+      }
+    }
+
+    //styles for inline SVG
+    .button-saved {
+
+      &__svg-list {
+        width: 26px;
+        height: 26px;
+        margin-right: 15px;
+
+        &_active-path {
+          fill: $orange;
+        }
+        &_secondary-path {
+          fill: #fff;
+        }
+      }
+    }
+
+    //styles for inline SVG
+    .button-create {
+
+      &__svg-plus {
+        width: 26px;
+        height: 26px;
+        margin-right: 15px;
+
+        &_active-path {
+          fill: $orange;
+        }
+        &_secondary-path {
+          fill: #fff;
+        }
+      }
+    }
+
+    //styles for inline SVG
+    .button-account {
+
+      &__settings {
+        width: 26px;
+        height: 26px;
+        margin-right: 15px;
+
+        &_active-path {
+          fill: $orange;
+        }
+        &_secondary-path {
+          fill: #fff;
+        }
+      }
+    }
+  }
+}

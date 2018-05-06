@@ -1,0 +1,105 @@
+@media only screen and (min-width: 480px) {
+	.game {
+		padding-bottom: 45px;
+		
+		.cards {
+
+			&__name {
+				font-size: 16px;
+			} 
+		}
+
+		.buttons {
+
+			&__item {
+				@include buttons-grey (205px, 15px, 17px);
+				border-radius: 8px;
+
+				&:hover {
+					@include buttons-orange (205px, 15px, 17px);
+					border-radius: 8px;
+				}
+			}
+
+			&__card-item {
+				width: 64px;
+				height: 105px;
+				line-height: 105px;
+				font-size: 35px;
+				border-radius: 4px;
+			}
+
+			&__icon-flip {
+			width: 14px;
+			height: 14px;
+			position: relative;
+			bottom: -2px;
+			}
+
+			&__icon-reset {
+				width: 14px;
+				height: 14px;
+				position: relative;
+				bottom: -2px;
+				transform: scaleX(-1);
+			}
+
+			&__icon-next {
+				width: 14px;
+				height: 14px;
+				position: relative;
+				bottom: -2px;
+			}
+
+			&__icon-previous {
+				width: 14px;
+				height: 14px;
+				position: relative;
+				bottom: -2px;
+			}
+		}
+		.questions {
+
+			&__item {
+				height: 57px;
+				margin-bottom: 15px;
+
+				&-number {
+					font-size: 21px;
+				}
+
+				&-text {
+					font-size: 15px;
+				}
+
+				&-count {
+					font-size: 19px;
+					width: 42px;
+					height: 42px;
+					line-height: 42px;
+				}
+			}
+
+			&__add-item {
+				width: 33px;
+				height: 33px;
+				line-height: 33px;
+				font-size: 22px;
+				margin: 22px auto 31px;
+			}
+		}
+		
+		&__button-end {
+			@include buttons-grey (205px, 15px, 17px);
+			border-radius: 8px;
+			transition: background-color 0.2s;
+
+			&:hover {
+				@include buttons-orange (205px, 15px, 17px);
+				border-radius: 8px;
+				transition: background-color 0.2s;
+			}
+		}
+	}
+
+}

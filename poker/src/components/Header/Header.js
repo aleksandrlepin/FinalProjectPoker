@@ -136,24 +136,24 @@ class Header extends React.Component {
         return (
             <header className="header">
                 <div className="header__container">
-                    <a href="" onClick={this.handleLogoClick}>
+                    <a onClick={this.handleLogoClick}>
                         <img className="header__logo-go" src={go} alt="go" />
                         <img className="header__logo-it" src={it} alt="it" />
                     </a>
-                    <nav className="header__navigation">
+                    {/* <nav className="header__navigation">
                         <ul className="header__menu">
                             <li onClick={this.handleClick.bind(null, '/contacts')} className="header__item">
-                                <a href="" className="header__link">Contact</a>
+                                <a className="header__link">Contact</a>
                             </li>
                             <li onClick={this.handleClick.bind(null, '/about')} className="header__item">
-                                <a href="" className="header__link">About</a>
+                                <a className="header__link">About</a>
                             </li>
                         </ul>
-                    </nav>
+                    </nav> */}
                 </div>
                 {localStorage.getItem('username') !== null
                     ? <div className="header__container-link-and-img">
-                        <a href="" onClick={this.handleRedirect}>
+                        <a  onClick={this.handleRedirect}>
                             <div className="header__image-block">
                                 <img src={userpic} alt="user image" className="header__user-image" />
                             </div>
@@ -169,7 +169,7 @@ class Header extends React.Component {
                             {/* <a href="register.html" className="header__register-link">
                                 Register
                             </a> */}
-                            <a href="" className="header__log-link" onClick={this.handleLogout}>
+                            <a className="header__log-link" onClick={this.handleLogout}>
                                 Log Out
                             </a>
                         </div>
@@ -187,10 +187,10 @@ class Header extends React.Component {
                     // </div>
                     : <div className="header__container-link-and-img">
                         <div className="header__control">
-                            <a href="" className="header__register-link" onClick={this.handleClick.bind(null, '/registration')}>
+                            <a className="header__register-link" onClick={this.handleClick.bind(null, '/registration')}>
                                 Register
                             </a>
-                            <a href="" className="header__log-link" onClick={this.handleClick.bind(null, '/login')}>
+                            <a className="header__log-link" onClick={this.handleClick.bind(null, '/login')}>
                                 Log In
                             </a>
                         </div>

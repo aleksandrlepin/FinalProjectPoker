@@ -1,0 +1,156 @@
+@media only screen and (min-width: 768px) {
+	.game {
+		max-width: 690px;
+		min-height: calc(100vh - 163px);
+		margin: auto;
+		padding-bottom: 81px;
+		display: flex;
+		flex-wrap: wrap;
+		align-content: flex-start;
+
+		.cards {
+			flex-basis: 60%;
+			padding-top: 0;
+
+			&__header {
+				text-align: left;
+				font-size: 16px;
+				color: $orange;
+				margin-left: 30px;
+				padding-bottom: 55px;
+			}
+
+			&__block {
+				margin-bottom: 0;
+				padding-right: 0;
+			}
+
+			&__image {
+				width: 97px;
+			}
+
+			&__name {
+				font-size: 16px;
+			}
+		}
+
+		.buttons {
+			flex-basis: 100%;
+			margin-top: 45px;
+			margin-left: 0;
+
+			&__option-block {
+				flex-basis: 25%;
+
+				&_flip {
+					order: -4;
+				}
+				&_reset {
+					order: -3;
+				}
+				&_previous {
+					order: -2;
+				}
+				&_next {
+					order: -1;
+				}
+			}
+
+			&__cards {
+				margin-top: 108px;
+			}
+
+			&__card-block {
+				flex-basis: 10%;
+				margin-bottom: 70px;
+
+				&:hover .buttons__card-item {
+					transform: translateY(-30px);
+				}
+			}
+
+			&__item {
+				@include buttons-grey (160px, 13px, 13px);
+				border-radius: 8px;
+				margin-bottom: 0;
+
+				&:hover {
+					@include buttons-orange (160px, 13px, 13px);
+					border-radius: 8px;
+				}
+			}
+
+			&__card-item {
+				width: 40px;
+				height: 65px;
+				line-height: 65px;
+				font-size: 23px;
+				border-radius: 4px;
+				background-color: $list-activ-grey;
+				color: $buttom-font;
+				transition: all 0.2s;
+			}
+		}
+
+		.questions {
+			order: -1;
+			flex-basis: 36%;
+			padding: 8px;
+			background-color: $list-white;
+			margin: 0;
+
+			&__block {
+				height: 180px;
+				overflow-y: scroll;
+			}
+
+			&__item {
+				height: 40px;
+				margin-bottom: 7px;
+				margin-right: 18px;
+				background-color: $list-grey;
+
+				&-number {
+					font-size: 14px;
+					flex-basis: 15%;
+				}
+
+				&-text {
+					font-size: 10px;
+				}
+
+				&-count {
+					font-size: 13px;
+					width: 25px;
+					height: 25px;
+					line-height: 25px;
+				}
+			}
+
+			&__add-item {
+				width: 26px;
+				height: 26px;
+				line-height: 26px;
+				font-size: 20px;
+				margin: 15px auto 15px;
+				background-color: $list-grey;
+			}
+		}
+
+		&__button-end {
+			@include buttons-grey (165px, 13px, 13px);
+			border-radius: 8px;
+
+			&:hover {
+				@include buttons-orange (165px, 13px, 13px);
+				border-radius: 8px;
+			}
+		}
+		
+		&__button-block {
+			flex-basis: 100%;
+		}
+	}
+	
+
+}

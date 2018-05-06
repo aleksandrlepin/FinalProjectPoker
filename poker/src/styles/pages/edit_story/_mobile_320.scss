@@ -1,0 +1,102 @@
+* {
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+}
+body {
+    background-color: $main-background;
+}
+.edit-story {
+    margin-top: 50px;
+    &__container-form-edit {
+        max-width: 480px;
+        padding: 30px;
+        margin: 0 auto;
+    }
+    &__form-edit-title {
+        text-align: center;
+        font-family: $ubuntu-font;
+        font-size: 24px;
+    }
+    &__edit-container-field {
+        padding: 18px 0 0;
+    }
+    &__edit-form-label {
+        display: block;
+        font-size: 20px;
+        color: $orange;
+        font-family: $ubuntu-font;
+        padding: 0 0 10px;
+    }
+    &__edit-form-input {
+        width: 100%;
+        height: 30px;	
+     	padding-left: 10px;
+     	color: $font-grey;
+     	font-size: 13px;
+        border: 1px solid transparent;
+        border-bottom: 1px solid $list-activ-grey;
+        background-color: transparent;
+        &::placeholder {
+            color: $form-font;
+        }
+        &:focus {
+         	
+         	outline: 1px solid transparent;
+        }
+    }
+    &__edit-container-buttons {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        flex-direction: column;
+        -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+                justify-content: space-between;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+    }
+    &__edit-save-button,
+    &__edit-cancel-button,
+    &__edit-delete-button {
+        -ms-flex-preferred-size: 34%;
+            flex-basis: 34%;
+        cursor: pointer;
+        display: block;
+    }
+    &__add-edit-add {
+       font-size: 18px;
+       text-align: center;
+       margin: 0 auto;
+       cursor: pointer;
+       height: 25px;
+       width: 25px;
+       border-radius: 50%;
+       -webkit-box-shadow: 1px 1px 1px 1px $font-grey;
+               box-shadow: 1px 1px 1px 1px $font-grey;
+       background-color: $orange;
+       color: $buttom-font;
+    }
+    &__svg-plus {
+        width: 100%;
+        height: auto;
+        fill: $orange;
+    }
+    &__svg-plus_secondary-path {
+        fill: $buttom-font;
+    }
+    &__edit-container-buttons {
+        padding: 40px 0 0;
+    }
+    &__edit-save-button,
+    &__edit-cancel-button,
+    &__edit-delete-button {
+        @include buttons-grey (146px, 10px, 15px);
+        margin-bottom: 10px;
+        &:hover {
+            @include buttons-orange (146px, 10px, 15px);
+        }
+    }
+}

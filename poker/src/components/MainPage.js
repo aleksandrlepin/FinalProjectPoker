@@ -18,7 +18,7 @@ class MainPage extends React.Component {
                     </p>
                     <div className="index__container-button">
                         <button className="index__btn" onClick={() => {
-                            this.props.history.push("/login");
+                            this.props.history.push("/dashboard");
                         }}>
                             Start game
                         </button>

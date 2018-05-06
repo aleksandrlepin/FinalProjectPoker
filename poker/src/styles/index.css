@@ -162,7 +162,8 @@ footer {
 
 button {
   transition: background-color .2s;
-  cursor: pointer; }
+  cursor: pointer;
+  outline: none; }
   button:hover {
     transition: background-color .2s; }
 
@@ -401,7 +402,8 @@ footer {
 
 button {
   transition: background-color .2s;
-  cursor: pointer; }
+  cursor: pointer;
+  outline: none; }
   button:hover {
     transition: background-color .2s; }
 
@@ -967,6 +969,14 @@ body {
         outline: transparent; }
       .create-game .form__input_min {
         border-bottom: 1px solid #cbcdce; }
+      .create-game .form__input-question-list {
+        padding: 5px 10px;
+        height: auto;
+        font-family: "Roboto", sans-serif;
+        color: #808386;
+        font-size: 13px; }
+      .create-game .form__input-question {
+        padding: 5px 0; }
     .create-game .form__button-add {
       cursor: pointer;
       display: block;
@@ -985,7 +995,7 @@ body {
       display: flex;
       flex-direction: column;
       align-items: center;
-      margin-top: 20px; }
+      margin-bottom: 20px; }
     .create-game .form__button-cancel {
       width: 142px;
       padding-top: 6px;
@@ -1228,3 +1238,2022 @@ body {
       .create-game .form .button-add__svg-plus {
         width: 27px;
         height: 27px; } }
+
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain) */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline; }
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block; }
+
+body {
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+a {
+  text-decoration: none; }
+
+/* cyrillic */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 300;
+  src: local("Roboto Light"), local("Roboto-Light"), url("../fonts/Roboto/Roboto-Light-cyr.woff2") format("woff2");
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+
+/* latin */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 300;
+  src: local("Roboto Light"), local("Roboto-Light"), url("../fonts/Roboto/Roboto-Light-lat.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+/* cyrillic */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: local("Roboto"), local("Roboto-Regular"), url("../fonts/Roboto/Roboto-Regular-cyr.woff2") format("woff2");
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+
+/* latin */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: local("Roboto"), local("Roboto-Regular"), url("../fonts/Roboto/Roboto-Regular-lat.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+/* cyrillic */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  src: local("Roboto Medium"), local("Roboto-Medium"), url("../fonts/Roboto/Roboto-Medium-cyr.woff2") format("woff2");
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+
+/* latin */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  src: local("Roboto Medium"), local("Roboto-Medium"), url("../fonts/Roboto/Roboto-Medium-lat.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+/*_______________________________*/
+/* cyrillic */
+@font-face {
+  font-family: 'Ubuntu';
+  font-style: normal;
+  font-weight: 300;
+  src: local("Ubuntu Light"), local("Ubuntu-Light"), url("../fonts/Ubuntu/Ubuntu-Light-cyr.woff2") format("woff2");
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+
+/* latin */
+@font-face {
+  font-family: 'Ubuntu';
+  font-style: normal;
+  font-weight: 300;
+  src: local("Ubuntu Light"), local("Ubuntu-Light"), url("../fonts/Ubuntu/Ubuntu-Light-lat.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+/* cyrillic */
+@font-face {
+  font-family: 'Ubuntu';
+  font-style: normal;
+  font-weight: 400;
+  src: local("Ubuntu Regular"), local("Ubuntu-Regular"), url("../fonts/Ubuntu/Ubuntu-Regular-cyr.woff2") format("woff2");
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+
+/* latin */
+@font-face {
+  font-family: 'Ubuntu';
+  font-style: normal;
+  font-weight: 400;
+  src: local("Ubuntu Regular"), local("Ubuntu-Regular"), url("../fonts/Ubuntu/Ubuntu-Regular-lat.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+/* cyrillic */
+@font-face {
+  font-family: 'Ubuntu';
+  font-style: normal;
+  font-weight: 500;
+  src: local("Ubuntu Medium"), local("Ubuntu-Medium"), url("../fonts/Ubuntu/Ubuntu-Medium-cyr.woff2") format("woff2");
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+
+/* latin */
+@font-face {
+  font-family: 'Ubuntu';
+  font-style: normal;
+  font-weight: 500;
+  src: local("Ubuntu Medium"), local("Ubuntu-Medium"), url("../fonts/Ubuntu/Ubuntu-Medium-lat.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+/*colors*/
+/*fonts*/
+/*Mixin*/
+/*colors*/
+/*fonts*/
+/*Mixin*/
+body {
+  position: relative;
+  min-height: 100vh;
+  background-color: #F1F2F2; }
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%; }
+
+button {
+  transition: background-color .2s;
+  cursor: pointer;
+  outline: none; }
+  button:hover {
+    transition: background-color .2s; }
+
+input {
+  font-family: "Roboto", sans-serif; }
+
+@keyframes logo-left {
+  from,
+  60%,
+  75%,
+  90%,
+  to {
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1); }
+  0% {
+    opacity: 0;
+    transform: translate3d(-3000px, 0, 0); }
+  60% {
+    opacity: 1;
+    transform: translate3d(25px, 0, 0); }
+  75% {
+    transform: translate3d(-10px, 0, 0); }
+  90% {
+    transform: translate3d(5px, 0, 0); }
+  to {
+    transform: translate3d(0, 0, 0); } }
+
+@keyframes logo-flip {
+  from {
+    transform: perspective(400px) rotate3d(0, 1, 0, 90deg);
+    animation-timing-function: ease-in;
+    opacity: 0; }
+  40% {
+    transform: perspective(400px) rotate3d(0, 1, 0, -20deg);
+    animation-timing-function: ease-in; }
+  60% {
+    transform: perspective(400px) rotate3d(0, 1, 0, 10deg);
+    opacity: 1; }
+  80% {
+    transform: perspective(400px) rotate3d(0, 1, 0, -5deg); }
+  to {
+    transform: perspective(400px); } }
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg); }
+  100% {
+    transform: rotate(-360deg); } }
+
+@keyframes rotate-reverse {
+  0% {
+    transform: rotate(0deg) scaleX(-1); }
+  100% {
+    transform: rotate(360deg) scaleX(-1); } }
+
+@keyframes left {
+  0% {
+    left: 0; }
+  25% {
+    left: -8px; }
+  75% {
+    left: 6px; }
+  100% {
+    left: 0; } }
+
+@keyframes right {
+  0% {
+    left: 0; }
+  25% {
+    left: 8px; }
+  75% {
+    left: -6px; }
+  100% {
+    left: 0; } }
+
+@media only screen and (min-width: 320px) {
+  .header {
+    padding: 15px; }
+    .header__logo-go {
+      width: 32px;
+      margin-right: -4px; }
+    .header__logo-it {
+      width: 24px; }
+    .header__img {
+      width: 50px; }
+    .header__navigation, .header__control {
+      display: none; }
+    .header__user-image {
+      display: block;
+      width: 100%;
+      height: auto; }
+    .header__image-block {
+      width: 17px;
+      height: 17px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 1px solid black; }
+    .header__profile {
+      display: none; } }
+
+@media only screen and (min-width: 480px) {
+  .header__logo-go {
+    width: 45px; }
+  .header__logo-it {
+    width: 36px; }
+  .header__image-block {
+    width: 25px;
+    height: 25px; }
+  .header__img {
+    width: 80px; } }
+
+@media only screen and (min-width: 768px) {
+  .header {
+    padding: 15px 25px; }
+    .header__logo-go {
+      width: 75px;
+      height: auto;
+      animation: logo-left 1s cubic-bezier(0.17, 0.37, 0.55, 1.11);
+      animation-fill-mode: backwards;
+      animation-delay: .5s; }
+    .header__logo-it {
+      width: 59px;
+      height: auto;
+      animation: logo-flip 1s cubic-bezier(0.17, 0.37, 0.55, 1.11); }
+    .header__img {
+      width: 138px; }
+    .header__navigation, .header__control {
+      display: flex; }
+    .header__register-link, .header__log-link {
+      font-family: "Ubuntu", sans-serif;
+      font-size: 13px; }
+    .header__image-block {
+      margin-bottom: 8px; }
+    .header__profile {
+      position: relative;
+      left: -25px;
+      display: block;
+      color: #FF6C00;
+      font-family: "Ubuntu", sans-serif;
+      font-size: 11px;
+      text-align: right; } }
+
+@media only screen and (min-width: 960px) {
+  .header__image-block {
+    width: 33px;
+    height: 33px; }
+  .header__profile {
+    left: -20px; } }
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 25px 60px; }
+  .header__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; }
+  .header__img {
+    width: 100%;
+    height: auto; }
+  .header__menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; }
+  .header__link {
+    color: #FF6C00;
+    padding: 10px 25px;
+    text-decoration: none;
+    font-size: 24px;
+    font-family: 'Ubuntu',sans-serif; }
+  .header__control {
+    display: flex;
+    align-items: center;
+    flex-direction: column; }
+  .header__register-link, .header__log-link {
+    color: #FF6C00;
+    padding: 5px 0;
+    text-decoration: none; }
+  .header__user-image {
+    display: block;
+    width: 100%;
+    height: auto; }
+
+@media only screen and (min-width: 320px) {
+  .footer {
+    display: none; } }
+
+@media only screen and (min-width: 768px) {
+  .footer {
+    display: flex; } }
+
+.footer {
+  background-color: #3F3E40;
+  padding: 5px 0;
+  display: flex;
+  justify-content: space-around; }
+  .footer__link-team {
+    text-decoration: none;
+    color: #E5E7E7; }
+
+.save-game {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
+  .save-game .result {
+    display: flex;
+    flex-direction: column;
+    align-items: center; }
+    .save-game .result__button-saved {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      width: 290px;
+      height: 40px;
+      background-color: #ffffff;
+      font-family: "Roboto", sans-serif;
+      font-size: 16px;
+      color: #808386;
+      border: none;
+      box-shadow: 1px 1px 2px 0 rgba(0, 0, 0, 0.3);
+      margin: 8px 0; }
+    .save-game .result__button-create {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      width: 290px;
+      height: 40px;
+      background-color: #ffffff;
+      font-family: "Roboto", sans-serif;
+      font-size: 16px;
+      color: #808386;
+      border: none;
+      box-shadow: 1px 1px 2px 0 rgba(0, 0, 0, 0.3);
+      margin: 8px 0; }
+    .save-game .result__button-account {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      width: 290px;
+      height: 40px;
+      background-color: #ffffff;
+      font-family: "Roboto", sans-serif;
+      font-size: 16px;
+      color: #808386;
+      border: none;
+      box-shadow: 1px 1px 2px 0 rgba(0, 0, 0, 0.3);
+      margin: 8px 0; }
+    .save-game .result__information {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center; }
+    .save-game .result__title {
+      font-size: 0; }
+    .save-game .result__game-name {
+      padding-right: 10px;
+      font-size: 18px;
+      font-weight: 400;
+      color: #FF6C00;
+      font-family: "Roboto", sans-serif;
+      margin-top: 14px; }
+    .save-game .result__game-container {
+      position: relative;
+      margin-bottom: 10px; }
+    .save-game .result__game-remove {
+      position: absolute;
+      right: 0;
+      top: 10px;
+      font-size: 18px;
+      font-weight: 400;
+      color: #FF6C00;
+      font-family: "Roboto", sans-serif;
+      cursor: pointer; }
+    .save-game .result__link {
+      font-family: "Roboto", sans-serif;
+      font-size: 10px;
+      color: #202b52;
+      margin: 5px 0 30px; }
+    .save-game .result__text {
+      font-family: "Roboto", sans-serif;
+      font-size: 14px;
+      color: #808386;
+      text-align: center;
+      line-height: 1.2;
+      padding: 10px 0;
+      width: 200px; }
+    .save-game .result__table {
+      font-family: "Roboto", sans-serif;
+      font-size: 10px;
+      color: #808386;
+      text-align: center;
+      line-height: 1.2; }
+      .save-game .result__table_border {
+        border-right: 2px solid #d2d2d2; }
+    .save-game .result__table-title {
+      color: #FF6C00;
+      padding: 0 6px; }
+    .save-game .result__table-data {
+      padding: 2px 6px; }
+    .save-game .result__button-game {
+      width: 134px;
+      padding-top: 6px;
+      padding-bottom: 6px;
+      font-size: 11px;
+      background-color: #D1D4D5;
+      text-align: center;
+      color: #ffffff;
+      border-top-right-radius: 4px;
+      border-top-left-radius: 6px;
+      border-bottom-right-radius: 6px;
+      border-bottom-left-radius: 4px;
+      border-top: 2px solid white;
+      border-left: 2px solid white;
+      border-right: 2px solid #a9afb0;
+      border-bottom: 2px solid #a9afb0;
+      font-family: "Ubuntu", sans-serif;
+      border-top-left-radius: 5px;
+      border-bottom-right-radius: 5px;
+      font-family: "Ubuntu", sans-serif;
+      font-weight: 500;
+      margin: 25px 0;
+      cursor: pointer; }
+      .save-game .result__button-game:hover {
+        width: 134px;
+        padding-top: 6px;
+        padding-bottom: 6px;
+        font-size: 11px;
+        background-color: #FF6C00;
+        text-align: center;
+        color: #ffffff;
+        border-top-right-radius: 4px;
+        border-top-left-radius: 6px;
+        border-bottom-right-radius: 6px;
+        border-bottom-left-radius: 4px;
+        border-bottom: 2px solid #ffa766;
+        border-right: 2px solid #ffa766;
+        border-left: 2px solid #b34c00;
+        border-top: 2px solid #b34c00;
+        font-family: "Ubuntu", sans-serif; }
+    .save-game .result .button-saved__svg-list {
+      width: 26px;
+      height: 26px;
+      margin-right: 15px; }
+      .save-game .result .button-saved__svg-list_active-path {
+        fill: #FF6C00; }
+      .save-game .result .button-saved__svg-list_secondary-path {
+        fill: #fff; }
+    .save-game .result .button-create__svg-plus {
+      width: 26px;
+      height: 26px;
+      margin-right: 15px; }
+      .save-game .result .button-create__svg-plus_active-path {
+        fill: #FF6C00; }
+      .save-game .result .button-create__svg-plus_secondary-path {
+        fill: #fff; }
+    .save-game .result .button-account__settings {
+      width: 26px;
+      height: 26px;
+      margin-right: 15px; }
+      .save-game .result .button-account__settings_active-path {
+        fill: #FF6C00; }
+      .save-game .result .button-account__settings_secondary-path {
+        fill: #fff; }
+
+@media all and (min-width: 768px) {
+  .save-game .result {
+    box-sizing: border-box;
+    width: 530px;
+    background: #fff;
+    position: relative;
+    margin-bottom: 70px;
+    padding: 30px;
+    display: flex;
+    align-items: flex-end; }
+    .save-game .result__button-saved {
+      width: 160px;
+      position: absolute;
+      top: 20px;
+      left: 25px;
+      background: #F1F2F2; }
+    .save-game .result__button-create {
+      width: 160px;
+      position: absolute;
+      top: 70px;
+      left: 25px;
+      background: #F1F2F2; }
+    .save-game .result__button-account {
+      width: 160px;
+      position: absolute;
+      top: 120px;
+      left: 25px;
+      background: #F1F2F2; }
+    .save-game .result__information {
+      width: 280px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start; }
+    .save-game .result__title {
+      font-family: "Ubuntu", sans-serif;
+      font-size: 23px;
+      color: #132752; }
+    .save-game .result__game-name {
+      position: relative;
+      margin-top: 20px; }
+    .save-game .result__game-remove {
+      top: 17px; }
+    .save-game .result__text {
+      text-align: left; }
+    .save-game .result__table {
+      text-align: center; }
+    .save-game .result__button-game {
+      width: 142px;
+      padding-top: 6px;
+      padding-bottom: 6px;
+      font-size: 15px;
+      background-color: #D1D4D5;
+      text-align: center;
+      color: #ffffff;
+      border-top-right-radius: 4px;
+      border-top-left-radius: 6px;
+      border-bottom-right-radius: 6px;
+      border-bottom-left-radius: 4px;
+      border-top: 2px solid white;
+      border-left: 2px solid white;
+      border-right: 2px solid #a9afb0;
+      border-bottom: 2px solid #a9afb0;
+      font-family: "Ubuntu", sans-serif; }
+      .save-game .result__button-game:hover {
+        width: 142px;
+        padding-top: 6px;
+        padding-bottom: 6px;
+        font-size: 15px;
+        background-color: #FF6C00;
+        text-align: center;
+        color: #ffffff;
+        border-top-right-radius: 4px;
+        border-top-left-radius: 6px;
+        border-bottom-right-radius: 6px;
+        border-bottom-left-radius: 4px;
+        border-bottom: 2px solid #ffa766;
+        border-right: 2px solid #ffa766;
+        border-left: 2px solid #b34c00;
+        border-top: 2px solid #b34c00;
+        font-family: "Ubuntu", sans-serif; } }
+
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain) */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline; }
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block; }
+
+body {
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+a {
+  text-decoration: none; }
+
+/* cyrillic */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 300;
+  src: local("Roboto Light"), local("Roboto-Light"), url("../fonts/Roboto/Roboto-Light-cyr.woff2") format("woff2");
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+
+/* latin */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 300;
+  src: local("Roboto Light"), local("Roboto-Light"), url("../fonts/Roboto/Roboto-Light-lat.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+/* cyrillic */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: local("Roboto"), local("Roboto-Regular"), url("../fonts/Roboto/Roboto-Regular-cyr.woff2") format("woff2");
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+
+/* latin */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: local("Roboto"), local("Roboto-Regular"), url("../fonts/Roboto/Roboto-Regular-lat.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+/* cyrillic */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  src: local("Roboto Medium"), local("Roboto-Medium"), url("../fonts/Roboto/Roboto-Medium-cyr.woff2") format("woff2");
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+
+/* latin */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  src: local("Roboto Medium"), local("Roboto-Medium"), url("../fonts/Roboto/Roboto-Medium-lat.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+/*_______________________________*/
+/* cyrillic */
+@font-face {
+  font-family: 'Ubuntu';
+  font-style: normal;
+  font-weight: 300;
+  src: local("Ubuntu Light"), local("Ubuntu-Light"), url("../fonts/Ubuntu/Ubuntu-Light-cyr.woff2") format("woff2");
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+
+/* latin */
+@font-face {
+  font-family: 'Ubuntu';
+  font-style: normal;
+  font-weight: 300;
+  src: local("Ubuntu Light"), local("Ubuntu-Light"), url("../fonts/Ubuntu/Ubuntu-Light-lat.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+/* cyrillic */
+@font-face {
+  font-family: 'Ubuntu';
+  font-style: normal;
+  font-weight: 400;
+  src: local("Ubuntu Regular"), local("Ubuntu-Regular"), url("../fonts/Ubuntu/Ubuntu-Regular-cyr.woff2") format("woff2");
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+
+/* latin */
+@font-face {
+  font-family: 'Ubuntu';
+  font-style: normal;
+  font-weight: 400;
+  src: local("Ubuntu Regular"), local("Ubuntu-Regular"), url("../fonts/Ubuntu/Ubuntu-Regular-lat.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+/* cyrillic */
+@font-face {
+  font-family: 'Ubuntu';
+  font-style: normal;
+  font-weight: 500;
+  src: local("Ubuntu Medium"), local("Ubuntu-Medium"), url("../fonts/Ubuntu/Ubuntu-Medium-cyr.woff2") format("woff2");
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+
+/* latin */
+@font-face {
+  font-family: 'Ubuntu';
+  font-style: normal;
+  font-weight: 500;
+  src: local("Ubuntu Medium"), local("Ubuntu-Medium"), url("../fonts/Ubuntu/Ubuntu-Medium-lat.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+/*colors*/
+/*fonts*/
+/*Mixin*/
+/*colors*/
+/*fonts*/
+/*Mixin*/
+body {
+  position: relative;
+  min-height: 100vh;
+  background-color: #F1F2F2; }
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%; }
+
+button {
+  transition: background-color .2s;
+  cursor: pointer;
+  outline: none; }
+  button:hover {
+    transition: background-color .2s; }
+
+input {
+  font-family: "Roboto", sans-serif; }
+
+@keyframes logo-left {
+  from,
+  60%,
+  75%,
+  90%,
+  to {
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1); }
+  0% {
+    opacity: 0;
+    transform: translate3d(-3000px, 0, 0); }
+  60% {
+    opacity: 1;
+    transform: translate3d(25px, 0, 0); }
+  75% {
+    transform: translate3d(-10px, 0, 0); }
+  90% {
+    transform: translate3d(5px, 0, 0); }
+  to {
+    transform: translate3d(0, 0, 0); } }
+
+@keyframes logo-flip {
+  from {
+    transform: perspective(400px) rotate3d(0, 1, 0, 90deg);
+    animation-timing-function: ease-in;
+    opacity: 0; }
+  40% {
+    transform: perspective(400px) rotate3d(0, 1, 0, -20deg);
+    animation-timing-function: ease-in; }
+  60% {
+    transform: perspective(400px) rotate3d(0, 1, 0, 10deg);
+    opacity: 1; }
+  80% {
+    transform: perspective(400px) rotate3d(0, 1, 0, -5deg); }
+  to {
+    transform: perspective(400px); } }
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg); }
+  100% {
+    transform: rotate(-360deg); } }
+
+@keyframes rotate-reverse {
+  0% {
+    transform: rotate(0deg) scaleX(-1); }
+  100% {
+    transform: rotate(360deg) scaleX(-1); } }
+
+@keyframes left {
+  0% {
+    left: 0; }
+  25% {
+    left: -8px; }
+  75% {
+    left: 6px; }
+  100% {
+    left: 0; } }
+
+@keyframes right {
+  0% {
+    left: 0; }
+  25% {
+    left: 8px; }
+  75% {
+    left: -6px; }
+  100% {
+    left: 0; } }
+
+@media only screen and (min-width: 320px) {
+  .header {
+    padding: 15px; }
+    .header__logo-go {
+      width: 32px;
+      margin-right: -4px; }
+    .header__logo-it {
+      width: 24px; }
+    .header__img {
+      width: 50px; }
+    .header__navigation, .header__control {
+      display: none; }
+    .header__user-image {
+      display: block;
+      width: 100%;
+      height: auto; }
+    .header__image-block {
+      width: 17px;
+      height: 17px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 1px solid black; }
+    .header__profile {
+      display: none; } }
+
+@media only screen and (min-width: 480px) {
+  .header__logo-go {
+    width: 45px; }
+  .header__logo-it {
+    width: 36px; }
+  .header__image-block {
+    width: 25px;
+    height: 25px; }
+  .header__img {
+    width: 80px; } }
+
+@media only screen and (min-width: 768px) {
+  .header {
+    padding: 15px 25px; }
+    .header__logo-go {
+      width: 75px;
+      height: auto;
+      animation: logo-left 1s cubic-bezier(0.17, 0.37, 0.55, 1.11);
+      animation-fill-mode: backwards;
+      animation-delay: .5s; }
+    .header__logo-it {
+      width: 59px;
+      height: auto;
+      animation: logo-flip 1s cubic-bezier(0.17, 0.37, 0.55, 1.11); }
+    .header__img {
+      width: 138px; }
+    .header__navigation, .header__control {
+      display: flex; }
+    .header__register-link, .header__log-link {
+      font-family: "Ubuntu", sans-serif;
+      font-size: 13px; }
+    .header__image-block {
+      margin-bottom: 8px; }
+    .header__profile {
+      position: relative;
+      left: -25px;
+      display: block;
+      color: #FF6C00;
+      font-family: "Ubuntu", sans-serif;
+      font-size: 11px;
+      text-align: right; } }
+
+@media only screen and (min-width: 960px) {
+  .header__image-block {
+    width: 33px;
+    height: 33px; }
+  .header__profile {
+    left: -20px; } }
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 25px 60px; }
+  .header__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; }
+  .header__img {
+    width: 100%;
+    height: auto; }
+  .header__menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; }
+  .header__link {
+    color: #FF6C00;
+    padding: 10px 25px;
+    text-decoration: none;
+    font-size: 24px;
+    font-family: 'Ubuntu',sans-serif; }
+  .header__control {
+    display: flex;
+    align-items: center;
+    flex-direction: column; }
+  .header__register-link, .header__log-link {
+    color: #FF6C00;
+    padding: 5px 0;
+    text-decoration: none; }
+  .header__user-image {
+    display: block;
+    width: 100%;
+    height: auto; }
+
+@media only screen and (min-width: 320px) {
+  .footer {
+    display: none; } }
+
+@media only screen and (min-width: 768px) {
+  .footer {
+    display: flex; } }
+
+.footer {
+  background-color: #3F3E40;
+  padding: 5px 0;
+  display: flex;
+  justify-content: space-around; }
+  .footer__link-team {
+    text-decoration: none;
+    color: #E5E7E7; }
+
+.game {
+  background-color: #F1F2F2;
+  padding-bottom: 30px; }
+  .game .cards {
+    padding-top: 15px; }
+    .game .cards__header {
+      font-family: "Roboto", sans-serif;
+      text-align: center;
+      font-size: 20px;
+      font-weight: 500;
+      padding-bottom: 28px; }
+    .game .cards__block {
+      display: flex;
+      justify-content: space-between;
+      padding-left: 16px;
+      padding-right: 16px;
+      margin-bottom: 35px; }
+    .game .cards__item {
+      flex-basis: 33%; }
+    .game .cards__image {
+      display: block;
+      width: 75%;
+      height: auto;
+      margin: 0 auto 5px; }
+    .game .cards__name {
+      font-size: 10px;
+      font-family: "Ubuntu", sans-serif;
+      text-align: center;
+      font-weight: 500; }
+  .game .buttons {
+    margin-right: 16px;
+    margin-left: 16px; }
+    .game .buttons__options {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between; }
+    .game .buttons__option-block {
+      flex-basis: 50%; }
+    .game .buttons__item {
+      display: block;
+      margin: 0 auto 15px;
+      cursor: pointer;
+      width: 137px;
+      padding-top: 8px;
+      padding-bottom: 8px;
+      font-size: 11px;
+      background-color: #D1D4D5;
+      text-align: center;
+      color: #ffffff;
+      border-top-right-radius: 4px;
+      border-top-left-radius: 6px;
+      border-bottom-right-radius: 6px;
+      border-bottom-left-radius: 4px;
+      border-top: 2px solid white;
+      border-left: 2px solid white;
+      border-right: 2px solid #a9afb0;
+      border-bottom: 2px solid #a9afb0;
+      font-family: "Ubuntu", sans-serif; }
+      .game .buttons__item:hover {
+        width: 137px;
+        padding-top: 8px;
+        padding-bottom: 8px;
+        font-size: 11px;
+        background-color: #FF6C00;
+        text-align: center;
+        color: #ffffff;
+        border-top-right-radius: 4px;
+        border-top-left-radius: 6px;
+        border-bottom-right-radius: 6px;
+        border-bottom-left-radius: 4px;
+        border-bottom: 2px solid #ffa766;
+        border-right: 2px solid #ffa766;
+        border-left: 2px solid #b34c00;
+        border-top: 2px solid #b34c00;
+        font-family: "Ubuntu", sans-serif; }
+        .game .buttons__item:hover .buttons__icon-flip {
+          animation: rotate 1s ease-in-out; }
+        .game .buttons__item:hover .buttons__icon-reset {
+          transform: scaleX(-1);
+          animation: rotate-reverse 1s ease-in-out; }
+        .game .buttons__item:hover .buttons__icon-previous {
+          animation: left 1s infinite linear; }
+        .game .buttons__item:hover .buttons__icon-next {
+          animation: right 1s infinite linear; }
+    .game .buttons__text-reset {
+      margin-left: 8px; }
+    .game .buttons__icon-flip {
+      width: 10px;
+      height: 10px;
+      padding-right: 8px;
+      position: relative;
+      bottom: -2px;
+      transform-origin: 35% 50%; }
+    .game .buttons__icon-reset {
+      width: 10px;
+      height: 10px;
+      padding-left: 8px;
+      position: relative;
+      bottom: -2px;
+      transform: scaleX(-1);
+      transform-origin: 70% 50%; }
+    .game .buttons__icon-next {
+      width: 10px;
+      height: 10px;
+      padding-right: 8px;
+      position: relative;
+      bottom: -2px; }
+    .game .buttons__icon-previous {
+      width: 10px;
+      height: 10px;
+      padding-right: 8px;
+      position: relative;
+      bottom: -2px; }
+    .game .buttons__cards {
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: 15px; }
+    .game .buttons__card-block {
+      flex-basis: 20%;
+      margin-bottom: 15px; }
+    .game .buttons__card-item {
+      display: block;
+      margin: auto;
+      width: 40px;
+      height: 65px;
+      border-radius: 2px;
+      color: #D1D4D5;
+      background-color: #ffffff;
+      font-family: "Roboto", sans-serif;
+      font-size: 23px;
+      text-align: center;
+      line-height: 65px;
+      cursor: pointer;
+      transition: all 0.2s; }
+      .game .buttons__card-item:hover {
+        background-color: #FF6C00;
+        color: #ffffff; }
+  .game .questions {
+    margin: 15px 16px 0; }
+    .game .questions__item {
+      position: relative;
+      display: flex;
+      align-items: center;
+      font-family: "Roboto", sans-serif;
+      height: 40px;
+      background-color: #ffffff;
+      margin-bottom: 7px;
+      box-shadow: 1px 1px 2px #bcc1c1;
+      cursor: pointer;
+      transition: all 0.2s; }
+      .game .questions__item:hover {
+        background-color: #D1D4D5; }
+      .game .questions__item-number {
+        flex-basis: 10%;
+        text-align: center;
+        font-size: 14px;
+        color: #414042; }
+      .game .questions__item-text {
+        font-size: 10px;
+        font-weight: 300;
+        color: #6d6e71; }
+      .game .questions__item-count {
+        display: block;
+        width: 25px;
+        height: 25px;
+        position: absolute;
+        right: 15px;
+        border-radius: 50%;
+        font-size: 13px;
+        font-weight: 400;
+        text-align: center;
+        line-height: 25px;
+        color: #414042;
+        background-color: #FFB077; }
+    .game .questions__add-item {
+      display: block;
+      width: 25px;
+      height: 25px;
+      margin: 15px auto;
+      border-radius: 50%;
+      background: #ffffff;
+      box-shadow: 1px 1px 2px #bcc1c1;
+      font-family: "Roboto", sans-serif;
+      text-align: center;
+      font-weight: 500;
+      line-height: 25px;
+      cursor: pointer;
+      transition: all 0.2s; }
+      .game .questions__add-item:hover {
+        background-color: #D1D4D5; }
+  .game__button-end {
+    display: block;
+    margin: auto;
+    cursor: pointer;
+    width: 137px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    font-size: 11px;
+    background-color: #D1D4D5;
+    text-align: center;
+    color: #ffffff;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    border-bottom-left-radius: 4px;
+    border-top: 2px solid white;
+    border-left: 2px solid white;
+    border-right: 2px solid #a9afb0;
+    border-bottom: 2px solid #a9afb0;
+    font-family: "Ubuntu", sans-serif; }
+    .game__button-end:hover {
+      width: 137px;
+      padding-top: 8px;
+      padding-bottom: 8px;
+      font-size: 11px;
+      background-color: #FF6C00;
+      text-align: center;
+      color: #ffffff;
+      border-top-right-radius: 4px;
+      border-top-left-radius: 6px;
+      border-bottom-right-radius: 6px;
+      border-bottom-left-radius: 4px;
+      border-bottom: 2px solid #ffa766;
+      border-right: 2px solid #ffa766;
+      border-left: 2px solid #b34c00;
+      border-top: 2px solid #b34c00;
+      font-family: "Ubuntu", sans-serif; }
+
+@media only screen and (min-width: 480px) {
+  .game {
+    padding-bottom: 45px; }
+    .game .cards__name {
+      font-size: 16px; }
+    .game .buttons__item {
+      width: 205px;
+      padding-top: 15px;
+      padding-bottom: 15px;
+      font-size: 17px;
+      background-color: #D1D4D5;
+      text-align: center;
+      color: #ffffff;
+      border-top-right-radius: 4px;
+      border-top-left-radius: 6px;
+      border-bottom-right-radius: 6px;
+      border-bottom-left-radius: 4px;
+      border-top: 2px solid white;
+      border-left: 2px solid white;
+      border-right: 2px solid #a9afb0;
+      border-bottom: 2px solid #a9afb0;
+      font-family: "Ubuntu", sans-serif;
+      border-radius: 8px; }
+      .game .buttons__item:hover {
+        width: 205px;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        font-size: 17px;
+        background-color: #FF6C00;
+        text-align: center;
+        color: #ffffff;
+        border-top-right-radius: 4px;
+        border-top-left-radius: 6px;
+        border-bottom-right-radius: 6px;
+        border-bottom-left-radius: 4px;
+        border-bottom: 2px solid #ffa766;
+        border-right: 2px solid #ffa766;
+        border-left: 2px solid #b34c00;
+        border-top: 2px solid #b34c00;
+        font-family: "Ubuntu", sans-serif;
+        border-radius: 8px; }
+    .game .buttons__card-item {
+      width: 64px;
+      height: 105px;
+      line-height: 105px;
+      font-size: 35px;
+      border-radius: 4px; }
+    .game .buttons__icon-flip {
+      width: 14px;
+      height: 14px;
+      position: relative;
+      bottom: -2px; }
+    .game .buttons__icon-reset {
+      width: 14px;
+      height: 14px;
+      position: relative;
+      bottom: -2px;
+      transform: scaleX(-1); }
+    .game .buttons__icon-next {
+      width: 14px;
+      height: 14px;
+      position: relative;
+      bottom: -2px; }
+    .game .buttons__icon-previous {
+      width: 14px;
+      height: 14px;
+      position: relative;
+      bottom: -2px; }
+    .game .questions__item {
+      height: 57px;
+      margin-bottom: 15px; }
+      .game .questions__item-number {
+        font-size: 21px; }
+      .game .questions__item-text {
+        font-size: 15px; }
+      .game .questions__item-count {
+        font-size: 19px;
+        width: 42px;
+        height: 42px;
+        line-height: 42px; }
+    .game .questions__add-item {
+      width: 33px;
+      height: 33px;
+      line-height: 33px;
+      font-size: 22px;
+      margin: 22px auto 31px; }
+    .game__button-end {
+      width: 205px;
+      padding-top: 15px;
+      padding-bottom: 15px;
+      font-size: 17px;
+      background-color: #D1D4D5;
+      text-align: center;
+      color: #ffffff;
+      border-top-right-radius: 4px;
+      border-top-left-radius: 6px;
+      border-bottom-right-radius: 6px;
+      border-bottom-left-radius: 4px;
+      border-top: 2px solid white;
+      border-left: 2px solid white;
+      border-right: 2px solid #a9afb0;
+      border-bottom: 2px solid #a9afb0;
+      font-family: "Ubuntu", sans-serif;
+      border-radius: 8px;
+      transition: background-color 0.2s; }
+      .game__button-end:hover {
+        width: 205px;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        font-size: 17px;
+        background-color: #FF6C00;
+        text-align: center;
+        color: #ffffff;
+        border-top-right-radius: 4px;
+        border-top-left-radius: 6px;
+        border-bottom-right-radius: 6px;
+        border-bottom-left-radius: 4px;
+        border-bottom: 2px solid #ffa766;
+        border-right: 2px solid #ffa766;
+        border-left: 2px solid #b34c00;
+        border-top: 2px solid #b34c00;
+        font-family: "Ubuntu", sans-serif;
+        border-radius: 8px;
+        transition: background-color 0.2s; } }
+
+@media only screen and (min-width: 768px) {
+  .game {
+    max-width: 690px;
+    min-height: calc(100vh - 163px);
+    margin: auto;
+    padding-bottom: 81px;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start; }
+    .game .cards {
+      flex-basis: 60%;
+      padding-top: 0; }
+      .game .cards__header {
+        text-align: left;
+        font-size: 16px;
+        color: #FF6C00;
+        margin-left: 30px;
+        padding-bottom: 55px; }
+      .game .cards__block {
+        margin-bottom: 0;
+        padding-right: 0; }
+      .game .cards__image {
+        width: 97px; }
+      .game .cards__name {
+        font-size: 16px; }
+    .game .buttons {
+      flex-basis: 100%;
+      margin-top: 45px;
+      margin-left: 0; }
+      .game .buttons__option-block {
+        flex-basis: 25%; }
+        .game .buttons__option-block_flip {
+          order: -4; }
+        .game .buttons__option-block_reset {
+          order: -3; }
+        .game .buttons__option-block_previous {
+          order: -2; }
+        .game .buttons__option-block_next {
+          order: -1; }
+      .game .buttons__cards {
+        margin-top: 108px; }
+      .game .buttons__card-block {
+        flex-basis: 10%;
+        margin-bottom: 70px; }
+        .game .buttons__card-block:hover .buttons__card-item {
+          transform: translateY(-30px); }
+      .game .buttons__item {
+        width: 160px;
+        padding-top: 13px;
+        padding-bottom: 13px;
+        font-size: 13px;
+        background-color: #D1D4D5;
+        text-align: center;
+        color: #ffffff;
+        border-top-right-radius: 4px;
+        border-top-left-radius: 6px;
+        border-bottom-right-radius: 6px;
+        border-bottom-left-radius: 4px;
+        border-top: 2px solid white;
+        border-left: 2px solid white;
+        border-right: 2px solid #a9afb0;
+        border-bottom: 2px solid #a9afb0;
+        font-family: "Ubuntu", sans-serif;
+        border-radius: 8px;
+        margin-bottom: 0; }
+        .game .buttons__item:hover {
+          width: 160px;
+          padding-top: 13px;
+          padding-bottom: 13px;
+          font-size: 13px;
+          background-color: #FF6C00;
+          text-align: center;
+          color: #ffffff;
+          border-top-right-radius: 4px;
+          border-top-left-radius: 6px;
+          border-bottom-right-radius: 6px;
+          border-bottom-left-radius: 4px;
+          border-bottom: 2px solid #ffa766;
+          border-right: 2px solid #ffa766;
+          border-left: 2px solid #b34c00;
+          border-top: 2px solid #b34c00;
+          font-family: "Ubuntu", sans-serif;
+          border-radius: 8px; }
+      .game .buttons__card-item {
+        width: 40px;
+        height: 65px;
+        line-height: 65px;
+        font-size: 23px;
+        border-radius: 4px;
+        background-color: #D1D4D5;
+        color: #ffffff;
+        transition: all 0.2s; }
+    .game .questions {
+      order: -1;
+      flex-basis: 36%;
+      padding: 8px;
+      background-color: #ffffff;
+      margin: 0; }
+      .game .questions__block {
+        height: 180px;
+        overflow-y: scroll; }
+      .game .questions__item {
+        height: 40px;
+        margin-bottom: 7px;
+        margin-right: 18px;
+        background-color: #F1F2F2; }
+        .game .questions__item-number {
+          font-size: 14px;
+          flex-basis: 15%; }
+        .game .questions__item-text {
+          font-size: 10px; }
+        .game .questions__item-count {
+          font-size: 13px;
+          width: 25px;
+          height: 25px;
+          line-height: 25px; }
+      .game .questions__add-item {
+        width: 26px;
+        height: 26px;
+        line-height: 26px;
+        font-size: 20px;
+        margin: 15px auto 15px;
+        background-color: #F1F2F2; }
+    .game__button-end {
+      width: 165px;
+      padding-top: 13px;
+      padding-bottom: 13px;
+      font-size: 13px;
+      background-color: #D1D4D5;
+      text-align: center;
+      color: #ffffff;
+      border-top-right-radius: 4px;
+      border-top-left-radius: 6px;
+      border-bottom-right-radius: 6px;
+      border-bottom-left-radius: 4px;
+      border-top: 2px solid white;
+      border-left: 2px solid white;
+      border-right: 2px solid #a9afb0;
+      border-bottom: 2px solid #a9afb0;
+      font-family: "Ubuntu", sans-serif;
+      border-radius: 8px; }
+      .game__button-end:hover {
+        width: 165px;
+        padding-top: 13px;
+        padding-bottom: 13px;
+        font-size: 13px;
+        background-color: #FF6C00;
+        text-align: center;
+        color: #ffffff;
+        border-top-right-radius: 4px;
+        border-top-left-radius: 6px;
+        border-bottom-right-radius: 6px;
+        border-bottom-left-radius: 4px;
+        border-bottom: 2px solid #ffa766;
+        border-right: 2px solid #ffa766;
+        border-left: 2px solid #b34c00;
+        border-top: 2px solid #b34c00;
+        font-family: "Ubuntu", sans-serif;
+        border-radius: 8px; }
+    .game__button-block {
+      flex-basis: 100%; } }
+
+@media only screen and (min-width: 960px) {
+  .game {
+    max-width: 768px; } }
+
+@media only screen and (min-width: 1200px) {
+  .game {
+    max-width: 1024px;
+    align-items: flex-start; }
+    .game .cards {
+      flex-basis: 68%; }
+      .game .cards__block {
+        justify-content: space-evenly; }
+      .game .cards__item {
+        flex-basis: 0; }
+    .game .questions {
+      flex-basis: 30%; }
+    .game .buttons {
+      margin-left: 33%; }
+    .game__button-block {
+      margin-left: 33%; } }
+
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain) */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline; }
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block; }
+
+body {
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+a {
+  text-decoration: none; }
+
+/* cyrillic */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 300;
+  src: local("Roboto Light"), local("Roboto-Light"), url("../fonts/Roboto/Roboto-Light-cyr.woff2") format("woff2");
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+
+/* latin */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 300;
+  src: local("Roboto Light"), local("Roboto-Light"), url("../fonts/Roboto/Roboto-Light-lat.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+/* cyrillic */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: local("Roboto"), local("Roboto-Regular"), url("../fonts/Roboto/Roboto-Regular-cyr.woff2") format("woff2");
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+
+/* latin */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: local("Roboto"), local("Roboto-Regular"), url("../fonts/Roboto/Roboto-Regular-lat.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+/* cyrillic */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  src: local("Roboto Medium"), local("Roboto-Medium"), url("../fonts/Roboto/Roboto-Medium-cyr.woff2") format("woff2");
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+
+/* latin */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  src: local("Roboto Medium"), local("Roboto-Medium"), url("../fonts/Roboto/Roboto-Medium-lat.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+/*_______________________________*/
+/* cyrillic */
+@font-face {
+  font-family: 'Ubuntu';
+  font-style: normal;
+  font-weight: 300;
+  src: local("Ubuntu Light"), local("Ubuntu-Light"), url("../fonts/Ubuntu/Ubuntu-Light-cyr.woff2") format("woff2");
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+
+/* latin */
+@font-face {
+  font-family: 'Ubuntu';
+  font-style: normal;
+  font-weight: 300;
+  src: local("Ubuntu Light"), local("Ubuntu-Light"), url("../fonts/Ubuntu/Ubuntu-Light-lat.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+/* cyrillic */
+@font-face {
+  font-family: 'Ubuntu';
+  font-style: normal;
+  font-weight: 400;
+  src: local("Ubuntu Regular"), local("Ubuntu-Regular"), url("../fonts/Ubuntu/Ubuntu-Regular-cyr.woff2") format("woff2");
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+
+/* latin */
+@font-face {
+  font-family: 'Ubuntu';
+  font-style: normal;
+  font-weight: 400;
+  src: local("Ubuntu Regular"), local("Ubuntu-Regular"), url("../fonts/Ubuntu/Ubuntu-Regular-lat.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+/* cyrillic */
+@font-face {
+  font-family: 'Ubuntu';
+  font-style: normal;
+  font-weight: 500;
+  src: local("Ubuntu Medium"), local("Ubuntu-Medium"), url("../fonts/Ubuntu/Ubuntu-Medium-cyr.woff2") format("woff2");
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+
+/* latin */
+@font-face {
+  font-family: 'Ubuntu';
+  font-style: normal;
+  font-weight: 500;
+  src: local("Ubuntu Medium"), local("Ubuntu-Medium"), url("../fonts/Ubuntu/Ubuntu-Medium-lat.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+/*colors*/
+/*fonts*/
+/*Mixin*/
+/*colors*/
+/*fonts*/
+/*Mixin*/
+body {
+  position: relative;
+  min-height: 100vh;
+  background-color: #F1F2F2; }
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%; }
+
+button {
+  transition: background-color .2s;
+  cursor: pointer;
+  outline: none; }
+  button:hover {
+    transition: background-color .2s; }
+
+input {
+  font-family: "Roboto", sans-serif; }
+
+@keyframes logo-left {
+  from,
+  60%,
+  75%,
+  90%,
+  to {
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1); }
+  0% {
+    opacity: 0;
+    transform: translate3d(-3000px, 0, 0); }
+  60% {
+    opacity: 1;
+    transform: translate3d(25px, 0, 0); }
+  75% {
+    transform: translate3d(-10px, 0, 0); }
+  90% {
+    transform: translate3d(5px, 0, 0); }
+  to {
+    transform: translate3d(0, 0, 0); } }
+
+@keyframes logo-flip {
+  from {
+    transform: perspective(400px) rotate3d(0, 1, 0, 90deg);
+    animation-timing-function: ease-in;
+    opacity: 0; }
+  40% {
+    transform: perspective(400px) rotate3d(0, 1, 0, -20deg);
+    animation-timing-function: ease-in; }
+  60% {
+    transform: perspective(400px) rotate3d(0, 1, 0, 10deg);
+    opacity: 1; }
+  80% {
+    transform: perspective(400px) rotate3d(0, 1, 0, -5deg); }
+  to {
+    transform: perspective(400px); } }
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg); }
+  100% {
+    transform: rotate(-360deg); } }
+
+@keyframes rotate-reverse {
+  0% {
+    transform: rotate(0deg) scaleX(-1); }
+  100% {
+    transform: rotate(360deg) scaleX(-1); } }
+
+@keyframes left {
+  0% {
+    left: 0; }
+  25% {
+    left: -8px; }
+  75% {
+    left: 6px; }
+  100% {
+    left: 0; } }
+
+@keyframes right {
+  0% {
+    left: 0; }
+  25% {
+    left: 8px; }
+  75% {
+    left: -6px; }
+  100% {
+    left: 0; } }
+
+@media only screen and (min-width: 320px) {
+  .header {
+    padding: 15px; }
+    .header__logo-go {
+      width: 32px;
+      margin-right: -4px; }
+    .header__logo-it {
+      width: 24px; }
+    .header__img {
+      width: 50px; }
+    .header__navigation, .header__control {
+      display: none; }
+    .header__user-image {
+      display: block;
+      width: 100%;
+      height: auto; }
+    .header__image-block {
+      width: 17px;
+      height: 17px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 1px solid black; }
+    .header__profile {
+      display: none; } }
+
+@media only screen and (min-width: 480px) {
+  .header__logo-go {
+    width: 45px; }
+  .header__logo-it {
+    width: 36px; }
+  .header__image-block {
+    width: 25px;
+    height: 25px; }
+  .header__img {
+    width: 80px; } }
+
+@media only screen and (min-width: 768px) {
+  .header {
+    padding: 15px 25px; }
+    .header__logo-go {
+      width: 75px;
+      height: auto;
+      animation: logo-left 1s cubic-bezier(0.17, 0.37, 0.55, 1.11);
+      animation-fill-mode: backwards;
+      animation-delay: .5s; }
+    .header__logo-it {
+      width: 59px;
+      height: auto;
+      animation: logo-flip 1s cubic-bezier(0.17, 0.37, 0.55, 1.11); }
+    .header__img {
+      width: 138px; }
+    .header__navigation, .header__control {
+      display: flex; }
+    .header__register-link, .header__log-link {
+      font-family: "Ubuntu", sans-serif;
+      font-size: 13px; }
+    .header__image-block {
+      margin-bottom: 8px; }
+    .header__profile {
+      position: relative;
+      left: -25px;
+      display: block;
+      color: #FF6C00;
+      font-family: "Ubuntu", sans-serif;
+      font-size: 11px;
+      text-align: right; } }
+
+@media only screen and (min-width: 960px) {
+  .header__image-block {
+    width: 33px;
+    height: 33px; }
+  .header__profile {
+    left: -20px; } }
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 25px 60px; }
+  .header__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; }
+  .header__img {
+    width: 100%;
+    height: auto; }
+  .header__menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; }
+  .header__link {
+    color: #FF6C00;
+    padding: 10px 25px;
+    text-decoration: none;
+    font-size: 24px;
+    font-family: 'Ubuntu',sans-serif; }
+  .header__control {
+    display: flex;
+    align-items: center;
+    flex-direction: column; }
+  .header__register-link, .header__log-link {
+    color: #FF6C00;
+    padding: 5px 0;
+    text-decoration: none; }
+  .header__user-image {
+    display: block;
+    width: 100%;
+    height: auto; }
+
+@media only screen and (min-width: 320px) {
+  .footer {
+    display: none; } }
+
+@media only screen and (min-width: 768px) {
+  .footer {
+    display: flex; } }
+
+.footer {
+  background-color: #3F3E40;
+  padding: 5px 0;
+  display: flex;
+  justify-content: space-around; }
+  .footer__link-team {
+    text-decoration: none;
+    color: #E5E7E7; }
+
+* {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box; }
+
+body {
+  background-color: #F1F2F2; }
+
+.edit-story {
+  margin-top: 50px; }
+  .edit-story__container-form-edit {
+    max-width: 480px;
+    padding: 30px;
+    margin: 0 auto; }
+  .edit-story__form-edit-title {
+    text-align: center;
+    font-family: "Ubuntu", sans-serif;
+    font-size: 24px; }
+  .edit-story__edit-container-field {
+    padding: 18px 0 0; }
+  .edit-story__edit-form-label {
+    display: block;
+    font-size: 20px;
+    color: #FF6C00;
+    font-family: "Ubuntu", sans-serif;
+    padding: 0 0 10px; }
+  .edit-story__edit-form-input {
+    width: 100%;
+    height: 30px;
+    padding-left: 10px;
+    color: #808386;
+    font-size: 13px;
+    border: 1px solid transparent;
+    border-bottom: 1px solid #D1D4D5;
+    background-color: transparent; }
+    .edit-story__edit-form-input::placeholder {
+      color: #D1D4D5; }
+    .edit-story__edit-form-input:focus {
+      outline: 1px solid transparent; }
+  .edit-story__edit-container-buttons {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-direction: column;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap; }
+  .edit-story__edit-save-button, .edit-story__edit-cancel-button, .edit-story__edit-delete-button {
+    -ms-flex-preferred-size: 34%;
+    flex-basis: 34%;
+    cursor: pointer;
+    display: block; }
+  .edit-story__add-edit-add {
+    font-size: 18px;
+    text-align: center;
+    margin: 0 auto;
+    cursor: pointer;
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    -webkit-box-shadow: 1px 1px 1px 1px #808386;
+    box-shadow: 1px 1px 1px 1px #808386;
+    background-color: #FF6C00;
+    color: #ffffff; }
+  .edit-story__svg-plus {
+    width: 100%;
+    height: auto;
+    fill: #FF6C00; }
+  .edit-story__svg-plus_secondary-path {
+    fill: #ffffff; }
+  .edit-story__edit-container-buttons {
+    padding: 40px 0 0; }
+  .edit-story__edit-save-button, .edit-story__edit-cancel-button, .edit-story__edit-delete-button {
+    width: 146px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 15px;
+    background-color: #D1D4D5;
+    text-align: center;
+    color: #ffffff;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    border-bottom-left-radius: 4px;
+    border-top: 2px solid white;
+    border-left: 2px solid white;
+    border-right: 2px solid #a9afb0;
+    border-bottom: 2px solid #a9afb0;
+    font-family: "Ubuntu", sans-serif;
+    margin-bottom: 10px; }
+    .edit-story__edit-save-button:hover, .edit-story__edit-cancel-button:hover, .edit-story__edit-delete-button:hover {
+      width: 146px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      font-size: 15px;
+      background-color: #FF6C00;
+      text-align: center;
+      color: #ffffff;
+      border-top-right-radius: 4px;
+      border-top-left-radius: 6px;
+      border-bottom-right-radius: 6px;
+      border-bottom-left-radius: 4px;
+      border-bottom: 2px solid #ffa766;
+      border-right: 2px solid #ffa766;
+      border-left: 2px solid #b34c00;
+      border-top: 2px solid #b34c00;
+      font-family: "Ubuntu", sans-serif; }
+
+@media only screen and (min-width: 768px) {
+  .edit-story {
+    margin-top: 50px;
+    padding-bottom: 168px; }
+    .edit-story__container-form-edit {
+      background-color: #ffffff;
+      -webkit-box-shadow: 1px 1px 1px 1px #808386;
+      box-shadow: 1px 1px 1px 1px #808386; }
+    .edit-story__edit-container-buttons {
+      flex-direction: row; }
+    .edit-story__edit-form-input {
+      border: 1px solid #F0F0F1; }
+    .edit-story__edit-save-button, .edit-story__edit-cancel-button, .edit-story__edit-delete-button {
+      -ms-flex-preferred-size: 30%;
+      flex-basis: 30%; }
+    .edit-story__edit-container-buttons {
+      padding: 60px 0 0; } }
