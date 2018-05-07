@@ -1,0 +1,71 @@
+.summary {
+  background-color: $main-background;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__primarititle {
+    font-size: 20px;
+    color: $primary-dark-font;
+    text-align: center;
+    font-family: $roboto-font;
+    margin: 12px 0 26px;
+    font-weight: 500;
+  }
+
+  &__secondarytitle {
+    color: $orange;
+    font-size: 16px;
+    font-family: $roboto-font;
+    margin-bottom: 20px;
+  }
+
+  &__result {
+    width: 270px;
+    height: 168px;
+    background-color: #ffffff;
+    border: 2px solid #E9EBEC;
+    padding: 16px;
+    margin-bottom: 30px;
+    overflow-y: auto;
+
+    &-list {
+      // columns: 2;
+      font-family: $roboto-font;
+      font-size: 14px;
+    }
+
+    &-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 3px;
+      color: $font-grey;
+      line-height: 1.5;
+    }
+
+    &-points {
+      color: $orange;
+    }
+  }
+
+  &__box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &-btn {
+      @include buttons-grey (144px, 7px, 15px);
+      margin-bottom: 8px;
+
+      &:hover {
+        @include buttons-orange (144px, 7px, 15px)
+      }
+    }
+  }
+}
+
+.footer {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+}

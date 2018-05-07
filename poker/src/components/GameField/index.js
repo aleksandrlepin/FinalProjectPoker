@@ -220,7 +220,9 @@ class GameField extends React.Component {
 
                 {this.state.endGame && <ModalFinishGame game={this.state.dbToStore[0]} modal={this.modalClose} />}
                 {this.state.addQuestion && <ModalAddQuestion addNewQuestion={this.addQuestionToGame} modal={this.modalClose} />}
-
+                {localStorage.getItem('isOwner') ?
+                    null :
+                    <ModalNewPlayer gameId={this.props.match.params.id} />}
                 {this.state.dbToStore[0] !== undefined ?
                     <section className="cards">
                         <h1 className="cards__header">{this.state.dbToStore[0].questions[this.state.activeQuestionIndex]}</h1>
@@ -245,46 +247,6 @@ class GameField extends React.Component {
                                     answers={this.state.dbToStore[0].answers}
                                     currentQuestion={this.state.activeQuestionIndex} />
                             })}
-                            {this.state.dbToStore[0].users.map((user, index) => {
-                                return <UserCard
-                                    user={user}
-                                    key={index}
-                                    addToAnswers={this.addToAnswers}
-                                    answers={this.state.dbToStore[0].answers}
-                                    currentQuestion={this.state.activeQuestionIndex} />
-                            })}
-                            {this.state.dbToStore[0].users.map((user, index) => {
-                                return <UserCard
-                                    user={user}
-                                    key={index}
-                                    addToAnswers={this.addToAnswers}
-                                    answers={this.state.dbToStore[0].answers}
-                                    currentQuestion={this.state.activeQuestionIndex} />
-                            })}
-                            {this.state.dbToStore[0].users.map((user, index) => {
-                                return <UserCard
-                                    user={user}
-                                    key={index}
-                                    addToAnswers={this.addToAnswers}
-                                    answers={this.state.dbToStore[0].answers}
-                                    currentQuestion={this.state.activeQuestionIndex} />
-                            })}
-                            {this.state.dbToStore[0].users.map((user, index) => {
-                                return <UserCard
-                                    user={user}
-                                    key={index}
-                                    addToAnswers={this.addToAnswers}
-                                    answers={this.state.dbToStore[0].answers}
-                                    currentQuestion={this.state.activeQuestionIndex} />
-                            })}
-                            {this.state.dbToStore[0].users.map((user, index) => {
-                                return <UserCard
-                                    user={user}
-                                    key={index}
-                                    addToAnswers={this.addToAnswers}
-                                    answers={this.state.dbToStore[0].answers}
-                                    currentQuestion={this.state.activeQuestionIndex} />
-                            })}
                         </div>
                     </section>
                     : null
@@ -298,9 +260,9 @@ class GameField extends React.Component {
                             nextQuestion={this.nextQuestion}
                         />
                         <div className="buttons__cards">
-                        {fibNumbers.map((value, index) => <VoutingCard number={value} key={index}
-                            className={this.checkActiveCard(value, index)}
-                            onClick={this.changeActiveCard} />)}
+                            {fibNumbers.map((value, index) => <VoutingCard number={value} key={index}
+                                className={this.checkActiveCard(value, index)}
+                                onClick={this.changeActiveCard} />)}
                         </div>
                     </section>
                 }

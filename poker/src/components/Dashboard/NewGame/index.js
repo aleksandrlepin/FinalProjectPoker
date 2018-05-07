@@ -175,7 +175,12 @@ export default class NewGame extends React.Component {
     };
 
     addedQuestion = (event) => {
-        event.preventDefault();
+        console.log('event: ', event.type);
+        console.log('event: ', event.key);
+        if (event.type === 'keypress' && event.key !== "Enter") {
+            // event.preventDefault();
+            return;
+        }
         console.log("this.refs.question.value.length :" + this.refs.question.value.length);
         if (this.refs.question.value.length === 0) {
             this.refs.question.style.boxShadow = "0px 0px 2px 2px #ff0000";
@@ -225,8 +230,8 @@ export default class NewGame extends React.Component {
                         <label htmlFor="descriptionValue" className="form__label">Description</label>
                         <input className="form__input" id="descriptionValue" ref="description" type="text" placeholder="Description" />
                         <label htmlFor="questionsValue" className="form__label">Add question</label>
-                        <input className="form__input" ref="question" id="questionsValue" type="text" placeholder="Question" />
-                        <button className="form__button-add button-add" id="addQuestionsButton" onClick={this.addedQuestion}>
+                        <input className="form__input" ref="question" onKeyPress={this.addedQuestion} id="questionsValue" type="text" placeholder="Question" />
+                        <button className="form__button-add button-add" onClick={this.addedQuestion} id="addQuestionsButton">
                             <svg className="button-add__svg-plus" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 512 512" style={{ enableBackground: "new 0 0 512 512" }} xmlSpace="preserve" width="512px" height="512px">
                                 <circle className="button-add__svg-plus_active-path" cx="256" cy="256" r="256" data-original="#25B6D2" data-old_color="#F9F8F8" />
                                 <rect className="button-add__svg-plus_secondary-path" x="240" y="120" width="40" height="280" data-original="#FFFFFF" data-old_color="#EEE4E0" />

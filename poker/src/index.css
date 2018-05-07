@@ -1,4 +1,4 @@
-body {
+/* body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
@@ -13,7 +13,6 @@ body {
 }
 h4 {
   font-size: 31px;
-  /* font-family: "Roboto"; */
   color: rgb(0, 255, 255);
   line-height: 1.2;
   text-align: center;
@@ -66,6 +65,5 @@ h4 {
   text-align: center
 }
 .register {
-  /* text-decoration: underline; */
   cursor: pointer;
-}
+} */

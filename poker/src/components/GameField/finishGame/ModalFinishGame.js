@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import Modal from 'react-modal';
 import { withRouter } from 'react-router-dom';
-import './finishGame.css';
+// import './finishGame.css';
 let questions = [];
 
 const customStyles = {
@@ -16,7 +16,7 @@ const customStyles = {
         display: 'flex',
         flexDirection: 'column',
         padding: '20px',
-        backgroundColor: '#09243b'
+        // backgroundColor: '#09243b'
     }
 };
 Modal.setAppElement('#root');
@@ -26,13 +26,13 @@ Modal.setAppElement('#root');
 
 class ModalFinishGame extends React.Component {
 
-    componentWillMount () {
-        if(this.props.game) {
+    componentWillMount() {
+        if (this.props.game) {
             for (let key in this.props.game.questions) {
                 questions.push(this.props.game.questions[key])
             }
         }
-    
+
     }
 
     state = { modalIsOpen: true };
@@ -67,19 +67,34 @@ class ModalFinishGame extends React.Component {
                 contentLabel="No Overlay Click Modal"
             >
 
-                <div id="modal" ref={subtitle => this.subtitle = subtitle}>Game summary</div>
-                <h2 className="modalGameName">{this.props.game.nameGame}</h2>
-                <div className="modalEndGameBox">
-                    {questions.map((item, index) => { 
-                        return (
-                            <p key={index}><span className="numberModal">{index+1}</span>{item}<span className="answersModal">{this.props.game.answers[index+1]}</span></p>
-                        )
-                    })}
-                </div>
-                <div className="modalButtonWrap">
-                    <button className="modalEndGameButton" onClick={this.handleBack}>Back to game</button>
-                    <button className="modalEndGameButton" onClick={this.handleEnd}>End game</button>
-                </div>
+                {/* <main class="summary"> */}
+                    {/* <section class="summary__case"> */}
+                        <h1 class="summary__primarititle" ref={subtitle => this.subtitle = subtitle}>Game summary</h1>
+                        <h2 class="summary__secondarytitle">{this.props.game.nameGame}</h2>
+                        <div class="summary__result">
+                            <ul class="summary__result-list">
+                                {questions.map((item, index) => {
+                                    return (
+                                        <li class="summary__result-item"> <span>{index + 1}. {item} </span><span className="summary__result-points">{this.props.game.answers[index + 1]}</span></li>
+                                        // <p key={index}><span className="numberModal">{index + 1}</span>{item}<span className="answersModal">{this.props.game.answers[index + 1]}</span></p>
+                                        // <Fragment>
+                                        //     <li class="summary__result-item"> <span>{index + 1}.</span> {item}</li>
+                                        //     <li class="summary__result-item">{this.props.game.answers[index + 1]}</li>
+                                        // </Fragment>
+                                    )
+                                })}
+                                {/* <li class="summary__result-item"> <span>1.</span> Story1</li>
+                                <li class="summary__result-item"><span>2.</span> Story2</li>
+                                <li class="summary__result-item">8</li>
+                                <li class="summary__result-item">13</li> */}
+                            </ul>
+                        </div>
+                        <div class="summary__box">
+                            <button class="summary__box-btn" onClick={this.handleBack}>Back to game</button>
+                            <button class="summary__box-btn" onClick={this.handleEnd}>End this game</button>
+                        </div>
+                    {/* </section> */}
+                {/* </main> */}
             </Modal>
         )
     }

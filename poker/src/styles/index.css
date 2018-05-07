@@ -1616,7 +1616,8 @@ input {
   .save-game .result {
     display: flex;
     flex-direction: column;
-    align-items: center; }
+    align-items: center;
+    min-height: 150px; }
     .save-game .result__button-saved {
       cursor: pointer;
       display: flex;
@@ -1677,6 +1678,7 @@ input {
       position: absolute;
       right: 0;
       top: 10px;
+      z-index: 10;
       border: 0;
       background: transparent;
       font-size: 18px;
@@ -3283,3 +3285,512 @@ body {
       flex-basis: 30%; }
     .edit-story__edit-container-buttons {
       padding: 60px 0 0; } }
+
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain) */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline; }
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block; }
+
+body {
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+a {
+  text-decoration: none; }
+
+/* cyrillic */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 300;
+  src: local("Roboto Light"), local("Roboto-Light"), url("../fonts/Roboto/Roboto-Light-cyr.woff2") format("woff2");
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+
+/* latin */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 300;
+  src: local("Roboto Light"), local("Roboto-Light"), url("../fonts/Roboto/Roboto-Light-lat.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+/* cyrillic */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: local("Roboto"), local("Roboto-Regular"), url("../fonts/Roboto/Roboto-Regular-cyr.woff2") format("woff2");
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+
+/* latin */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: local("Roboto"), local("Roboto-Regular"), url("../fonts/Roboto/Roboto-Regular-lat.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+/* cyrillic */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  src: local("Roboto Medium"), local("Roboto-Medium"), url("../fonts/Roboto/Roboto-Medium-cyr.woff2") format("woff2");
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+
+/* latin */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  src: local("Roboto Medium"), local("Roboto-Medium"), url("../fonts/Roboto/Roboto-Medium-lat.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+/*_______________________________*/
+/* cyrillic */
+@font-face {
+  font-family: 'Ubuntu';
+  font-style: normal;
+  font-weight: 300;
+  src: local("Ubuntu Light"), local("Ubuntu-Light"), url("../fonts/Ubuntu/Ubuntu-Light-cyr.woff2") format("woff2");
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+
+/* latin */
+@font-face {
+  font-family: 'Ubuntu';
+  font-style: normal;
+  font-weight: 300;
+  src: local("Ubuntu Light"), local("Ubuntu-Light"), url("../fonts/Ubuntu/Ubuntu-Light-lat.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+/* cyrillic */
+@font-face {
+  font-family: 'Ubuntu';
+  font-style: normal;
+  font-weight: 400;
+  src: local("Ubuntu Regular"), local("Ubuntu-Regular"), url("../fonts/Ubuntu/Ubuntu-Regular-cyr.woff2") format("woff2");
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+
+/* latin */
+@font-face {
+  font-family: 'Ubuntu';
+  font-style: normal;
+  font-weight: 400;
+  src: local("Ubuntu Regular"), local("Ubuntu-Regular"), url("../fonts/Ubuntu/Ubuntu-Regular-lat.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+/* cyrillic */
+@font-face {
+  font-family: 'Ubuntu';
+  font-style: normal;
+  font-weight: 500;
+  src: local("Ubuntu Medium"), local("Ubuntu-Medium"), url("../fonts/Ubuntu/Ubuntu-Medium-cyr.woff2") format("woff2");
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+
+/* latin */
+@font-face {
+  font-family: 'Ubuntu';
+  font-style: normal;
+  font-weight: 500;
+  src: local("Ubuntu Medium"), local("Ubuntu-Medium"), url("../fonts/Ubuntu/Ubuntu-Medium-lat.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+/*colors*/
+/*fonts*/
+/*Mixin*/
+/*colors*/
+/*fonts*/
+/*Mixin*/
+body {
+  position: relative;
+  min-height: 100vh;
+  background-color: #F1F2F2; }
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%; }
+
+button {
+  transition: background-color .2s;
+  cursor: pointer;
+  outline: none; }
+  button:hover {
+    transition: background-color .2s; }
+
+input {
+  font-family: "Roboto", sans-serif; }
+
+@keyframes logo-left {
+  from,
+  60%,
+  75%,
+  90%,
+  to {
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1); }
+  0% {
+    opacity: 0;
+    transform: translate3d(-3000px, 0, 0); }
+  60% {
+    opacity: 1;
+    transform: translate3d(25px, 0, 0); }
+  75% {
+    transform: translate3d(-10px, 0, 0); }
+  90% {
+    transform: translate3d(5px, 0, 0); }
+  to {
+    transform: translate3d(0, 0, 0); } }
+
+@keyframes logo-flip {
+  from {
+    transform: perspective(400px) rotate3d(0, 1, 0, 90deg);
+    animation-timing-function: ease-in;
+    opacity: 0; }
+  40% {
+    transform: perspective(400px) rotate3d(0, 1, 0, -20deg);
+    animation-timing-function: ease-in; }
+  60% {
+    transform: perspective(400px) rotate3d(0, 1, 0, 10deg);
+    opacity: 1; }
+  80% {
+    transform: perspective(400px) rotate3d(0, 1, 0, -5deg); }
+  to {
+    transform: perspective(400px); } }
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg); }
+  100% {
+    transform: rotate(-360deg); } }
+
+@keyframes rotate-reverse {
+  0% {
+    transform: rotate(0deg) scaleX(-1); }
+  100% {
+    transform: rotate(360deg) scaleX(-1); } }
+
+@keyframes left {
+  0% {
+    left: 0; }
+  25% {
+    left: -8px; }
+  75% {
+    left: 6px; }
+  100% {
+    left: 0; } }
+
+@keyframes right {
+  0% {
+    left: 0; }
+  25% {
+    left: 8px; }
+  75% {
+    left: -6px; }
+  100% {
+    left: 0; } }
+
+@media only screen and (min-width: 320px) {
+  .header {
+    padding: 15px; }
+    .header__logo-go {
+      width: 32px;
+      margin-right: -4px; }
+    .header__logo-it {
+      width: 24px; }
+    .header__img {
+      width: 50px; }
+    .header__navigation, .header__control {
+      display: none; }
+    .header__user-image {
+      display: block;
+      width: 100%;
+      height: auto; }
+    .header__image-block {
+      width: 17px;
+      height: 17px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 1px solid black; }
+    .header__profile {
+      display: none; } }
+
+@media only screen and (min-width: 480px) {
+  .header__logo-go {
+    width: 45px; }
+  .header__logo-it {
+    width: 36px; }
+  .header__image-block {
+    width: 25px;
+    height: 25px; }
+  .header__img {
+    width: 80px; } }
+
+@media only screen and (min-width: 768px) {
+  .header {
+    padding: 15px 25px; }
+    .header__logo-go {
+      width: 75px;
+      height: auto;
+      animation: logo-left 1s cubic-bezier(0.17, 0.37, 0.55, 1.11);
+      animation-fill-mode: backwards;
+      animation-delay: .5s; }
+    .header__logo-it {
+      width: 59px;
+      height: auto;
+      animation: logo-flip 1s cubic-bezier(0.17, 0.37, 0.55, 1.11); }
+    .header__img {
+      width: 138px; }
+    .header__navigation, .header__control {
+      display: flex; }
+    .header__register-link, .header__log-link {
+      font-family: "Ubuntu", sans-serif;
+      font-size: 13px; }
+    .header__image-block {
+      margin-bottom: 8px; }
+    .header__profile {
+      position: relative;
+      left: -25px;
+      display: block;
+      color: #FF6C00;
+      font-family: "Ubuntu", sans-serif;
+      font-size: 11px;
+      text-align: right; } }
+
+@media only screen and (min-width: 960px) {
+  .header__image-block {
+    width: 33px;
+    height: 33px; }
+  .header__profile {
+    left: -20px; } }
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 25px 60px; }
+  .header__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; }
+  .header__img {
+    width: 100%;
+    height: auto; }
+  .header__menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; }
+  .header__link {
+    color: #FF6C00;
+    padding: 10px 25px;
+    text-decoration: none;
+    font-size: 24px;
+    font-family: 'Ubuntu',sans-serif; }
+  .header__control {
+    display: flex;
+    align-items: center;
+    flex-direction: column; }
+  .header__register-link, .header__log-link {
+    color: #FF6C00;
+    padding: 5px 0;
+    text-decoration: none; }
+  .header__user-image {
+    display: block;
+    width: 100%;
+    height: auto; }
+
+@media only screen and (min-width: 320px) {
+  .footer {
+    display: none; } }
+
+@media only screen and (min-width: 768px) {
+  .footer {
+    display: flex; } }
+
+.footer {
+  background-color: #3F3E40;
+  padding: 5px 0;
+  display: flex;
+  justify-content: space-around; }
+  .footer__link-team {
+    text-decoration: none;
+    color: #E5E7E7; }
+
+.summary {
+  background-color: #F1F2F2;
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+  .summary__primarititle {
+    font-size: 20px;
+    color: #3F3E40;
+    text-align: center;
+    font-family: "Roboto", sans-serif;
+    margin: 12px 0 26px;
+    font-weight: 500; }
+  .summary__secondarytitle {
+    color: #FF6C00;
+    font-size: 16px;
+    font-family: "Roboto", sans-serif;
+    margin-bottom: 20px; }
+  .summary__result {
+    width: 270px;
+    height: 168px;
+    background-color: #ffffff;
+    border: 2px solid #E9EBEC;
+    padding: 16px;
+    margin-bottom: 30px;
+    overflow-y: auto; }
+    .summary__result-list {
+      font-family: "Roboto", sans-serif;
+      font-size: 14px; }
+    .summary__result-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 3px;
+      color: #808386;
+      line-height: 1.5; }
+    .summary__result-points {
+      color: #FF6C00; }
+  .summary__box {
+    display: flex;
+    flex-direction: column;
+    align-items: center; }
+    .summary__box-btn {
+      width: 144px;
+      padding-top: 7px;
+      padding-bottom: 7px;
+      font-size: 15px;
+      background-color: #D1D4D5;
+      text-align: center;
+      color: #ffffff;
+      border-top-right-radius: 4px;
+      border-top-left-radius: 6px;
+      border-bottom-right-radius: 6px;
+      border-bottom-left-radius: 4px;
+      border-top: 2px solid white;
+      border-left: 2px solid white;
+      border-right: 2px solid #a9afb0;
+      border-bottom: 2px solid #a9afb0;
+      font-family: "Ubuntu", sans-serif;
+      margin-bottom: 8px; }
+      .summary__box-btn:hover {
+        width: 144px;
+        padding-top: 7px;
+        padding-bottom: 7px;
+        font-size: 15px;
+        background-color: #FF6C00;
+        text-align: center;
+        color: #ffffff;
+        border-top-right-radius: 4px;
+        border-top-left-radius: 6px;
+        border-bottom-right-radius: 6px;
+        border-bottom-left-radius: 4px;
+        border-bottom: 2px solid #ffa766;
+        border-right: 2px solid #ffa766;
+        border-left: 2px solid #b34c00;
+        border-top: 2px solid #b34c00;
+        font-family: "Ubuntu", sans-serif; }
+
+.footer {
+  position: absolute;
+  width: 100%;
+  bottom: 0; }
+
+@media only screen and (min-width: 768px) {
+  .summary {
+    background-color: #F1F2F2;
+    min-height: calc(100vh - 108px); }
+    .summary__case {
+      box-sizing: border-box;
+      width: 336px;
+      height: 412px;
+      background-color: #ffffff;
+      margin-top: 80px;
+      margin-bottom: 200px;
+      padding: 32px; }
+    .summary__primarititle {
+      font-size: 30px; }
+    .summary__secondarytitle {
+      font-size: 20px; }
+    .summary__result {
+      box-sizing: border-box;
+      width: 270px;
+      height: 168px; }
+    .summary__box {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between; }
+      .summary__box-btn {
+        width: 126px;
+        padding-top: 7px;
+        padding-bottom: 7px;
+        font-size: 15px;
+        background-color: #D1D4D5;
+        text-align: center;
+        color: #ffffff;
+        border-top-right-radius: 4px;
+        border-top-left-radius: 6px;
+        border-bottom-right-radius: 6px;
+        border-bottom-left-radius: 4px;
+        border-top: 2px solid white;
+        border-left: 2px solid white;
+        border-right: 2px solid #a9afb0;
+        border-bottom: 2px solid #a9afb0;
+        font-family: "Ubuntu", sans-serif; }
+        .summary__box-btn:hover {
+          width: 126px;
+          padding-top: 7px;
+          padding-bottom: 7px;
+          font-size: 15px;
+          background-color: #FF6C00;
+          text-align: center;
+          color: #ffffff;
+          border-top-right-radius: 4px;
+          border-top-left-radius: 6px;
+          border-bottom-right-radius: 6px;
+          border-bottom-left-radius: 4px;
+          border-bottom: 2px solid #ffa766;
+          border-right: 2px solid #ffa766;
+          border-left: 2px solid #b34c00;
+          border-top: 2px solid #b34c00;
+          font-family: "Ubuntu", sans-serif; } }
