@@ -1677,6 +1677,8 @@ input {
       position: absolute;
       right: 0;
       top: 10px;
+      border: 0;
+      background: transparent;
       font-size: 18px;
       font-weight: 400;
       color: #FF6C00;
@@ -2236,17 +2238,35 @@ input {
       padding-bottom: 28px; }
     .game .cards__block {
       display: flex;
+      flex-wrap: wrap;
       justify-content: space-between;
       padding-left: 16px;
       padding-right: 16px;
       margin-bottom: 35px; }
     .game .cards__item {
-      flex-basis: 33%; }
-    .game .cards__image {
-      display: block;
-      width: 75%;
-      height: auto;
-      margin: 0 auto 5px; }
+      flex-basis: 33%;
+      margin-bottom: 10px;
+      text-align: center; }
+    .game .cards__state {
+      display: inline-block;
+      margin-bottom: 5px;
+      width: 75px;
+      height: 100px;
+      color: #3F3E40;
+      font-family: "Roboto", sans-serif;
+      font-size: 36px;
+      line-height: 100px; }
+      .game .cards__state--unvoted {
+        border: solid 1px #ddd;
+        background-image: none;
+        background-color: transparent; }
+      .game .cards__state--voted {
+        border: solid 1px #ddd;
+        background-image: url("../img/game/card.jpg");
+        background-size: 100% 100%; }
+      .game .cards__state--flipped {
+        border: solid 1px #ddd;
+        background-color: #fff; }
     .game .cards__name {
       font-size: 10px;
       font-family: "Ubuntu", sans-serif;
@@ -2597,8 +2617,10 @@ input {
       .game .cards__block {
         margin-bottom: 0;
         padding-right: 0; }
-      .game .cards__image {
-        width: 97px; }
+      .game .cards__state {
+        width: 75px;
+        height: 100px;
+        line-height: 100px; }
       .game .cards__name {
         font-size: 16px; }
     .game .buttons {
@@ -2675,7 +2697,7 @@ input {
       background-color: #ffffff;
       margin: 0; }
       .game .questions__block {
-        height: 180px;
+        min-height: 180px;
         overflow-y: scroll; }
       .game .questions__item {
         height: 40px;
@@ -2751,7 +2773,11 @@ input {
       .game .cards__block {
         justify-content: space-evenly; }
       .game .cards__item {
-        flex-basis: 0; }
+        flex-basis: 16%; }
+      .game .cards__state {
+        width: 85px;
+        height: 120px;
+        line-height: 120px; }
     .game .questions {
       flex-basis: 30%; }
     .game .buttons {

@@ -5,7 +5,7 @@
 
 	.cards {
 		padding-top: 15px;
-		
+
 		&__header {
 			font-family: $roboto-font;
 			text-align: center;
@@ -16,21 +16,53 @@
 
 		&__block {
 			display: flex;
+			flex-wrap: wrap;
 			justify-content: space-between;
 			padding-left: 16px;
 			padding-right: 16px;
-			margin-bottom: 35px;	
+			margin-bottom: 35px;
 		}
 
 		&__item {
 			flex-basis: 33%;
+			margin-bottom: 10px;
+			text-align: center;
 		}
 
-		&__image {
-			display: block;
-			width: 75%;
-			height: auto;
-			margin: 0 auto 5px;
+		// &__image {
+		// 	display: block;
+		// 	width: 75%;
+		// 	height: auto;
+		// 	margin: 0 auto 5px;
+		// }
+
+		&__state {
+			// display: inline-table;
+			display: inline-block;
+			margin-bottom: 5px;
+			width: 75px;
+			height: 100px;
+			color: $primary-dark-font;
+			font-family: $roboto-font;
+			font-size: 36px;
+			line-height: 100px;
+
+			&--unvoted {
+				border: solid 1px #ddd;
+				background-image: none;
+				background-color: transparent;
+			}
+
+			&--voted {
+				border: solid 1px #ddd;
+				background-image: url('../img/game/card.jpg');
+				background-size: 100% 100%;
+			}
+
+			&--flipped {
+				border: solid 1px #ddd;
+				background-color: #fff;
+			}
 		}
 
 		&__name {
@@ -59,7 +91,7 @@
 			margin: 0 auto 15px;
 			cursor: pointer;
 			@include buttons-grey (137px, 8px, 11px);
-			
+
 			&:hover {
 				@include buttons-orange (137px, 8px, 11px);
 
@@ -78,11 +110,11 @@
 				& .buttons__icon-next {
 					animation: right 1s infinite linear;
 				}
-			}		
+			}
 		}
 
 		&__text-reset {
-			margin-left: 8px;	
+			margin-left: 8px;
 		}
 
 		&__icon-flip {
@@ -155,7 +187,7 @@
 
 	.questions {
 		margin: 15px 16px 0;
-		
+
 		&__item {
 			position: relative;
 			display: flex;
@@ -234,6 +266,3 @@
 		}
 	}
 }
-
-
-

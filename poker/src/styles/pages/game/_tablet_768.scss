@@ -25,8 +25,10 @@
 				padding-right: 0;
 			}
 
-			&__image {
-				width: 97px;
+			&__state {
+				width: 75px;
+				height: 100px;
+				line-height: 100px;
 			}
 
 			&__name {
@@ -100,7 +102,7 @@
 			margin: 0;
 
 			&__block {
-				height: 180px;
+				min-height: 180px;
 				overflow-y: scroll;
 			}
 
@@ -146,11 +148,11 @@
 				border-radius: 8px;
 			}
 		}
-		
+
 		&__button-block {
 			flex-basis: 100%;
 		}
 	}
-	
+
 
 }

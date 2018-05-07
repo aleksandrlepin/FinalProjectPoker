@@ -1,9 +1,9 @@
 @media only screen and (min-width: 1200px) {
-	
+
 	.game {
 		max-width: 1024px;
 		align-items: flex-start;
-		
+
 		.cards {
 			flex-basis: 68%;
 
@@ -12,7 +12,13 @@
 			}
 
 			&__item {
-				flex-basis: 0;
+				flex-basis: 16%;
+			}
+
+			&__state {
+				width: 85px;
+				height: 120px;
+				line-height: 120px;
 			}
 		}
 
@@ -28,4 +34,4 @@
 			margin-left: 33%;
 		}
 	}
-}	
+}
