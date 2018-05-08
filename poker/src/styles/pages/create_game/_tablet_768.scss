@@ -5,8 +5,9 @@
     align-items: flex-end;
     width: 768px;
     position: relative;
-    padding: 0 30px;
+    padding: 0 30px 50px;
     margin-top: 30px;
+
 
 
     .form {
@@ -15,7 +16,7 @@
       padding: 20px;
       background-color: $buttom-font;
       margin: 0;
-      margin-bottom: 160px;
+      // margin-bottom: 160px;
 
       &__button-create {
         width: 190px;

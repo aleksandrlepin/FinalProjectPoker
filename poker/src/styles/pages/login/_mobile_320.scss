@@ -2,10 +2,11 @@
   background-color: $main-background;
   display: flex;
   flex-direction: column;
-  align-items: center; 
+  align-items: center;
+  padding-bottom: 26px;
 
   &__case {
-    margin-top: 90px;
+    margin-top: 69px;
   }
 
   &__title {
@@ -57,5 +58,3 @@
     }
   }
 }
-
-

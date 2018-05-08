@@ -6,7 +6,7 @@
             &-go {
                 width: 75px;
                 height: auto;
-                animation: logo-left 1s cubic-bezier(.17,.37,.55,1.11);
+                animation: logo-left 1s cubic-bezier(.17,.37,.55,2.0);
                 animation-fill-mode: backwards;
                 animation-delay: .5s;
             }
@@ -41,5 +41,5 @@
             text-align: right;
         }
     }
-    
+
 }

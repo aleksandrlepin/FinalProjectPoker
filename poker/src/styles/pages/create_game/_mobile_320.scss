@@ -9,6 +9,7 @@
   .form {
     display: flex;
     flex-direction: column;
+    padding-bottom: 50px;
 
     &__button-create {
       cursor: pointer;
@@ -79,6 +80,7 @@
         font-size: 13px;
       }
       &-question {
+        max-width: 225px;
         padding: 5px 0;
       }
     }

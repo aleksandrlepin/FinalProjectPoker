@@ -1,15 +1,13 @@
-@import 'variables';
-
 body {
 	position: relative;
 	min-height: 100vh;
 	background-color: $main-background;
 }
-footer {
-	position: absolute;
-	bottom: 0;
-	width: 100%;
-}
+// footer {
+// 	position: absolute;
+// 	bottom: 0;
+// 	width: 100%;
+// }
 button {
 	transition: background-color .2s;
   cursor: pointer;

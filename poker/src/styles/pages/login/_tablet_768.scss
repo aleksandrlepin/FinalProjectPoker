@@ -8,7 +8,9 @@
       height: 454px;
       background-color: #ffffff;
       padding: 35px 30px;
-      margin-bottom: 160px;
+      // margin-bottom: 160px;
+      margin-bottom: 30px;
+      box-shadow: 1px 1px 1px 1px $font-grey;
     }
 
     &__title {
@@ -32,7 +34,7 @@
         &:placeholder {
           color: $form-font;
         }
-        
+
         &:focus {
           border: 1px solid $form-border;
         }
