@@ -5,7 +5,7 @@
         &__logo {
             &-go {
                 width: 32px;
-                margin-right: -4px;
+                // margin-right: -4px;
             }
             &-it {
                 width: 24px;
@@ -29,6 +29,11 @@
             border-radius: 50%;
             overflow: hidden;
             border: 1px solid black;
+        }
+        &__register-link,
+        &__log-link {
+            font-family: $ubuntu-font;
+            font-size: 13px;
         }
         &__profile {
             display: none;

@@ -23,22 +23,23 @@
         &__control {
             display: flex;
         }
-        &__register-link,
-        &__log-link {
-            font-family: $ubuntu-font;
-            font-size: 13px;
-        }
+        // &__register-link,
+        // &__log-link {
+        //     font-family: $ubuntu-font;
+        //     font-size: 13px;
+        // }
         &__image-block {
             margin-bottom: 8px;
         }
         &__profile {
             position: relative;
-            left: -25px;
+            // left: -25px;
             display: block;
             color: $orange;
             font-family: $ubuntu-font;
             font-size: 11px;
-            text-align: right;
+            // text-align: right;
+            text-align: center;
         }
     }
 

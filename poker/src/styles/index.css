@@ -234,8 +234,7 @@ input {
   .header {
     padding: 15px; }
     .header__logo-go {
-      width: 32px;
-      margin-right: -4px; }
+      width: 32px; }
     .header__logo-it {
       width: 24px; }
     .header__img {
@@ -252,6 +251,9 @@ input {
       border-radius: 50%;
       overflow: hidden;
       border: 1px solid black; }
+    .header__register-link, .header__log-link {
+      font-family: "Ubuntu", sans-serif;
+      font-size: 13px; }
     .header__profile {
       display: none; } }
 
@@ -283,26 +285,20 @@ input {
       width: 138px; }
     .header__navigation, .header__control {
       display: flex; }
-    .header__register-link, .header__log-link {
-      font-family: "Ubuntu", sans-serif;
-      font-size: 13px; }
     .header__image-block {
       margin-bottom: 8px; }
     .header__profile {
       position: relative;
-      left: -25px;
       display: block;
       color: #FF6C00;
       font-family: "Ubuntu", sans-serif;
       font-size: 11px;
-      text-align: right; } }
+      text-align: center; } }
 
 @media only screen and (min-width: 960px) {
   .header__image-block {
     width: 33px;
-    height: 33px; }
-  .header__profile {
-    left: -20px; } }
+    height: 33px; } }
 
 .header {
   display: flex;
