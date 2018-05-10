@@ -1,7 +1,7 @@
 
 .game {
 	background-color: $main-background;
-	padding-bottom: 30px;
+	padding-bottom: 50px;
 
 	.cards {
 		padding-top: 15px;
@@ -17,14 +17,14 @@
 		&__block {
 			display: flex;
 			flex-wrap: wrap;
-			justify-content: space-between;
+			justify-content: space-evenly;
 			padding-left: 16px;
 			padding-right: 16px;
 			margin-bottom: 35px;
 		}
 
 		&__item {
-			flex-basis: 33%;
+			flex-basis: 25%;
 			margin-bottom: 10px;
 			text-align: center;
 		}
@@ -186,16 +186,24 @@
 	}
 
 	.questions {
+		height: 100%;
 		margin: 15px 16px 0;
+
+		&__block {
+			max-height: 23vh;
+			overflow-y: scroll;
+		}
 
 		&__item {
 			position: relative;
 			display: flex;
+			width: 94%;
 			align-items: center;
 			font-family: $roboto-font;
-			height: 40px;
+			// height: 40px;
 			background-color: $list-white;
-			margin-bottom: 7px;
+			margin: 0 auto 7px;
+			padding: 15px 50px 15px 10px;
 			box-shadow: 1px 1px 2px darken($list-grey, 20%);
 			cursor: pointer;
 			transition: all 0.2s;

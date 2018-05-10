@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import Modal from 'react-modal';
 import { withRouter } from 'react-router-dom';
 // import './finishGame.css';
@@ -16,7 +16,6 @@ const customStyles = {
         display: 'flex',
         flexDirection: 'column',
         padding: '20px',
-        // backgroundColor: '#09243b'
     }
 };
 Modal.setAppElement('#root');
@@ -67,34 +66,21 @@ class ModalFinishGame extends React.Component {
                 contentLabel="No Overlay Click Modal"
             >
 
-                {/* <main class="summary"> */}
-                    {/* <section class="summary__case"> */}
-                        <h1 class="summary__primarititle" ref={subtitle => this.subtitle = subtitle}>Game summary</h1>
-                        <h2 class="summary__secondarytitle">{this.props.game.nameGame}</h2>
-                        <div class="summary__result">
-                            <ul class="summary__result-list">
-                                {questions.map((item, index) => {
-                                    return (
-                                        <li class="summary__result-item"> <span>{index + 1}. {item} </span><span className="summary__result-points">{this.props.game.answers[index + 1]}</span></li>
-                                        // <p key={index}><span className="numberModal">{index + 1}</span>{item}<span className="answersModal">{this.props.game.answers[index + 1]}</span></p>
-                                        // <Fragment>
-                                        //     <li class="summary__result-item"> <span>{index + 1}.</span> {item}</li>
-                                        //     <li class="summary__result-item">{this.props.game.answers[index + 1]}</li>
-                                        // </Fragment>
-                                    )
-                                })}
-                                {/* <li class="summary__result-item"> <span>1.</span> Story1</li>
-                                <li class="summary__result-item"><span>2.</span> Story2</li>
-                                <li class="summary__result-item">8</li>
-                                <li class="summary__result-item">13</li> */}
-                            </ul>
-                        </div>
-                        <div class="summary__box">
-                            <button class="summary__box-btn" onClick={this.handleBack}>Back to game</button>
-                            <button class="summary__box-btn" onClick={this.handleEnd}>End this game</button>
-                        </div>
-                    {/* </section> */}
-                {/* </main> */}
+                <h1 className="summary__primarititle" ref={subtitle => this.subtitle = subtitle}>Game summary</h1>
+                <h2 className="summary__secondarytitle">{this.props.game.nameGame}</h2>
+                <div className="summary__result">
+                    <ul className="summary__result-list">
+                        {questions.map((item, index) => {
+                            return (
+                                <li key={item + index} className="summary__result-item"> <span>{index + 1}. {item} </span><span className="summary__result-points">{this.props.game.answers[index + 1]}</span></li>
+                            )
+                        })}
+                    </ul>
+                </div>
+                <div className="summary__box">
+                    <button className="summary__box-btn" onClick={this.handleBack}>Back to game</button>
+                    <button className="summary__box-btn" onClick={this.handleEnd}>End this game</button>
+                </div>
             </Modal>
         )
     }

@@ -1,10 +1,6 @@
 import React from 'react';
 import Modal from 'react-modal';
 import { withRouter } from 'react-router-dom';
-// import './ModalAddQuestion.css';
-// eslint-disable-next-line
-let questions = [];
-
 
 const customStylesForm = {
 
@@ -29,9 +25,7 @@ Modal.setAppElement('#root');
 
 class ModalAddQuestion extends React.Component {
 
-    componentWillMount() {
-
-
+    componentDidUpdate() {
     }
 
     state = { modalIsOpen: true };
@@ -44,7 +38,18 @@ class ModalAddQuestion extends React.Component {
     //     this.subtitle.style.color = '#09243b';
     // }
 
-    handleAddQuestion = () => {
+    handleKeypressAddQuestion = (event) => {
+        if (event.type === 'keypress' && event.key === 'Enter') {
+            this.addQuestion();
+        }
+    }
+
+    handleOnclickAddQuestion = (event) => {
+        event.preventDefault();
+        this.addQuestion();
+    }
+
+    addQuestion = () => {
         // ---------Proverka_poley------
         let result = "";
 
@@ -64,7 +69,6 @@ class ModalAddQuestion extends React.Component {
     }
 
     handleCancel = () => {
-        questions = [];
         this.setState({ modalIsOpen: false });
         this.props.modal();
     };
@@ -77,43 +81,28 @@ class ModalAddQuestion extends React.Component {
                 style={customStylesForm}
                 contentLabel="No Overlay Click Modal"
             >
-                <main class="edit-story">
-                    <div class="edit-story__container-form-edit">
-                        <form class="edit-story__form-edit" action="#">
-                            <h1 class="edit-story__form-edit-title"> Add new question </h1>
-                            <div class="edit-story__edit-container-field">
-                                <input class="edit-story__edit-form-input"
-                                    ref="question"
+                    <div className="edit-story__container-form-edit">
+                        <form className="edit-story__form-edit" action="#">
+                            <h1 className="edit-story__form-edit-title"> Add new question </h1>
+                            <div className="edit-story__edit-container-field">
+                                <input className="edit-story__edit-form-input"
+                                    ref='question'
                                     id="addqusetion-input"
                                     type="text"
                                     placeholder="Question"
+                                    onKeyPress={this.handleKeypressAddQuestion}
                                 />
                             </div>
-                            <div class="edit-story__edit-container-buttons">
-                                <button class="edit-story__edit-cancel-button" onClick={this.handleCancel}>
+                            <div className="edit-story__edit-container-buttons">
+                                <button className="edit-story__edit-cancel-button" onClick={this.handleCancel}>
                                     Cancel
                                 </button>
-                                <button class="edit-story__edit-save-button" onClick={this.handleAddQuestion}>
+                                <button className="edit-story__edit-save-button" onClick={this.handleOnclickAddQuestion}>
                                     Save
                                 </button>
                             </div>
                         </form>
                     </div>
-                </main>
-
-                {/* <div id="modal" ref={subtitle => this.subtitle = subtitle}>Add new question</div>
-                <div className="modalButtonWrap">
-                    <input
-                        ref="question"
-                        id="addqusetion-input"
-                        type="text"
-                        placeholder="  Question"
-                    />
-                    <div className="addquestion-buttons">
-                        <button id="addqusetion-left" className="modalEndGameButton" onClick={this.handleCancel}>Back to game</button>
-                        <button id="addqusetion-right" className="modalEndGameButton" onClick={this.handleAddQuestion}>Add question</button>
-                    </div>
-                </div> */}
             </Modal>
         )
     }

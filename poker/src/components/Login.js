@@ -1,7 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import LogError from './LogError';
-// import '../index.css';
 
 class Login extends React.Component {
     constructor(props) {
@@ -47,22 +46,7 @@ class Login extends React.Component {
                     </form>
                 </section>
             </main>
-
-            // <div className="wrapper-login">
-            //     <div className="container-for-login-form">
-            //         <LogError condition={this.state.logged} />
-            //         <h4>Login</h4>
-            //         <form>
-            //             <label className="register-form-label">Email:</label>
-            //             <input className="register-input" ref="email" type="email" name="name" placeholder="@email" />
-            //             <label className="register-form-label">Password:</label>
-            //             <input className="register-input" ref="password" type="password" name="name" placeholder="******" />
-
-            //             <div className="register-form-submit" onClick={this.handleLogIn}>Log in</div>
-            //         </form>
-            //     </div>
-            // </div>
-                    )
+        )
     }
 }
 

@@ -1,11 +1,9 @@
 import React from 'react';
 import Modal from 'react-modal';
 import { withRouter } from 'react-router-dom';
-import { addPlayer, updateStore } from '../../actions';
+import { addPlayer } from '../../actions';
 import { socket } from '../../constants/consts';
 import store from './store/index';
-import './modal.css'
-
 
 const customStyles = {
 
@@ -19,7 +17,6 @@ const customStyles = {
         display: 'flex',
         flexDirection: 'column',
         padding: '20px',
-        backgroundColor: '#09243b'
     }
 };
 Modal.setAppElement('#root');
@@ -33,10 +30,6 @@ class ModalNewPlayer extends React.Component {
         this.setState({ modalIsOpen: true });
     }
 
-    afterOpenModal = () => {
-        this.subtitle.style.color = '#09243b';
-    }
-
     handlePlay = () => {
         this.setState({ modalIsOpen: false });
         let data = JSON.stringify({
@@ -44,7 +37,7 @@ class ModalNewPlayer extends React.Component {
             user: {
                 name: this.refs.name.value.toLowerCase(),
                 email: this.refs.email.value,
-                //create array with empty answers to make it possible change answers through map in action SAVE_ANSWER 
+                //create array with empty answers to make it possible change answers through map in action SAVE_ANSWER
                 //!!!will work for games less than 25 questions
                 answers: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
             }
@@ -59,7 +52,7 @@ class ModalNewPlayer extends React.Component {
         fetch(`/addPlayer`, { method: 'POST', headers: { "Content-Type": "application/json" }, body: data })
             .then(res => res.json())
             .then(res => {
-                console.log('from modal', res.game, res.owner, ' player',  player)
+                console.log('from modal', res.game, res.owner, ' player', player)
                 socket.emit('add user', player);
                 console.log('from addplayer', res)
                 if (res.owner) {
@@ -68,7 +61,7 @@ class ModalNewPlayer extends React.Component {
                     localStorage.setItem('isOwner', true);
                     localStorage.setItem('username', JSON.stringify(res.username));
                 } else {
-                    store.dispatch(addPlayer(res.game));             
+                    store.dispatch(addPlayer(res.game));
                 }
 
             })
@@ -91,17 +84,27 @@ class ModalNewPlayer extends React.Component {
                 style={customStyles}
                 contentLabel="No Overlay Click Modal"
             >
-
-                <div id="modal" ref={subtitle => this.subtitle = subtitle}>Join Game</div>
-
-                <form>
-                    <p><label className="modal-label">Enter your name:</label></p>
-                    <p><input className="modal-input" ref="name" placeholder="player nickname" /></p>
-                    <p><label className="modal-label">Enter your email:</label></p>
-                    <p><input className="modal-input" ref="email" placeholder="email" /></p>
+                <form className="edit-story__form-edit" action="#">
+                    <h1 className="edit-story__form-edit-title">
+                        Join Game
+                        </h1>
+                    <div className="edit-story__edit-container-field">
+                        <label className="edit-story__edit-form-label" htmlFor="name">Enter your name:</label>
+                        <input className="edit-story__edit-form-input" ref="name" type="text" id="name" placeholder="name" required />
+                    </div>
+                    <div className="edit-story__edit-container-field">
+                        <label className="edit-story__edit-form-label" ref="email" htmlFor="email">Enter your email:</label>
+                        <input className="edit-story__edit-form-input" type="text" id="email" placeholder="email" required />
+                    </div>
+                    <div className="edit-story__edit-container-buttons">
+                        <button className="edit-story__edit-cancel-button" onClick={this.handleCancel}>
+                            Cancel
+                            </button>
+                        <button className="edit-story__edit-save-button" onClick={this.handlePlay}>
+                            Join
+                            </button>
+                    </div>
                 </form>
-                <button className="modal-button" onClick={this.handleCancel}>cancel</button>
-                <button className="modal-button" onClick={this.handlePlay}>play</button>
             </Modal>
         )
     }

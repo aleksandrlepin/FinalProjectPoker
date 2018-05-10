@@ -248,6 +248,7 @@ input {
     .header__image-block {
       width: 17px;
       height: 17px;
+      margin: auto;
       border-radius: 50%;
       overflow: hidden;
       border: 1px solid black; }
@@ -718,10 +719,11 @@ body {
         border-bottom: 1px solid #cbcdce; }
       .create-game .form__input-question-list {
         padding: 5px 10px;
-        height: auto;
+        height: 100px;
         font-family: "Roboto", sans-serif;
         color: #808386;
-        font-size: 13px; }
+        font-size: 13px;
+        overflow-y: auto; }
       .create-game .form__input-question {
         max-width: 225px;
         padding: 5px 0; }
@@ -1238,7 +1240,7 @@ body {
 
 .game {
   background-color: #F1F2F2;
-  padding-bottom: 30px; }
+  padding-bottom: 50px; }
   .game .cards {
     padding-top: 15px; }
     .game .cards__header {
@@ -1250,12 +1252,12 @@ body {
     .game .cards__block {
       display: flex;
       flex-wrap: wrap;
-      justify-content: space-between;
+      justify-content: space-evenly;
       padding-left: 16px;
       padding-right: 16px;
       margin-bottom: 35px; }
     .game .cards__item {
-      flex-basis: 33%;
+      flex-basis: 25%;
       margin-bottom: 10px;
       text-align: center; }
     .game .cards__state {
@@ -1392,15 +1394,20 @@ body {
         background-color: #FF6C00;
         color: #ffffff; }
   .game .questions {
+    height: 100%;
     margin: 15px 16px 0; }
+    .game .questions__block {
+      max-height: 23vh;
+      overflow-y: scroll; }
     .game .questions__item {
       position: relative;
       display: flex;
+      width: 94%;
       align-items: center;
       font-family: "Roboto", sans-serif;
-      height: 40px;
       background-color: #ffffff;
-      margin-bottom: 7px;
+      margin: 0 auto 7px;
+      padding: 15px 50px 15px 10px;
       box-shadow: 1px 1px 2px #bcc1c1;
       cursor: pointer;
       transition: all 0.2s; }
@@ -1551,7 +1558,6 @@ body {
       position: relative;
       bottom: -2px; }
     .game .questions__item {
-      height: 57px;
       margin-bottom: 15px; }
       .game .questions__item-number {
         font-size: 21px; }
@@ -1808,7 +1814,10 @@ body {
   .edit-story__container-form-edit {
     max-width: 480px;
     padding: 30px;
-    margin: 0 auto; }
+    margin: 0 auto;
+    background-color: #ffffff;
+    -webkit-box-shadow: 1px 1px 1px 1px #808386;
+    box-shadow: 1px 1px 1px 1px #808386; }
   .edit-story__form-edit-title {
     text-align: center;
     font-family: "Ubuntu", sans-serif;

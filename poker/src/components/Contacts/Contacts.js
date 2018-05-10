@@ -42,7 +42,7 @@ export default class Contacts extends Component {
 					return (
 						<div className="dev-card" key={index}>
 							<a className="dev-link" href={`https://github.com/${item.login}`}><h3 className="dev-login">{item.login}</h3></a>
-							<a className="dev-link" href={`https://github.com/${item.login}`}><img className="dev-avatars" src={item.avatar_url}></img></a>
+							<a className="dev-link" href={`https://github.com/${item.login}`}><img className="dev-avatars" src={item.avatar_url} alt="dev-avatars"></img></a>
 							<a className="dev-link" href={`https://github.com/${item.login}`}>{item.html_url}</a>
 						</div>
 					)

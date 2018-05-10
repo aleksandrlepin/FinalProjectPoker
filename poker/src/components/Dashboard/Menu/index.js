@@ -48,18 +48,6 @@ class Menu extends React.Component {
 					My account
 				</button>
 			</Fragment>
-
-
-			// < div className="navbar" >
-			// 	<ul id="menuList">
-			// 		<li onClick={this.handleClickCreate}>Create new game</li>
-			// 		<hr />
-			// 		<li onClick={this.handleSavedGames}>Saved games</li>
-			// 		{/*<hr/>
-			// 		<li  onClick = {this.handleAccount}>Accont</li>*/}
-			// 	</ul>
-			// </div >
-
 		)
 	}
 }

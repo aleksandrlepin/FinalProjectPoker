@@ -8,25 +8,15 @@ import Question from './Question';
 import ModalFinishGame from './finishGame/ModalFinishGame';
 import { DBtoStore, updateStore, changeAverage, resetCards, saveAnswer } from '../../actions';
 import store from './store/index';
-// import './gameField.css';
 import ModalNewPlayer from './ModalNewPlayer';
 import ModalAddQuestion from './addQuestion/ModalAddQuestion.js';
 import { addQuestion } from "./store/actions";
 import GameControls from './GameControls';
 
-
-import addQuestionButton from './addQuestionButton.png';
-
-let buttonAddQuestion = {
-    backgroundImage: `url(${addQuestionButton})`
-}
-
-// const URL = "http://localhost:3000";
-
 class GameField extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { ...store.getState(), activeIndex: null, activeQuestionIndex: 1, users_answer: {}, playerName: '', isOwner: false };
+        this.state = { ...store.getState(), activeIndex: null, activeQuestionIndex: 1, users_answer: {}, playerName: '', isOwner: false, };
 
         let gameId = this.props.match.params.id;
         localStorage.setItem('gameId', JSON.stringify(gameId));
@@ -103,7 +93,13 @@ class GameField extends React.Component {
 
     addToAnswers = (userId, answer) => {
         if (this.state.users_answer[userId]) {
-            this.state.users_answer[userId] = answer
+            this.setState(prevState => ({
+                users_answer: {
+                    ...prevState.users_answer,
+                    [userId]: answer,
+                },
+
+            }))
         }
         else { this.setState({ users_answer: { ...this.state.users_answer, [userId]: answer } }) }
         store.dispatch(saveAnswer({
@@ -136,6 +132,7 @@ class GameField extends React.Component {
 
         socket.emit('renderAverage', y);
         // store.dispatch(changeAverage(y));
+        console.log('aver: ', aver);
         return aver
     }
     createNewQuestion = () => {
@@ -227,18 +224,6 @@ class GameField extends React.Component {
                     <section className="cards">
                         <h1 className="cards__header">{this.state.dbToStore[0].questions[this.state.activeQuestionIndex]}</h1>
                         <div className="cards__block">
-                            {/* <div className="cards__item">
-                            <img className="cards__image" src={cardImg} alt="" />
-                            <p className="cards__name">Anton</p>
-                        </div>
-                        <div className="cards__item">
-                            <img className="cards__image" src={cardImg} alt="" />
-                            <p className="cards__name">Vova</p>
-                        </div>
-                        <div className="cards__item">
-                            <img className="cards__image" src={cardImg} alt="" />
-                            <p className="cards__name">Sasha</p>
-                        </div> */}
                             {this.state.dbToStore[0].users.map((user, index) => {
                                 return <UserCard
                                     user={user}
@@ -251,21 +236,21 @@ class GameField extends React.Component {
                     </section>
                     : null
                 }
-                {this.state.isOwner &&
-                    <section className="buttons">
+                <section className="buttons">
+                    {this.state.isOwner &&
                         <GameControls
                             calcAverage={this.calcAverage}
                             resetCards={this.resetCards}
                             prevQuestion={this.prevQuestion}
                             nextQuestion={this.nextQuestion}
                         />
+                    }
                         <div className="buttons__cards">
                             {fibNumbers.map((value, index) => <VoutingCard number={value} key={index}
                                 className={this.checkActiveCard(value, index)}
                                 onClick={this.changeActiveCard} />)}
                         </div>
                     </section>
-                }
                 <section className="questions">
                     <div className="questions__block">
                         {this.state.dbToStore[0] && Object.keys(this.state.dbToStore[0].questions).map(key => <Question

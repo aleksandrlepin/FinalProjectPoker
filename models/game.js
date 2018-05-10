@@ -8,7 +8,7 @@ const GameSchema = new Schema({
     questions: {},
     answers: {},
     // currentQuestion: String,
-    users: []
+    users: [],
 });
 
 module.exports = Mongoose.model('Game', GameSchema);

@@ -74,10 +74,11 @@
       }
       &-question-list {
         padding: 5px 10px;
-        height: auto;
+        height: 100px;
         font-family: $roboto-font;
         color: $font-grey;
         font-size: 13px;
+        overflow-y: auto;
       }
       &-question {
         max-width: 225px;

@@ -22,7 +22,6 @@ export default function dbToStore(state = initialState.database, action) {
 
 			console.log(state[0].questions);
 			return [{ ...state[0], questions:{ ...state[0].questions, [count]:payload}}];
-			break;
 
 		case types.CHANGE_AVERAGE:
 			let o = payload.index;

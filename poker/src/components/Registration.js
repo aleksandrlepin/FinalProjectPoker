@@ -1,9 +1,8 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-// import '../registration.css';
-
 
 let validation = false;
+let emailValidation = false;
 class Registration extends React.Component {
 
     state = {
@@ -18,20 +17,26 @@ class Registration extends React.Component {
         if (this.state.password !== this.state.repeatPassword || !validation) {
             this.refs.repeatPassword.style.boxShadow = "0px 0px 2px 2px #ff0000";
             this.refs.password.style.boxShadow = "0px 0px 2px 2px #ff0000";
+        } else if (!emailValidation) {
+            this.refs.email.style.boxShadow = "0px 0px 2px 2px #ff0000";
         } else {
             validation = false;
+            emailValidation = false;
             this.refs.repeatPassword.style.boxShadow = "none";
             let data = this.state;
-            // delete data.repeatPassword
-            data.repeatPassword = '';
+            delete data.repeatPassword
+            console.log('data: ', data);
+            // data.repeatPassword = '';
             fetch('/registeruser', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(data)
             })
-                .then(res => res.json())
                 .then(res => {
-                    console.log(res);
+                    return res.json();
+                })
+                .then(res => {
+                    console.log('res', res);
                     if (!res.emailValRes || !res.emailRes) {
                         this.refs.email.style.boxShadow = "0px 0px 2px 2px #ff0000";
                     } else {
@@ -57,6 +62,12 @@ class Registration extends React.Component {
         this.refs.password.value = '';
         this.refs.repeatPassword.value = '';
     }
+
+    validateEmail = (email) => {
+        var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(email);
+    }
+
     handleChange = (e) => {
         this.setState({
             [e.target.name]: e.target.value
@@ -68,13 +79,13 @@ class Registration extends React.Component {
             this.refs.name.style.boxShadow = "none";
             validation = true;
         }
-        if (this.state.email.length < 5 || this.state.email.length > 20) {
+        if (this.state.email.length < 5 || this.state.email.length > 20 || !this.validateEmail(this.state.email)) {
             this.refs.email.style.boxShadow = "0px 0px 2px 2px #ff0000";
-            validation = false;
+            emailValidation = false;
         } else {
-            validation = false;
+            // validation = false;
             this.refs.email.style.boxShadow = "none";
-            validation = true;
+            emailValidation = true;
         }
         if (this.state.password.length < 5 || this.state.password.length > 20) {
             this.refs.password.style.boxShadow = "0px 0px 2px 2px #ff0000";
@@ -84,7 +95,7 @@ class Registration extends React.Component {
             validation = true;
 
         }
-        if (this.state.repeatPassword && this.state.repeatPassword) {
+        if (this.state.password && this.state.repeatPassword) {
             if (this.state.repeatPassword.length < 5 || this.state.repeatPassword.length > 20) {
                 this.refs.repeatPassword.style.boxShadow = "0px 0px 2px 2px #ff0000";
                 validation = false;
@@ -93,11 +104,11 @@ class Registration extends React.Component {
                 validation = true;
             }
         }
+        console.log('validation', validation);
     }
 
 
     render() {
-        // const { name, email, password, repeatPassword } = this.state
         return (
             <main className="register">
                 <div className="register__container-form-registation">
@@ -105,14 +116,6 @@ class Registration extends React.Component {
                         <h1 className="form__title">
                             Register
                         </h1>
-                        {/* <div className="form__field">
-                            <label className="form__label" htmlFor="name">First name</label>
-                            <input className="form__input"onChange={this.handleChange} type="text" id="name" placeholder="Name" required />
-                        </div>
-                        <div className="form__field">
-                            <label className="form__label" htmlFor="surname">Last name</label>
-                            <input className="form__input" ref="surname" onChange={this.handleChange} type="text" id="surname" placeholder="Surname" required />
-                        </div> */}
                         <div className="form__field">
                             <label className="form__label" htmlFor="name">Player name</label>
                             <input className="form__input" ref="name" onChange={this.handleChange} name="name" type="text" id="name" placeholder="name" required />
@@ -137,18 +140,6 @@ class Registration extends React.Component {
                     </form>
                 </div>
             </main>
-
-            // <div className="container-for-register-form">
-            //         <label className="register-form-label">Player name:</label>
-            //         <input ref="name" type="text" name="name" onChange={this.handleChange} />
-            //         <label className="register-form-label">Email:</label>
-            //         <input ref="email" type="text" name="email" onChange={this.handleChange} />
-            //         <label className="register-form-label">Password:</label>
-            //         <input ref="password" type="password" name="password" onChange={this.handleChange} />
-            //         <label className="register-form-label">Repeat password:</label>
-            //         <input ref="repeatPassword" type="password" name="repeatPassword" onChange={this.handleChange} />
-            //         <input className="register-form-submit" type="submit" id="buttonSubmit" value="Submit" onClick={this.handleSubmit}/>
-            // </div>
         )
     }
 }

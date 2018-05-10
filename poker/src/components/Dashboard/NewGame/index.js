@@ -1,6 +1,4 @@
 import React from 'react';
-import Menu from '../Menu/index.js';
-// import "./newGame.css";
 
 const initialState = {
     questions: {},
@@ -144,7 +142,8 @@ export default class NewGame extends React.Component {
                 description: this.refs.description.value,
                 questions: this.state.questions,
                 answers: this.state.answers,
-                users: this.state.users
+                users: this.state.users,
+                date: new Date(),
             };
             console.log(objectNewGame);
             let newGame = JSON.stringify(objectNewGame);
@@ -277,79 +276,6 @@ export default class NewGame extends React.Component {
                 </form>
             </main>
 
-            // <div className='row'>
-            //     <div className='wrapper-new-game'>
-            //         <div className="col-lg-3 col-sm-12">
-            //             <Menu />
-            //         </div>
-            //         <div className="col-lg-5">
-            //             <form className="formNewGame">
-            //                 <h1 id="formNewGameHeading">
-            //                     Create New Game
-            //                 </h1>
-            //                 <label htmlFor="nameGame">
-            //                     <h3 id="nameGameHeading">Game Name</h3>
-            //                     <input
-            //                         ref="nameGame"
-            //                         id="nameGameValue"
-            //                         type="text"
-            //                         placeholder="Game name"
-            //                     />
-            //                 </label>
-            //                 <h3 id="descriptionHeading">Description</h3>
-            //                 <div>
-            //                     <textarea id="descriptionValue"
-            //                         ref="description"
-            //                         type="text"
-            //                         placeholder='  Description'
-            //                     >
-            //                     </textarea>
-            //                 </div>
-            //                 <label htmlFor="question" id="labelQuestions">
-            //                     <h3 id="questionsHeading">Add questions</h3>
-            //                     <textarea
-            //                         ref="question"
-            //                         id="questionsValue"
-            //                         type="text"
-            //                         placeholder="  Question"
-            //                     />
-            //                     <button
-            //                         // className="btn-default"
-            //                         id="addQuestionsButton"
-            //                         type="submit"
-            //                         onClick={this.addedQuestion}>
-            //                     </button>
-            //                 </label>
-            //                 <div
-            //                     className="listQuestions">
-            //                 </div>
-            //                 <div id="questionsField" placeholder="List of questions">
-            //                     {
-            //                         this.state.rows.length > 0 ?
-            //                             this.state.rows.map((item, index) => {
-            //                                 return (
-            //                                     <p key={index}>{index + 1}. {item}</p>)
-            //                             })
-            //                             :
-            //                             <div className="questionOnNewGame"><span><pre style={{ fontSize: 22 + "px" }}> No questions</pre></span></div>
-            //                     }
-            //                 </div>
-            //                 <button id="createGameCancelButton"
-            //                     type="submit"
-            //                 >
-            //                     Cancel
-            //                 </button>
-            //                 <button id="createGameButton"
-            //                     onClick={this.handleSubmit}
-            //                     type="submit"
-            //                 >
-            //                     Create Game
-            //                 </button>
-
-            //             </form>
-            //         </div>
-            //     </div>
-            // </div>
         )
     }
 }
