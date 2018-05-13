@@ -1,9 +1,7 @@
 import React from 'react';
-// import Menu from './Menu/index';
 import Game from './Game/index';
 import { withRouter } from 'react-router-dom';
 
-// import './index.css';
 import { link } from '../../constants/consts.js'
 
 
@@ -68,7 +66,8 @@ class Dashboard extends React.Component {
     };
 
     render() {
-        let gameLinkg = '' + link + '/play/game/';
+        let gameLinkg = '' + window.location.origin + '/play/game/';
+        // let gameLinkg = '' + link + '/play/game/';
         console.log('gameLinkg: ', gameLinkg);
         console.log('games', this.state.games);
         return (

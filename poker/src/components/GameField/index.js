@@ -12,11 +12,20 @@ import ModalNewPlayer from './ModalNewPlayer';
 import ModalAddQuestion from './addQuestion/ModalAddQuestion.js';
 import { addQuestion } from "./store/actions";
 import GameControls from './GameControls';
+import { addPlayer } from '../../actions';
+
 
 class GameField extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { ...store.getState(), activeIndex: null, activeQuestionIndex: 1, users_answer: {}, playerName: '', isOwner: false, };
+        this.state = {
+            ...store.getState(),
+            activeIndex: null,
+            activeQuestionIndex: 1,
+            users_answer: {},
+            playerName: '',
+            isOwner: true,
+        };
 
         let gameId = this.props.match.params.id;
         localStorage.setItem('gameId', JSON.stringify(gameId));
@@ -66,6 +75,7 @@ class GameField extends React.Component {
 
     }
 
+
     callSocket = () => {
 
         socket.emit('add owner', {
@@ -75,12 +85,13 @@ class GameField extends React.Component {
     };
 
     componentWillUnmount() {
+        // this.state.isOwner && this.clearPlayers();
         this.unsubscribe = store.subscribe(() => this.setState(store.getState()));
     }
 
     componentDidMount() {
-        if (JSON.parse(localStorage.getItem('isOwner'))) this.setState({ isOwner: true });
-
+        // if (JSON.parse(localStorage.getItem('isOwner'))) this.setState({ isOwner: true });
+        this.handlePlay();
     }
 
     changeActiveCard = (indexVouted) => this.setState({ activeIndex: indexVouted });
@@ -209,15 +220,54 @@ class GameField extends React.Component {
         socket.emit('transferQuestion', index);
     }
 
+    handlePlay = () => {
+        // this.setState({ modalIsOpen: false });
+        let data = JSON.stringify({
+            gameId: this.props.match.params.id,
+            user: {
+                name: JSON.parse(localStorage.getItem('username')),
+                email: JSON.parse(localStorage.getItem('useremail')),
+                //create array with empty answers to make it possible change answers through map in action SAVE_ANSWER
+                //!!!will work for games less than 25 questions
+                answers: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+            }
+        });
+
+        // Tell the server your username
+        let player = {
+            name: JSON.parse(localStorage.getItem('username')),
+            email: JSON.parse(localStorage.getItem('useremail')),
+        }
+        console.log('player: ', player);
+
+        fetch(`/addPlayer`, { method: 'POST', headers: { "Content-Type": "application/json" }, body: data })
+            .then(res => res.json())
+            .then(res => {
+                console.log('res!!!!!', res)
+                socket.emit('add user', player);
+                if (res.owner) {
+                    this.setState({ isOwner: true });
+                    // this.props.history.push('/loginOwnGame');
+                    // localStorage.setItem('currentGameId', this.props.match.params.id);
+                    // localStorage.setItem('isOwner', true);
+                    // localStorage.setItem('username', JSON.stringify(res.username));
+                } else {
+                    this.setState({ isOwner: false });
+                    store.dispatch(addPlayer(res.game));
+                }
+
+            })
+            .catch(err => console.log(err));
+    }
+
     render() {
         console.log('qwestions', this.state.dbToStore[0]);
         return (
 
             <main className="game">
-
                 {this.state.endGame && <ModalFinishGame game={this.state.dbToStore[0]} modal={this.modalClose} />}
                 {this.state.addQuestion && <ModalAddQuestion addNewQuestion={this.addQuestionToGame} modal={this.modalClose} />}
-                {localStorage.getItem('isOwner') ?
+                {this.state.isOwner || localStorage.getItem('username') ?
                     null :
                     <ModalNewPlayer gameId={this.props.match.params.id} />}
                 {this.state.dbToStore[0] !== undefined ?
@@ -245,12 +295,12 @@ class GameField extends React.Component {
                             nextQuestion={this.nextQuestion}
                         />
                     }
-                        <div className="buttons__cards">
-                            {fibNumbers.map((value, index) => <VoutingCard number={value} key={index}
-                                className={this.checkActiveCard(value, index)}
-                                onClick={this.changeActiveCard} />)}
-                        </div>
-                    </section>
+                    <div className="buttons__cards">
+                        {fibNumbers.map((value, index) => <VoutingCard number={value} key={index}
+                            className={this.checkActiveCard(value, index)}
+                            onClick={this.changeActiveCard} />)}
+                    </div>
+                </section>
                 <section className="questions">
                     <div className="questions__block">
                         {this.state.dbToStore[0] && Object.keys(this.state.dbToStore[0].questions).map(key => <Question

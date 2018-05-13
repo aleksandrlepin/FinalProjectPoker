@@ -1,6 +1,8 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import LogError from './LogError';
+import { socket } from '../constants/consts';
+
 
 class Login extends React.Component {
     constructor(props) {
@@ -20,7 +22,7 @@ class Login extends React.Component {
                 localStorage.setItem('token', JSON.stringify(res.token));
                 localStorage.setItem('username', JSON.stringify(res.name));
                 localStorage.setItem('useremail', JSON.stringify(res.email));
-                localStorage.setItem('isOwner', true);
+                // localStorage.setItem('isOwner', true);
                 this.props.history.push('/dashboard');
 
             })

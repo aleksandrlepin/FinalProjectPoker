@@ -1,15 +1,19 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import firebase, {userpicRef} from '../firebase';
+import uuid from 'uuid-v4'
 
 let validation = false;
 let emailValidation = false;
+
 class Registration extends React.Component {
 
     state = {
         name: '',
         email: '',
         password: '',
-        repeatPassword: ''
+        repeatPassword: '',
+        userpicFileName: '',
     }
 
     handleSubmit = (e) => {
@@ -23,10 +27,11 @@ class Registration extends React.Component {
             validation = false;
             emailValidation = false;
             this.refs.repeatPassword.style.boxShadow = "none";
-            let data = this.state;
-            delete data.repeatPassword
-            console.log('data: ', data);
-            // data.repeatPassword = '';
+            let data = {...this.state};
+            delete data.repeatPassword;
+            delete data.userpicFileName;
+            // console.log('data: ', data);
+            this.refs.userpic.files[0] && this.postUserpic();
             fetch('/registeruser', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -51,13 +56,13 @@ class Registration extends React.Component {
                         localStorage.setItem('token', JSON.stringify(res.token));
                         localStorage.setItem('username', JSON.stringify(res.name));
                         localStorage.setItem('useremail', JSON.stringify(res.email));
-                        localStorage.setItem('isOwner', true);
+                        // localStorage.setItem('isOwner', true);
                         this.props.history.push('/dashboard');
                     }
                 })
                 .catch(err => console.log(err));
 
-            console.log("------------------------  fetch RUUUUN");
+            // console.log("------------------------  fetch RUUUUN");
         }
         this.refs.password.value = '';
         this.refs.repeatPassword.value = '';
@@ -107,6 +112,16 @@ class Registration extends React.Component {
         console.log('validation', validation);
     }
 
+    postUserpic = () => {
+        const file = this.refs.userpic.files[0]
+        const userRef =  userpicRef.child(this.refs.email.value);
+        const userPicRef = userRef.child(this.refs.name.value);
+        userPicRef.put(file).then(data => console.log(data));
+    }
+
+    addUserpic = () => {
+        this.setState({userpicFileName: this.refs.userpic.files[0].name});
+    }
 
     render() {
         return (
@@ -119,6 +134,11 @@ class Registration extends React.Component {
                         <div className="form__field">
                             <label className="form__label" htmlFor="name">Player name</label>
                             <input className="form__input" ref="name" onChange={this.handleChange} name="name" type="text" id="name" placeholder="name" required />
+                        </div>
+                        <div className="form__field form__field-file">
+                            <label className="form__label" htmlFor="userpic">Avatar</label>
+                            <input className="form__input-file" ref="userpic" onChange={this.addUserpic} name="userpic" type="file" id="userpic" accept=".png, .jpeg, .jpg" />
+                            <p className="form__input form__input-file-path" ref='userpicFile'>{this.state.userpicFileName}</p>
                         </div>
                         <div className="form__field">
                             <label className="form__label" htmlFor="email">Email</label>

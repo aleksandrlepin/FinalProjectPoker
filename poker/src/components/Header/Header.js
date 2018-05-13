@@ -4,6 +4,7 @@ import { socket } from '../../constants/consts';
 
 import { DBtoStore } from '../../actions';
 import store from '../GameField/store/index';
+import {storage, storageRef} from '../../firebase';
 
 import go from '../../img/header/go.png';
 import it from '../../img/header/it.png';
@@ -14,16 +15,29 @@ class Header extends React.Component {
     constructor() {
 
         super();
-        this.state = { playername: '' }
+        this.state = { userpicUrl: '' }
 
-        socket.on('login', (name) => {
+        // socket.on('login', (name) => {
+        //     // localStorage.setItem('playername', JSON.stringify(name));
+        //     this.setState({ playername: name.toLocaleUpperCase() })
+        //     // this.setState({playerName: JSON.parse(localStorage.getItem('playername'))})
 
-            // localStorage.setItem('playername', JSON.stringify(name));
-            this.setState({ playername: name.toLocaleUpperCase() })
-            // this.setState({playerName: JSON.parse(localStorage.getItem('playername'))})
+        //     console.log('socket from header', name, this.state.playername)
+        //     console.log('player', name);
+        // });
+    }
 
-            console.log('socket from header', name, this.state.playername)
-            console.log('player', name);
+    componentDidMount() {
+        this.getUserpic();
+    }
+
+    getUserpic = () => {
+        const that = this;
+        const email = JSON.parse(localStorage.getItem('useremail'));
+        const name = JSON.parse(localStorage.getItem('username'));
+        storage.refFromURL(`gs://pokergoit.appspot.com/userpics/${email}/${name}`).getDownloadURL().then(function(url) {
+            console.log('url', url);
+            that.setState({userpicUrl: url})
         });
     }
 
@@ -60,7 +74,7 @@ class Header extends React.Component {
     }
 
     render() {
-        console.log('rerender header', this.state.playername)
+        // console.log('SOCET', socket);
         return (
             <header className="header">
                 <div className="header__container">
@@ -73,7 +87,7 @@ class Header extends React.Component {
                     ? <div className="header__container-link-and-img">
                         <a  onClick={this.handleRedirect}>
                             <div className="header__image-block">
-                                <img src={userpic} alt="user" className="header__user-image" />
+                                {this.state.userpicUrl && <img src={this.state.userpicUrl} alt="user" className="header__user-image" />}
                             </div>
                             <p className="header__profile">{JSON.parse(localStorage.getItem('username'))}</p>
                         </a>

@@ -58,7 +58,7 @@ class ModalNewPlayer extends React.Component {
                 if (res.owner) {
                     this.props.history.push('/loginOwnGame');
                     localStorage.setItem('currentGameId', this.props.match.params.id);
-                    localStorage.setItem('isOwner', true);
+                    // localStorage.setItem('isOwner', true);
                     localStorage.setItem('username', JSON.stringify(res.username));
                 } else {
                     store.dispatch(addPlayer(res.game));
