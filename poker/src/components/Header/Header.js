@@ -86,9 +86,9 @@ class Header extends React.Component {
                 {localStorage.getItem('username') !== null
                     ? <div className="header__container-link-and-img">
                         <a  onClick={this.handleRedirect}>
-                            <div className="header__image-block">
+                            {/* <div className="header__image-block">
                                 {this.state.userpicUrl && <img src={this.state.userpicUrl} alt="user" className="header__user-image" />}
-                            </div>
+                            </div> */}
                             <p className="header__profile">{JSON.parse(localStorage.getItem('username'))}</p>
                         </a>
                     </div>
