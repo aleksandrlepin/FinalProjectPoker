@@ -4,7 +4,7 @@ import { socket } from '../../constants/consts';
 
 import { DBtoStore } from '../../actions';
 import store from '../GameField/store/index';
-import {storage, storageRef} from '../../firebase';
+// import {storage, storageRef} from '../../firebase';
 
 import go from '../../img/header/go.png';
 import it from '../../img/header/it.png';
@@ -17,29 +17,31 @@ class Header extends React.Component {
         super();
         this.state = { userpicUrl: '' }
 
-        // socket.on('login', (name) => {
-        //     // localStorage.setItem('playername', JSON.stringify(name));
-        //     this.setState({ playername: name.toLocaleUpperCase() })
-        //     // this.setState({playerName: JSON.parse(localStorage.getItem('playername'))})
+        socket.on('userauth', (name) => {
+            console.log('LOooooooogggggiiiinnnn!!!!!!')
+            Header.getUserpic();
+            // // localStorage.setItem('playername', JSON.stringify(name));
+            // this.setState({ playername: name.toLocaleUpperCase() })
+            // // this.setState({playerName: JSON.parse(localStorage.getItem('playername'))})
 
-        //     console.log('socket from header', name, this.state.playername)
-        //     console.log('player', name);
-        // });
+            // console.log('socket from header', name, this.state.playername)
+            // console.log('player', name);
+        });
     }
 
     componentDidMount() {
-        this.getUserpic();
+        // this.getUserpic();
     }
 
-    getUserpic = () => {
-        const that = this;
-        const email = JSON.parse(localStorage.getItem('useremail'));
-        const name = JSON.parse(localStorage.getItem('username'));
-        storage.refFromURL(`gs://pokergoit.appspot.com/userpics/${email}/${name}`).getDownloadURL().then(function(url) {
-            console.log('url', url);
-            that.setState({userpicUrl: url})
-        });
-    }
+    // getUserpic = () => {
+    //     const that = this;
+    //     const email = JSON.parse(localStorage.getItem('useremail'));
+    //     const name = JSON.parse(localStorage.getItem('username'));
+    //     storage.refFromURL(`gs://pokergoit.appspot.com/userpics/${email}/${name}`).getDownloadURL().then(function(url) {
+    //         console.log('url', url);
+    //         that.setState({userpicUrl: url})
+    //     });
+    // }
 
     handleClick = (href) => {
         this.props.history.push(href);
@@ -86,9 +88,9 @@ class Header extends React.Component {
                 {localStorage.getItem('username') !== null
                     ? <div className="header__container-link-and-img">
                         <a  onClick={this.handleRedirect}>
-                            {/* <div className="header__image-block">
-                                {this.state.userpicUrl && <img src={this.state.userpicUrl} alt="user" className="header__user-image" />}
-                            </div> */}
+                            <div className="header__image-block">
+                                {this.props.userpicUrl && <img src={this.props.userpicUrl} alt="user" className="header__user-image" />}
+                            </div>
                             <p className="header__profile">{JSON.parse(localStorage.getItem('username'))}</p>
                         </a>
                     </div>
