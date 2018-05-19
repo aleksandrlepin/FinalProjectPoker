@@ -1,10 +1,12 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import {connect} from 'react-redux';
 import { socket } from '../../constants/consts';
 
 import { DBtoStore } from '../../actions';
-import store from '../GameField/store/index';
+import store from '../../store/index';
 import {storage, storageRef} from '../../firebase';
+import {getUserpic} from '../../actions/index';
 
 import go from '../../img/header/go.png';
 import it from '../../img/header/it.png';
@@ -17,37 +19,20 @@ class Header extends React.Component {
 		super();
 		this.state = { userpicUrl: '' }
 
-		// Это тут не нужно
-		// socket.on('login', (name) => {
-		//     console.log(arguments);
-		//     // localStorage.setItem('playername', JSON.stringify(name));
-		//     // this.setState({ playername: name.toLocaleUpperCase() })
-		//     // this.setState({playerName: JSON.parse(localStorage.getItem('playername'))})
-		//
-		//     console.log('socket from header', name, this.state.playername)
-		//     console.log('player', name);
-		// });
 	}
 
 	componentDidMount() {
-		this.getUserpic();
-	}
+		if(!localStorage.getItem('usermane')){
+			const email = JSON.parse(localStorage.getItem('useremail'));
+			const name = JSON.parse(localStorage.getItem('username'));
+			storage.refFromURL(`gs://pokergoit.appspot.com/userpics/${email}/${name}`)
+			.getDownloadURL()
+			.then((url) => {
+				// localStorage.setItem('avatar_url', url);
+				store.dispatch(getUserpic(url));
+			});
+		}
 
-	getUserpic = () => {
-		const that = this;
-		const email = JSON.parse(localStorage.getItem('useremail'));
-		const name = JSON.parse(localStorage.getItem('username'));
-
-		//Добавил это
-		this.setState({userpicUrl : localStorage.getItem('avatar_url') });
-
-		//Компонент не отрендериться после того как получит ответ т.е это тоже не имеет смысла тут делать
-		//Перенесн это в файл Login.js
-		// storage.refFromURL(`gs://pokergoit.appspot.com/userpics/${email}/${name}`).getDownloadURL().then(function(url) {
-		//     console.log('url', url);
-		//     console.log(arguments);
-		//     // that.setState({userpicUrl: url})
-		// });
 	}
 
 	handleClick = (href) => {
@@ -95,9 +80,11 @@ class Header extends React.Component {
 				{localStorage.getItem('username') !== null
 					? <div className="header__container-link-and-img">
 						<a  onClick={this.handleRedirect}>
-							<div className="header__image-block">
-								{this.state.userpicUrl && <img src={this.state.userpicUrl} alt="user" className="header__user-image" />}
-							</div>
+								{this.props.userPic &&
+									<div className="header__image-block">
+										<img src={this.props.userPic} alt="user" className="header__user-image" />
+									</div>
+								}
 							<p className="header__profile">{JSON.parse(localStorage.getItem('username'))}</p>
 						</a>
 					</div>
@@ -127,4 +114,8 @@ class Header extends React.Component {
 	}
 }
 
-export default withRouter(Header)
+const mstp = state => ({
+	userPic: state.userPic,
+});
+
+export default withRouter(connect(mstp, null)(Header));

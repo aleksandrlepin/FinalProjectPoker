@@ -3,6 +3,8 @@ import { withRouter } from 'react-router-dom';
 import LogError from './LogError';
 import { socket } from '../constants/consts';
 import {storage} from '../firebase';
+import store from '../store/index';
+import {getUserpic} from '../actions/index';
 
 
 
@@ -28,7 +30,8 @@ class Login extends React.Component {
 				storage.refFromURL(`gs://pokergoit.appspot.com/userpics/${res.email}/${res.name}`)
 					.getDownloadURL()
 					.then((url) => {
-						localStorage.setItem('avatar_url', url);
+						// localStorage.setItem('avatar_url', url);
+						store.dispatch(getUserpic(url));
 						this.props.history.push('/dashboard');
 					});
 

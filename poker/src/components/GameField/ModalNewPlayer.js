@@ -3,7 +3,7 @@ import Modal from 'react-modal';
 import { withRouter } from 'react-router-dom';
 import { addPlayer } from '../../actions';
 import { socket } from '../../constants/consts';
-import store from './store/index';
+import store from '../../store/index';
 
 const customStyles = {
 

@@ -1,7 +1,10 @@
 import React from 'react';
+import uuid from 'uuid-v4'
 import { withRouter } from 'react-router-dom';
 import firebase, {userpicRef} from '../firebase';
-import uuid from 'uuid-v4'
+import store from '../store/index';
+import {getUserpic} from '../actions/index';
+import {storage} from '../firebase';
 
 let validation = false;
 let emailValidation = false;
@@ -57,6 +60,8 @@ class Registration extends React.Component {
                         localStorage.setItem('username', JSON.stringify(res.name));
                         localStorage.setItem('useremail', JSON.stringify(res.email));
                         // localStorage.setItem('isOwner', true);
+                        // this.props.history.push('/dashboard');
+
                         this.props.history.push('/dashboard');
                     }
                 })
@@ -116,11 +121,22 @@ class Registration extends React.Component {
         const file = this.refs.userpic.files[0]
         const userRef =  userpicRef.child(this.refs.email.value);
         const userPicRef = userRef.child(this.refs.name.value);
-        userPicRef.put(file).then(data => console.log(data));
+        userPicRef
+            .put(file)
+            .then(data => {
+                console.log(data)
+                const email = JSON.parse(localStorage.getItem('useremail'));
+                const name = JSON.parse(localStorage.getItem('username'));
+                storage.refFromURL(`gs://pokergoit.appspot.com/userpics/${email}/${name}`)
+                        .getDownloadURL()
+                        .then((url) => {
+                            store.dispatch(getUserpic(url));
+                        });
+            });
     }
 
     addUserpic = () => {
-        this.setState({userpicFileName: this.refs.userpic.files[0].name});
+        this.refs.userpic.files[0] && this.setState({userpicFileName: this.refs.userpic.files[0].name});
     }
 
     render() {
@@ -138,7 +154,7 @@ class Registration extends React.Component {
                         <div className="form__field form__field-file">
                             <label className="form__label" htmlFor="userpic">Avatar</label>
                             <input className="form__input-file" ref="userpic" onChange={this.addUserpic} name="userpic" type="file" id="userpic" accept=".png, .jpeg, .jpg" />
-                            <p className="form__input form__input-file-path" ref='userpicFile'>{this.state.userpicFileName}</p>
+                            <p className="form__input form__input-file-path" ref='userpicFile'>{this.state.userpicFileName ? this.state.userpicFileName : 'Click to add avatar...'}</p>
                         </div>
                         <div className="form__field">
                             <label className="form__label" htmlFor="email">Email</label>

@@ -14,3 +14,5 @@ export const userAuthorization = (payload) => ({type: types.USER_AUTHORIZATION, 
 export const resetCards = (payload) => ({type: types.RESET_CARDS, payload});
 export const flipCards = (payload) => ({type: types.FLIP_CARDS, payload});
 export const saveAnswer = (payload) => ({type: types.SAVE_ANSWER, payload});
+
+export const getUserpic = payload => ({type: types.GET_USERPIC, payload});

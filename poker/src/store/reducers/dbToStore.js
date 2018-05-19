@@ -1,5 +1,5 @@
-import initialState from '../../../../constants/initialState';
-import * as types from '../../../../constants/actionTypes';
+import initialState from '../../constants/initialState';
+import * as types from '../../constants/actionTypes';
 
 export default function dbToStore(state = initialState.database, action) {
 	let { type, payload } = action;

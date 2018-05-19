@@ -7,10 +7,10 @@ import UserCard from '../usersCards/UserCard';
 import Question from './Question';
 import ModalFinishGame from './finishGame/ModalFinishGame';
 import { DBtoStore, updateStore, changeAverage, resetCards, saveAnswer } from '../../actions';
-import store from './store/index';
+import store from '../../store/index';
 import ModalNewPlayer from './ModalNewPlayer';
 import ModalAddQuestion from './addQuestion/ModalAddQuestion.js';
-import { addQuestion } from "./store/actions";
+import { addQuestion } from "../../store/actions";
 import GameControls from './GameControls';
 import { addPlayer } from '../../actions';
 
@@ -261,7 +261,7 @@ class GameField extends React.Component {
     }
 
     render() {
-        console.log('qwestions', this.state.dbToStore[0]);
+        // console.log('qwestions', this.state.dbToStore[0]);
         return (
 
             <main className="game">

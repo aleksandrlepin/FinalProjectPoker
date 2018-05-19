@@ -13,3 +13,4 @@ export const RESET_CARDS = "RESET_CARDS";
 export const FLIP_CARDS = "FLIP_CARDS";
 export const SAVE_ANSWER = "SAVE_ANSWER";
 
+export const GET_USERPIC = 'GET_USERPIC';
